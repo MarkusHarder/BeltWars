@@ -41,6 +41,7 @@ public class ShipDestruction : MonoBehaviour, IEntity
 
     public void ApplyDamage(float points)
     {
+        
         health -= points;
         bar = this.health + "/" + this.maxHealth;
         this.shipHP.text = this.bar;
