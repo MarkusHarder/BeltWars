@@ -10,7 +10,8 @@ public  class GameSceneCreator : MonoBehaviour
 {
 
     public int shipAmount = 6;
-    public int borderDistance = 1;
+    public int asteroidDensity = 3;
+    public double borderDistance = 0.5;
 
 
     
@@ -23,7 +24,11 @@ public  class GameSceneCreator : MonoBehaviour
 
     public void placeAsteroids()
     {
-
+        int asteroidAmount = 8 * asteroidDensity;
+        for (int i = 0; i < asteroidAmount; i++)
+        {
+            placeAsteroidRandom(i);
+        }
     }
 
     public void placeShips()
@@ -48,7 +53,7 @@ public  class GameSceneCreator : MonoBehaviour
     }
 
 
-    private void placeShipRandom(string path, int i)
+    private void placeShipRandom(string path, int index)
     {
         GameObject ship = Resources.Load(path) as GameObject;
         CameraMeasurements camera = new CameraMeasurements();
@@ -63,8 +68,8 @@ public  class GameSceneCreator : MonoBehaviour
 
         do
         {
-            float x = Random.Range(camera.getHorizontalMin() + borderDistance, camera.getHorizontalMax() - borderDistance);
-            float y = Random.Range(camera.getVerticalMin() + borderDistance, camera.getVerticalMax() - borderDistance);
+            float x = Random.Range(camera.getHorizontalMin() + (float) borderDistance, camera.getHorizontalMax() - (float) borderDistance);
+            float y = Random.Range(camera.getVerticalMin() + (float) borderDistance, camera.getVerticalMax() - (float) borderDistance);
 
             spawnLocation = new Vector3(x, y, 0);
 
@@ -76,16 +81,42 @@ public  class GameSceneCreator : MonoBehaviour
 
         if (path.Equals(ResourcePathConstants.SHIP_EARTH))
         {
-            clone.name = "Ship_Earth_" + (i + 1);
+            clone.name = "Ship_Earth_" + (index + 1);
         }
         else
         {
-            clone.name = "Ship_Mars_" + (i + 1);
+            clone.name = "Ship_Mars_" + (index + 1);
         }
     }
 
+    private void placeAsteroidRandom(int index) 
+    {
+        int i = Random.Range(0, ResourcePathConstants.ASTEROIDS.Length - 1);
+        GameObject asteroid = Resources.Load(ResourcePathConstants.ASTEROIDS[i]) as GameObject;
 
-    public bool checkCollision(Vector3 spawnLocation, GameObject gameObject) 
+        if (asteroid == null)Debug.Log("Asteroid resource is null!");
+
+        bool collision;
+        Vector3 spawnLocation;
+        CameraMeasurements camera = new CameraMeasurements();
+
+        do {
+            float x = Random.Range(camera.getHorizontalMin(), camera.getHorizontalMax());
+            float y = Random.Range(camera.getVerticalMin(), camera.getVerticalMax());
+
+            spawnLocation = new Vector3(x, y, 0);
+            collision = checkCollision(spawnLocation, asteroid);
+
+        } while (collision);
+
+        float rotation = Random.Range(0, 360);
+        GameObject clone = (GameObject)Instantiate(asteroid, spawnLocation, Quaternion.Euler(0, 0, rotation));
+
+        clone.name = "Asteroid_" + (index + 1);
+    }
+
+
+    private bool checkCollision(Vector3 spawnLocation, GameObject gameObject) 
     {
         float radius = gameObject.GetComponent<CircleCollider2D>().radius;
         Collider2D[] colliders = Physics2D.OverlapCircleAll(spawnLocation, radius, LayerMask.GetMask("Default"));
@@ -93,6 +124,7 @@ public  class GameSceneCreator : MonoBehaviour
         if (colliders.Length > 0) return true;
         return false;
     }
+
 
 
 

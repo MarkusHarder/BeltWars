@@ -16,9 +16,20 @@ public static class ResourcePathConstants
         "Backgrounds/Background_8"
     };
 
+    public static string[] ASTEROIDS = {
+        "Asteroids/Asteroid_1",
+        "Asteroids/Asteroid_2",
+        "Asteroids/Asteroid_3",
+        "Asteroids/Asteroid_4",
+        "Asteroids/Asteroid_5",
+        "Asteroids/Asteroid_6"
+    };
+
     public static string SHIP_MARS = "Ships/Ship_Mars";
 
     public static string SHIP_EARTH = "Ships/Ship_Earth";
+
+
 
 
 }
