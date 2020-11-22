@@ -6,10 +6,10 @@ using UnityEngine.UI;
 public class ShipDestruction : MonoBehaviour, IEntity
 {
     public float health { get; set; }
-    public float maxHealth = 100;
+    public float maxHealth = 10;
     public string bar;
     public Text shipHP;
-    public GameObject ship;
+   // public GameObject ship;
     // Start is called before the first frame update
     void Start()
     {
@@ -47,7 +47,15 @@ public class ShipDestruction : MonoBehaviour, IEntity
         this.shipHP.text = this.bar;
         if (health <= 0)
         {
-            Object.Destroy(this.ship);
+            //Destroy(gameObject);
+            Explosion();
         }
+    }
+
+    public void Explosion()
+    {
+        Destroy(gameObject);
+        GameObject explosionInstance = GameObject.Instantiate(Resources.Load("Prefabs/Explosion") as GameObject, gameObject.transform.position, Quaternion.identity);
+        GameObject debrisInstance = GameObject.Instantiate(Resources.Load("Prefabs/Debris") as GameObject, gameObject.transform.position, Quaternion.identity);
     }
 }

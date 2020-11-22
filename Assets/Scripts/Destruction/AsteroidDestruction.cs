@@ -36,6 +36,13 @@ public class AsteroidDestruction : MonoBehaviour, IEntity
 
     public void ApplyDamage(float points)
     {
-            Object.Destroy(this.asteroid);
+        //Destroy(gameObject);
+        Explosion();
+    }
+
+    public void Explosion()
+    {
+        Destroy(gameObject);
+        GameObject explosionInstance = GameObject.Instantiate(Resources.Load("Prefabs/Explosion") as GameObject, gameObject.transform.position, Quaternion.identity);
     }
 }
