@@ -39,6 +39,16 @@ public class ShipDestruction : MonoBehaviour, IEntity
         this.shipHP.text = this.bar;
     }
 
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        Missile d = collision.gameObject.GetComponent<Missile>();
+        if (d)
+        {
+            ApplyDamage(d.damage);
+        }
+
+    }
+
     public void ApplyDamage(float points)
     {
         
