@@ -64,8 +64,8 @@ public class ShipDestruction : MonoBehaviour, IEntity
 
     public void Explosion()
     {
-        Destroy(gameObject);
-        GameObject explosionInstance = GameObject.Instantiate(Resources.Load("Prefabs/Explosion") as GameObject, gameObject.transform.position, Quaternion.identity);
-        GameObject debrisInstance = GameObject.Instantiate(Resources.Load("Prefabs/Debris") as GameObject, gameObject.transform.position, Quaternion.identity);
+        Explosion expl = gameObject.GetComponent<Explosion>();
+        expl.StartExplosion();
+        GameObject debrisInstance = GameObject.Instantiate(Resources.Load("Prefabs/Destruction/Debris") as GameObject, gameObject.transform.position, Quaternion.identity);
     }
 }

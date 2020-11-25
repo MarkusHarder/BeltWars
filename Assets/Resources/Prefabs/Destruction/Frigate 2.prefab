@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3950873584292177656}
   - component: {fileID: 430978802}
   - component: {fileID: 2743895115108122597}
+  - component: {fileID: 982182552080503524}
   m_Layer: 0
   m_Name: Frigate 2
   m_TagString: Untagged
@@ -170,3 +171,15 @@ PolygonCollider2D:
       - {x: -0.47, y: -0.94}
       - {x: 0.56, y: -0.94}
       - {x: 0.57, y: -0.91999996}
+--- !u!114 &982182552080503524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3950873584292177658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8f102f0cb3cfcb43b46727a7957e8db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

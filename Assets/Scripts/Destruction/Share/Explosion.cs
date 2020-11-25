@@ -19,6 +19,6 @@ public class Explosion : MonoBehaviour
     public void StartExplosion()
     {
         Destroy(gameObject);
-        GameObject explosionInstance = GameObject.Instantiate(Resources.Load("Prefabs/Explosion") as GameObject, gameObject.transform.position, Quaternion.identity);
+        GameObject explosionInstance = GameObject.Instantiate(Resources.Load("Prefabs/Destruction/Explosion") as GameObject, gameObject.transform.position, Quaternion.identity);
     }
 }

@@ -40,9 +40,19 @@ public class AsteroidDestruction : MonoBehaviour, IEntity
         Explosion();
     }
 
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        Missile d = collision.gameObject.GetComponent<Missile>();
+        if (d)
+        {
+            ApplyDamage(d.damage);
+        }
+
+    }
+
     public void Explosion()
     {
-        Destroy(gameObject);
-        GameObject explosionInstance = GameObject.Instantiate(Resources.Load("Prefabs/Explosion") as GameObject, gameObject.transform.position, Quaternion.identity);
+        Explosion expl = gameObject.GetComponent<Explosion>();
+        expl.StartExplosion();
     }
 }

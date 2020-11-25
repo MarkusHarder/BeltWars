@@ -15,6 +15,7 @@ public class ShootMissile : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
+
             this.shoot(10);
         }
 
@@ -22,7 +23,14 @@ public class ShootMissile : MonoBehaviour
         {
             Vector3 pos = gameObject.transform.position;
             pos.y += 5;
-            GameObject.Instantiate(Resources.Load("Prefabs/Frigate 2") as GameObject, pos, Quaternion.identity);
+            GameObject.Instantiate(Resources.Load("Prefabs/Destruction/Frigate 2") as GameObject, pos, Quaternion.identity);
+        }
+
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            Vector3 pos = gameObject.transform.position;
+            pos.y += 5;
+            GameObject.Instantiate(Resources.Load("Prefabs/Destruction/Asteroid 5") as GameObject, pos, Quaternion.identity);
         }
     }
 
@@ -30,7 +38,7 @@ public class ShootMissile : MonoBehaviour
     {
         Vector3 pos = gameObject.transform.position;
         pos.y += 2;
-        GameObject missile = GameObject.Instantiate(Resources.Load("Prefabs/Missile (1)") as GameObject, pos, Quaternion.identity);
+        GameObject missile = GameObject.Instantiate(Resources.Load("Prefabs/Destruction/Missile (1)") as GameObject, pos, Quaternion.identity);
         Debug.Log(missile == null);
     }
 }
