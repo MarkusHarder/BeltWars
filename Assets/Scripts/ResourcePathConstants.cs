@@ -25,6 +25,29 @@ public static class ResourcePathConstants
         "Asteroids/Asteroid_6"
     };
 
+    public static string[] PLANETS = {
+        "Planets/Planet_1",
+        "Planets/Planet_2",
+        "Planets/Planet_3",
+        "Planets/Planet_4",
+        "Planets/Planet_5",
+        "Planets/Planet_6",
+        "Planets/Planet_7",
+        "Planets/Planet_8",
+        "Planets/Planet_9"
+    };
+
+    public static string[] PLANET_SHADOWS = {
+        "Planets/Shadows/Shadow_1",
+        "Planets/Shadows/Shadow_2",
+        "Planets/Shadows/Shadow_3",
+        "Planets/Shadows/Shadow_4",
+        "Planets/Shadows/Shadow_5",
+        "Planets/Shadows/Shadow_6"
+    };
+
+
+
     public static string SHIP_MARS = "Ships/Ship_Mars";
 
     public static string SHIP_EARTH = "Ships/Ship_Earth";
