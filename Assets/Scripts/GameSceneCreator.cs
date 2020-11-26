@@ -21,6 +21,7 @@ public  class GameSceneCreator : MonoBehaviour
         this.createBackgroundPlanet();
         this.spawnAsteroids();
         this.spawnShips();
+        //ShipContainer.printShips();
     }
 
     public void spawnAsteroids()
@@ -116,10 +117,12 @@ public  class GameSceneCreator : MonoBehaviour
         if (path.Equals(ResourcePathConstants.SHIP_EARTH))
         {
             clone.name = "Ship_Earth_" + (index + 1);
+            ShipContainer.earth.Add(clone);
         }
         else
         {
             clone.name = "Ship_Mars_" + (index + 1);
+            ShipContainer.mars.Add(clone);
         }
     }
 
