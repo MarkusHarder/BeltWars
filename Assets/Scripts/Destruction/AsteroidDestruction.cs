@@ -36,6 +36,23 @@ public class AsteroidDestruction : MonoBehaviour, IEntity
 
     public void ApplyDamage(float points)
     {
-            Object.Destroy(this.asteroid);
+        //Destroy(gameObject);
+        Explosion();
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        Missile d = collision.gameObject.GetComponent<Missile>();
+        if (d)
+        {
+            ApplyDamage(d.damage);
+        }
+
+    }
+
+    public void Explosion()
+    {
+        Explosion expl = gameObject.GetComponent<Explosion>();
+        expl.StartExplosion();
     }
 }
