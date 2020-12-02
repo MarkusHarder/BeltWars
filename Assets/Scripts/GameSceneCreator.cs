@@ -18,12 +18,13 @@ public  class GameSceneCreator : MonoBehaviour
     public void createGameScene()
     {
 
-        new EventSupportShip().runEvent(); 
-        this.createbackground();
-        this.createbackgroundplanet();
-        this.spawnasteroids();
-        this.spawnships();
-        shipcontainer.printships();
+        
+        this.createBackground();
+        this.createBackgroundPlanet();
+        this.spawnAsteroids();
+        this.spawnShips();
+        ShipContainer.printShips();
+        new EventSupportShip().runEvent();
     }
 
     public void spawnAsteroids()

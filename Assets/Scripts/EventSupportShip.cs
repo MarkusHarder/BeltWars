@@ -26,7 +26,8 @@ public class EventSupportShip : MonoBehaviour
 
         Vector3 dropLocation = getDropLocation(item);
 
-        placeShip(ship);
+        placeShip(ship, dropLocation.x, dropLocation.y);
+
     }
 
 
@@ -44,8 +45,10 @@ public class EventSupportShip : MonoBehaviour
 
             dropLocation = new Vector3(x, y, 0);
 
-            collision = checkCollision(spawnLocation, item);
+            collision = checkCollision(dropLocation, item);
         } while (collision);
+
+        GameObject clone = (GameObject)Instantiate(item, dropLocation, Quaternion.Euler(0, 0, 0));
 
         return dropLocation;
     }
@@ -54,11 +57,12 @@ public class EventSupportShip : MonoBehaviour
     private void placeShip(GameObject ship, float x, float y)
     {
         float outOfViewRange = 3f;
+        CameraMeasurements camera = new CameraMeasurements();
 
         float xb1 = camera.getHorizontalMax() + outOfViewRange;
-        float xb2 = -(camera.getHorizontalMax() + outOfViewRange);
-        float yb1 = camera.getHorizontalMin() - outOfViewRange;
-        float yb2 = -(camera.getHorizontalMin() - outOfViewRange);
+        float xb2 = camera.getHorizontalMin() - outOfViewRange;
+        float yb1 = camera.getVerticalMax() + outOfViewRange;
+        float yb2 = camera.getVerticalMin() - outOfViewRange;
 
         Vector3[] possiblePositions = {
             new Vector3(x, yb1),
@@ -69,11 +73,11 @@ public class EventSupportShip : MonoBehaviour
         Vector3 spawnLocation = possiblePositions[Random.Range(0, 3)];
         float rotation; 
 
-        if (finalPosition.x == xb1) {
-            rotation = 270;
-        } else if (finalPosition.x == xb2) {
+        if (spawnLocation.x == xb1) {
             rotation = 90;
-        } else if (finalPosition.y == yb1) {
+        } else if (spawnLocation.x == xb2) {
+            rotation = 270;
+        } else if (spawnLocation.y == yb1) {
             rotation = 180;
         }else{
             rotation = 0;
