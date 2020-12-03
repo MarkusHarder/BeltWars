@@ -13,6 +13,7 @@ public class GameController : MonoBehaviour
     {
         GameSceneCreator gameSceneCreator = new GameSceneCreator();
         gameSceneCreator.createGameScene();
+        GetComponent<EventSupportShip>().enabled = true;
     }
 
 }
