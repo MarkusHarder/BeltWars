@@ -23,7 +23,7 @@ public class ShootMissile : MonoBehaviour
         {
             Vector3 pos = gameObject.transform.position;
             pos.y += 5;
-            GameObject.Instantiate(Resources.Load("Prefabs/Destruction/Frigate 2") as GameObject, pos, Quaternion.identity);
+            GameObject ship = GameObject.Instantiate(Resources.Load("Prefabs/Destruction/Frigate 2") as GameObject, pos, Quaternion.identity);
         }
 
         if (Input.GetKeyDown(KeyCode.T))
@@ -39,6 +39,5 @@ public class ShootMissile : MonoBehaviour
         Vector3 pos = gameObject.transform.position;
         pos.y += 2;
         GameObject missile = GameObject.Instantiate(Resources.Load("Prefabs/Destruction/Missile (1)") as GameObject, pos, Quaternion.identity);
-        Debug.Log(missile == null);
     }
 }
