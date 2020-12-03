@@ -11,17 +11,6 @@ public class EventSupportShip : MonoBehaviour
     private Vector2 dropLocation;
     private Vector2 startLocation;
     // Start is called before the first frame update
-    void Start()
-    {
-        Debug.Log("Hallo");
-        this.initiateEvent();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        this.moveShipToTarget();
-    }
 
 
     public void initiateEvent()
@@ -53,7 +42,7 @@ public class EventSupportShip : MonoBehaviour
             collision = checkItemCollision();
         } while (collision);
 
-        this.item = (GameObject) Instantiate(this.item, this.dropLocation, Quaternion.Euler(0, 0, 0));
+     
     }
 
 
@@ -93,6 +82,9 @@ public class EventSupportShip : MonoBehaviour
 
         this.ship = (GameObject) Instantiate(this.ship, this.startLocation, Quaternion.Euler(0, 0, rotation));
         this.ship.name = "Support_Ship";
+        SupportShipAction action = this.ship.GetComponent<SupportShipAction>();
+        action.startPosition = this.startLocation;
+        action.dropPosition = this.dropLocation;
     }
 
     private bool checkItemCollision()
@@ -102,11 +94,5 @@ public class EventSupportShip : MonoBehaviour
 
         if (colliders.Length > 0) return true;
         return false;
-    }
-
-
-    private void moveShipToTarget()
-    {
-        this.ship.transform.position = Vector2.MoveTowards(transform.position, this.dropLocation, 3 * Time.deltaTime);
     }
 }
