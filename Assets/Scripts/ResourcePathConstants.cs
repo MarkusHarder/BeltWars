@@ -53,6 +53,10 @@ public static class ResourcePathConstants
     public static string SHIP_EARTH = "Ships/Ship_Earth";
 
 
-
+    public static string explosion = "Prefabs/Destruction/Explosion";
+    public static string missile = "Prefabs/Destruction/Missile (1)";
+    public static string asteroid = "Prefabs/Destruction/Asteroid 5";
+    public static string ship = "Prefabs/Destruction/Frigate 2";
+    public static string debris = "Prefabs/Destruction/Debris";
 
 }

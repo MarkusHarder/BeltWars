@@ -67,7 +67,7 @@ public class ShipDestruction : MonoBehaviour, IEntity
     {
         Explosion expl = gameObject.GetComponent<Explosion>();
         expl.StartExplosion();
-        GameObject debrisInstance = GameObject.Instantiate(Resources.Load("Prefabs/Destruction/Debris") as GameObject, gameObject.transform.position, Quaternion.identity);
+        GameObject debrisInstance = GameObject.Instantiate(Resources.Load(ResourcePathConstants.debris) as GameObject as GameObject, gameObject.transform.position, Quaternion.identity);
     }
 
     IEnumerator hideDamage(float points)
