@@ -52,7 +52,9 @@ public static class ResourcePathConstants
 
     public static string SHIP_EARTH = "Ships/Ship_Earth";
 
+    public static string SUPPORT_SHIP = "Ships/Support_Ship";
 
+    public static string DROP_ITEM = "Ships/Drop_Item";
 
-
+    public static string EVENT_CONTROL = "EventController";
 }
