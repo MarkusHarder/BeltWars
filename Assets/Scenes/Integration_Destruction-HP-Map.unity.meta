@@ -1,5 +1,10 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Scenes/Integration_Destruction-HP-Map.unity.meta
 guid: 8bbaf5754e8a827438f4b6df654ad0d2
+=======
+guid: 6385b91c5656594478ebbbd7590c093f
+folderAsset: yes
+>>>>>>> develop:Assets/Prefabs.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
