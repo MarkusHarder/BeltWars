@@ -52,6 +52,7 @@ public static class ResourcePathConstants
 
     public static string SHIP_EARTH = "Ships/Ship_Earth";
 
+    public static string SUPPORT_SHIP = "Ships/Support_Ship";
 
     public static string explosion = "Prefabs/Destruction/Explosion";
     public static string missile = "Prefabs/Destruction/Missile (1)";
@@ -59,4 +60,8 @@ public static class ResourcePathConstants
     public static string ship = "Prefabs/Destruction/Frigate 2";
     public static string debris = "Prefabs/Destruction/Debris";
 
+
+    public static string DROP_ITEM = "Ships/Drop_Item";
+
+    public static string EVENT_CONTROL = "EventController";
 }

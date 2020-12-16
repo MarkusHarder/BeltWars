@@ -11,17 +11,20 @@ public  class GameSceneCreator : MonoBehaviour
 
     public int shipAmount = 6;
     public int asteroidDensity = 3;
-    public double borderDistance = 0.5;
+    public float borderDistance = 0.5f;
 
 
-    
+
     public void createGameScene()
     {
+
+
         this.createBackground();
         this.createBackgroundPlanet();
         this.spawnAsteroids();
         this.spawnShips();
-        //ShipContainer.printShips();
+        ShipContainer.printShips();
+        new EventSupportShip().initiateEvent();
     }
 
     public void spawnAsteroids()
@@ -63,8 +66,8 @@ public  class GameSceneCreator : MonoBehaviour
 
         CameraMeasurements camera = new CameraMeasurements();
 
-        float x = Random.Range(camera.getHorizontalMin() + (float) borderDistance, camera.getHorizontalMax() - (float) borderDistance);
-        float y = Random.Range(camera.getVerticalMin() + (float) borderDistance, camera.getVerticalMax() - (float) borderDistance);
+        float x = Random.Range(camera.getHorizontalMin() + borderDistance, camera.getHorizontalMax() - borderDistance);
+        float y = Random.Range(camera.getVerticalMin() + borderDistance, camera.getVerticalMax() - borderDistance);
 
         Vector3 spawnLocation = new Vector3(x, y, 0);
         float rotation = Random.Range(0, 360);
@@ -84,7 +87,7 @@ public  class GameSceneCreator : MonoBehaviour
         spawnLocation = new Vector3(x, y, 0);
         rotation = Random.Range(0, 360);
 
-        GameObject clone2 = (GameObject)Instantiate(shadow, spawnLocation, Quaternion.Euler(0, 0, rotation));
+        GameObject clone2 = (GameObject) Instantiate(shadow, spawnLocation, Quaternion.Euler(0, 0, rotation));
 
         clone2.transform.localScale = new Vector3(scale, scale, 0);
         clone2.name = "Shadow";
@@ -103,8 +106,8 @@ public  class GameSceneCreator : MonoBehaviour
 
         do
         {
-            float x = Random.Range(camera.getHorizontalMin() + (float) borderDistance, camera.getHorizontalMax() - (float) borderDistance);
-            float y = Random.Range(camera.getVerticalMin() + (float) borderDistance, camera.getVerticalMax() - (float) borderDistance);
+            float x = Random.Range(camera.getHorizontalMin() + borderDistance, camera.getHorizontalMax() - borderDistance);
+            float y = Random.Range(camera.getVerticalMin() + borderDistance, camera.getVerticalMax() - borderDistance);
 
             spawnLocation = new Vector3(x, y, 0);
 
@@ -147,7 +150,7 @@ public  class GameSceneCreator : MonoBehaviour
         } while (collision);
 
         float rotation = Random.Range(0, 360);
-        GameObject clone = (GameObject)Instantiate(asteroid, spawnLocation, Quaternion.Euler(0, 0, rotation));
+        GameObject clone = (GameObject) Instantiate(asteroid, spawnLocation, Quaternion.Euler(0, 0, rotation));
 
         clone.name = "Asteroid_" + (index + 1);
     }
@@ -161,10 +164,5 @@ public  class GameSceneCreator : MonoBehaviour
         if (colliders.Length > 0) return true;
         return false;
     }
-
-
-
-
-
 
 }
