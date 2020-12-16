@@ -7,7 +7,6 @@ public class AsteroidDestruction : MonoBehaviour, IEntity
 {
     public float health { get; set; }
     public float maxHealth = 1;
-    public GameObject asteroid;
     // Start is called before the first frame update
     void Start()
     {
