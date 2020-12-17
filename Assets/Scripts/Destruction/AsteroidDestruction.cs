@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class AsteroidDestruction : MonoBehaviour, IEntity
 {
     public float health { get; set; }
-    public float maxHealth = 1;
+    public float maxHealth = 20;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,15 +36,20 @@ public class AsteroidDestruction : MonoBehaviour, IEntity
     public void ApplyDamage(float points)
     {
         //Destroy(gameObject);
-        Explosion();
+        this.health -= points;
+        if(health >= 0)
+        {
+            Explosion();
+        }
+        
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        Missile d = collision.gameObject.GetComponent<Missile>();
-        if (d)
+        Damage damage = collision.gameObject.GetComponent<Damage>();
+        if (damage)
         {
-            ApplyDamage(d.damage);
+            ApplyDamage(damage.damageValue);
         }
 
     }

@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Missile : MonoBehaviour
+public class Damage : MonoBehaviour
 {
     // Start is called before the first frame update
-    public float damage = 5;
+    public float damageValue = 10;
     void Start()
     {
         
@@ -14,7 +14,7 @@ public class Missile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position += transform.up * Time.deltaTime*10;
+        //transform.position += transform.up * Time.deltaTime*10;
     }
 
 

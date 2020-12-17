@@ -20,10 +20,10 @@ public class ShipDestruction : MonoBehaviour, IEntity
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            this.ApplyDamage(10);
-        }
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+         //   this.ApplyDamage(10);
+       // }
     }
 
 
@@ -41,10 +41,10 @@ public class ShipDestruction : MonoBehaviour, IEntity
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        Missile d = collision.gameObject.GetComponent<Missile>();
-        if (d)
+        Damage damage = collision.gameObject.GetComponent<Damage>();
+        if (damage)
         {
-            this.ApplyDamage(d.damage);
+            this.ApplyDamage(damage.damageValue);
         }
 
     }
