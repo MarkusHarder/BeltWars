@@ -24,7 +24,6 @@ public  class GameSceneCreator : MonoBehaviour
         this.spawnAsteroids();
         this.spawnShips();
         ShipContainer.printShips();
-        new EventSupportShip().initiateEvent();
     }
 
     public void spawnAsteroids()

@@ -60,7 +60,12 @@ public class SupportShipAction : MonoBehaviour
                     }
                 }
                 transform.position = Vector2.MoveTowards(transform.position, targetPosition, 4 * Time.deltaTime);
-                if (transform.position == targetPosition) Destroy(this.gameObject);
+                if (transform.position == targetPosition)
+                {
+                    GameObject gameController = GameObject.Find("Game Controller");
+                    gameController.GetComponent<GameController>().eventIsRunning = false;
+                    Destroy(this.gameObject);
+                }
             }
         }
     }

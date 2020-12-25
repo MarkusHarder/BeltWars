@@ -10,17 +10,9 @@ public class AsteroidDestruction : MonoBehaviour, IEntity
     // Start is called before the first frame update
     void Start()
     {
-
+        this.Initialize();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Backspace))
-        {
-            this.ApplyDamage(10);
-        }
-    }
 
     private void Awake()
     {
@@ -37,7 +29,7 @@ public class AsteroidDestruction : MonoBehaviour, IEntity
     {
         //Destroy(gameObject);
         this.health -= points;
-        if(health >= 0)
+        if(health <= 0)
         {
             Explosion();
         }

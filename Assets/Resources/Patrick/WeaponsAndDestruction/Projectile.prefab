@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3850828775889328649}
   - component: {fileID: 5077457643075327760}
   - component: {fileID: 5077457643075327761}
+  - component: {fileID: 6165008660031464093}
   m_Layer: 0
   m_Name: Projectile
   m_TagString: Projectile
@@ -264,3 +265,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageValue: 5
+--- !u!114 &6165008660031464093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3850828775880106153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db4600d83f785134db7f1ea80fdf8518, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeToSelfDestruction: 3
