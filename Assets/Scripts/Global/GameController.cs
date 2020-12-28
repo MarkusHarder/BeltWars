@@ -20,10 +20,9 @@ public class GameController : MonoBehaviour
         gameSceneCreator.createGameScene();
     }
 
-
     private void Update()
     {
-        if (checkGameOver())
+        if (!checkGameOver())
         {
             if (timer > 0)
             {
