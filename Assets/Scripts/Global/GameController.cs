@@ -32,7 +32,7 @@ public class GameController : MonoBehaviour
             {
                 if (eventAllowed)
                 {
-                    int i = UnityEngine.Random.Range(0, 100 / eventPropability);
+                    int i = Random.Range(0, 100 / eventPropability);
                     if (i == 0)
                     {
                         ShipContainer.deactivateAllShips();
@@ -54,19 +54,22 @@ public class GameController : MonoBehaviour
 
     public bool checkGameOver() 
     {
+        GameInformation gameInfo = GameObject.Find("Game Information").GetComponent<GameInformation>();
+        
         if (ShipContainer.checkIfEarthLost())
         {
-            Debug.Log("Earth lost");
+            gameInfo.activate("MARS WINS!!");
             return true;
         }
 
         if (ShipContainer.checkIfMarsLost())
         {
-            Debug.Log("Mars lost");
+            gameInfo.activate("EARTH WINS!!");
             return true;
         }
         return false;
     }
+    
 
 
 
