@@ -47,7 +47,7 @@ public  class GameSceneCreator : MonoBehaviour
 
     public void createBackground()
     {
-        int i = Random.Range(0, ResourcePathConstants.BACKGROUND_SCENES.Length-1);
+        int i = Random.Range(0, ResourcePathConstants.BACKGROUND_SCENES.Length);
         GameObject backgroundScene = Resources.Load(ResourcePathConstants.BACKGROUND_SCENES[i]) as GameObject;
 
         if (backgroundScene == null) Debug.Log("Background scene resource is null!");
@@ -58,7 +58,7 @@ public  class GameSceneCreator : MonoBehaviour
 
     public void createBackgroundPlanet()
     {
-        int i = Random.Range(0, ResourcePathConstants.PLANETS.Length - 1);
+        int i = Random.Range(0, ResourcePathConstants.PLANETS.Length);
         GameObject planet = Resources.Load(ResourcePathConstants.PLANETS[i]) as GameObject;
 
         if (planet == null) Debug.Log("Planet resource is null!");
@@ -78,7 +78,7 @@ public  class GameSceneCreator : MonoBehaviour
         clone.name = "Planet";
 
         //Applying shadow to planet
-        i = Random.Range(0, ResourcePathConstants.PLANET_SHADOWS.Length - 1);
+        i = Random.Range(0, ResourcePathConstants.PLANET_SHADOWS.Length);
         GameObject shadow = Resources.Load(ResourcePathConstants.PLANET_SHADOWS[i]) as GameObject;
 
         if (shadow == null) Debug.Log("Planet resource is null!");
@@ -130,7 +130,7 @@ public  class GameSceneCreator : MonoBehaviour
 
     private void spawnAsteroidRandom(int index) 
     {
-        int i = Random.Range(0, ResourcePathConstants.ASTEROIDS.Length - 1);
+        int i = Random.Range(0, ResourcePathConstants.ASTEROIDS.Length);
         GameObject asteroid = Resources.Load(ResourcePathConstants.ASTEROIDS[i]) as GameObject;
 
         if (asteroid == null) Debug.Log("Asteroid resource is null!");
