@@ -9,16 +9,17 @@ using UnityEditor;
 public  class GameSceneCreator : MonoBehaviour
 {
 
-    public int shipAmount = 6;
-    public int asteroidDensity = 3;
-    public float borderDistance = 0.5f;
+    private int shipAmount = 6;
+    private int asteroidDensity = 3;
+    private float borderDistance = 0.5f;
 
 
 
     public void createGameScene()
     {
-
-
+        GameController gameController = ( GameController ) GameObject.Find("Game Controller").GetComponent("GameController");
+        this.shipAmount = gameController.shipNumber;
+        this.asteroidDensity = gameController.asteroidDensity;
         this.createBackground();
         this.createBackgroundPlanet();
         this.spawnAsteroids();
@@ -119,12 +120,12 @@ public  class GameSceneCreator : MonoBehaviour
         if (path.Equals(ResourcePathConstants.SHIP_EARTH))
         {
             clone.name = "Ship_Earth_" + (index + 1);
-            ShipContainer.earth.Add(clone);
+            ShipContainer.earthShips.Add(clone);
         }
         else
         {
             clone.name = "Ship_Mars_" + (index + 1);
-            ShipContainer.mars.Add(clone);
+            ShipContainer.marsShips.Add(clone);
         }
     }
 

@@ -282,6 +282,16 @@ PrefabInstance:
       propertyPath: eventPropability
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 6229770721813625932, guid: e9125f1fcca77a840bd4b1120f9f5066,
+        type: 3}
+      propertyPath: shipNumber
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6229770721813625932, guid: e9125f1fcca77a840bd4b1120f9f5066,
+        type: 3}
+      propertyPath: roundTime
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6229770721813625933, guid: e9125f1fcca77a840bd4b1120f9f5066,
         type: 3}
       propertyPath: m_Name
