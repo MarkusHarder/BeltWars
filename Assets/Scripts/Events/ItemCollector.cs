@@ -40,8 +40,8 @@ public class ItemCollector : MonoBehaviour
                 switch (itemType)
                 {
                     case ItemType.MISSILES:
-                        shoot.missileAmount += 5;
-                        this.collectInfo = "+5 MISSILES!!";
+                        shoot.missileAmount += 3;
+                        this.collectInfo = "+3 MISSILES!!";
                         break;
                     case ItemType.HEALTH:
                         shipDestruction.maxHealth = 100;

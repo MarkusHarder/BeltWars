@@ -34,8 +34,8 @@ public class GameController : MonoBehaviour
             {
                 if (eventAllowed)
                 {
-                    int i = Random.Range(0, 100 / eventPropability);
-                    if (i == 0)
+                    int i = Random.Range(0, 100);
+                    if (i < eventPropability )
                     {
                         ShipContainer.deactivateAllShips();
                         eventIsRunning = true;
