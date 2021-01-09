@@ -87,7 +87,7 @@ public static class ShipContainer
         }
     }
 
-    private static void setShipActive(GameObject ship) 
+    public static void setShipActive(GameObject ship) 
     {
         if(ship != null) {
             ship.GetComponent<ProtoMovement>().active = true;

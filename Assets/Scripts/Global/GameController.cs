@@ -2,15 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using Mirror;
 
 //Class which controls the game
-public class GameController : MonoBehaviour
+public class GameController : NetworkBehaviour
 {
+    [SyncVar]
     public float timer = 0;
-    public float roundTime = 15;
+    public float roundTime = 20;
     public int eventPropability = 10;
     public bool eventIsRunning = false;
-    public bool eventAllowed = true;
+    public bool eventAllowed = false;
 
 
     // Start is called before the first frame update
@@ -20,7 +22,7 @@ public class GameController : MonoBehaviour
         gameSceneCreator.createGameScene();
     }
 
-    private void Update()
+    virtual protected void Update()
     {
         if (!checkGameOver())
         {
@@ -45,7 +47,7 @@ public class GameController : MonoBehaviour
                 if (!eventIsRunning)
                 {
                     ShipContainer.activateNextShip();
-                    eventAllowed = true;
+                    //eventAllowed = true;
                     timer += roundTime;
                 }
             }

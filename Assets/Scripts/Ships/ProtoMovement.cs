@@ -1,13 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
-public class ProtoMovement : MonoBehaviour
+public class ProtoMovement : NetworkBehaviour
 {
 	public float acceleration_amount = 100f;
 	public float rotation_speed = 100f;
-	public bool active = false;
 	private CameraMeasurements gameCamera;
+
+	[SyncVar]
+	public bool active = false;
 
 
 	public void onStart()
@@ -17,11 +20,10 @@ public class ProtoMovement : MonoBehaviour
 
 
     // Update is called once per frame
-    void Update()
+    protected void Update()
     {
 		keepObjectInCameraView();
-
-		if (active)
+		if (active && hasAuthority)
 		{
 
 			if (Input.GetKeyDown(KeyCode.Escape))
@@ -31,6 +33,7 @@ public class ProtoMovement : MonoBehaviour
 
 			if (Input.GetKey(KeyCode.W))
 			{
+				Debug.Log("W");
 				GetComponent<Rigidbody2D>().AddForce(transform.up * acceleration_amount * Time.deltaTime * 100);
 			}
 			if (Input.GetKey(KeyCode.S))

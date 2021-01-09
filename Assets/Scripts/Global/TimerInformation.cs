@@ -14,7 +14,7 @@ public class TimerInformation : MonoBehaviour
 
     public void displayInformation()
     {
-      int timeLeft = (int) GameObject.Find("Game Controller").GetComponent<GameController>().timer;
+      int timeLeft = (int) GameObject.Find("NetworkController").GetComponent<NetworkGameController>().timer;
       gameObject.GetComponent<Text>().text = "" + timeLeft + " ";
     }
 }
