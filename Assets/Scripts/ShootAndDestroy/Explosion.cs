@@ -18,8 +18,16 @@ public class Explosion : MonoBehaviour
 
     public void StartExplosion()
     {
+        if (gameObject.name.StartsWith("Ship"))
+        {
+            ShipContainer.removeShipFromList(gameObject);
+        }
+
         Destroy(gameObject);
+
         GameObject explosion = Resources.Load(ResourcePathConstants.explosion) as GameObject;
         GameObject.Instantiate(explosion, gameObject.transform.position, Quaternion.identity);
     }
+
+
 }

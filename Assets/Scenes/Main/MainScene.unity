@@ -280,7 +280,17 @@ PrefabInstance:
     - target: {fileID: 6229770721813625932, guid: e9125f1fcca77a840bd4b1120f9f5066,
         type: 3}
       propertyPath: eventPropability
-      value: 20
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6229770721813625932, guid: e9125f1fcca77a840bd4b1120f9f5066,
+        type: 3}
+      propertyPath: shipNumber
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6229770721813625932, guid: e9125f1fcca77a840bd4b1120f9f5066,
+        type: 3}
+      propertyPath: roundTime
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 6229770721813625933, guid: e9125f1fcca77a840bd4b1120f9f5066,
         type: 3}
@@ -464,6 +474,16 @@ PrefabInstance:
     - target: {fileID: 6193004248284772613, guid: dd6e8f7114e521e478c2187c9119de51,
         type: 3}
       propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6193004248478717368, guid: dd6e8f7114e521e478c2187c9119de51,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -1.594
+      objectReference: {fileID: 0}
+    - target: {fileID: 6193004248478717368, guid: dd6e8f7114e521e478c2187c9119de51,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

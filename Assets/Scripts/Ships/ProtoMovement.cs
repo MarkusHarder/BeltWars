@@ -24,6 +24,7 @@ public class ProtoMovement : MonoBehaviour
 		if (active)
 		{
 
+
 			if (Input.GetKeyDown(KeyCode.Escape))
 				Screen.lockCursor = !Screen.lockCursor;
 
@@ -65,11 +66,6 @@ public class ProtoMovement : MonoBehaviour
 				GetComponent<Rigidbody2D>().velocity = Vector2.Lerp(GetComponent<Rigidbody2D>().velocity, Vector2.zero, acceleration_amount * 0.06f * Time.deltaTime * 100);
 			}
 
-
-			if (Input.GetKey(KeyCode.H))
-			{
-				transform.position = new Vector3(0, 0, 0);
-			}
 		}
 	}
 
