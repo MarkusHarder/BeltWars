@@ -32,7 +32,7 @@ public class NetworkManagerBeltWars : NetworkManager
         {
             NetworkSceneCreator nsc = new NetworkSceneCreator();
             nsc.createNetworkGameScene(cl);
-            NetworkGameController ngc = gameObject.GetComponent<NetworkGameController>();
+            NetworkGameController ngc = GameObject.Find("NetworkGameController").GetComponent<NetworkGameController>();
             ngc.start = true;
 
 
