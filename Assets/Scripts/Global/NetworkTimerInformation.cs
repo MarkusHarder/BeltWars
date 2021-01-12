@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using Mirror;
 
+/**
+ * Ship Information the same way
+ */
 public class NetworkTimerInformation : NetworkBehaviour
 {
     [SyncVar]
@@ -25,6 +28,6 @@ public class NetworkTimerInformation : NetworkBehaviour
     [Server]
     void getTime()
     {
-        timeLeft = (int)GameObject.Find("NetworkController").GetComponent<NetworkGameController>().timer;
+        timeLeft = (int)GameObject.Find("NetworkGameController").GetComponent<NetworkGameController>().timer;
     }
 }

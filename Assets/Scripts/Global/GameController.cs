@@ -5,6 +5,14 @@ using UnityEditor;
 using Mirror;
 
 //Class which controls the game
+/**
+ *  
+ *  Create a Game Controller even in multiplayer as child of the network controller, network conrtoller acts as wrapper for network functionalities
+ *  Let Game Controller create game, spawn after. Identities need to be in place in order to register prefabs in manager
+ *  syncvar as pointer?
+ *  
+ * 
+ **/
 public class GameController : NetworkBehaviour
 {
     [SyncVar]
