@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 2671718978972376540}
   - component: {fileID: 8550616977508250372}
   - component: {fileID: -535703765154014790}
-  - component: {fileID: -7875597920299949611}
+  - component: {fileID: -5466170168408652150}
+  - component: {fileID: 7056674677145195335}
   m_Layer: 0
   m_Name: Support_Ship
   m_TagString: Untagged
@@ -96,9 +97,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e8c22c995ba431499cf31b1628c4eeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   dropPosition: {x: 0, y: 0, z: 0}
   startPosition: {x: 0, y: 0, z: 0}
   targetPosition: {x: 0, y: 0, z: 0}
+  local: 1
 --- !u!114 &-535703765154014790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,7 +119,7 @@ MonoBehaviour:
   serverOnly: 0
   m_AssetId: 
   hasSpawned: 0
---- !u!114 &-7875597920299949611
+--- !u!114 &-5466170168408652150
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -133,3 +137,17 @@ MonoBehaviour:
   localPositionSensitivity: 0.01
   localRotationSensitivity: 0.01
   localScaleSensitivity: 0.01
+--- !u!114 &7056674677145195335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3342493242963848642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc5610fa4ed16e044b3b0ff8abff5723, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1

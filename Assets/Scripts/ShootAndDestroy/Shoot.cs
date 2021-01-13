@@ -4,14 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using Mirror;
 
-public class Shoot : NetworkBehaviour
+public class Shoot : MonoBehaviour
 {
     public GameObject loadedWeapon;
     public Transform projectileSpawnPoint;
     private float speed;
     public Weapontype weapontype;
-    [SyncVar]
     public bool active = false;
+    public bool local = true;
     public int missileAmount = 3;
     public int laserAmount = 0;
 
@@ -24,42 +24,18 @@ public class Shoot : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        cmdInitWeapon();
+        initWeapon();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (active) 
-        { 
-            if (Input.GetKeyDown(KeyCode.Keypad1))
+        if (local)
+        {
+            if (active)
             {
-                cmdSetWeapon(0);
+                evalInput();
             }
-            if (Input.GetKeyDown(KeyCode.Keypad2))
-            {
-                cmdSetWeapon(1);
-            }
-            if (Input.GetKeyDown(KeyCode.Space)) { cmdShoot(); }
-            //if (Input.GetKeyDown(KeyCode.Space))
-            //{
-            //    if (weapontype == Weapontype.MISSILE && missileAmount > 0)
-            //    {
-            //        StartCoroutine(fire(0.0f));
-            //        missileAmount--;
-            //        active = false;
-            //    }
-            //    else if (weapontype == Weapontype.MACHINE_GUN)
-            //    {
-            //        StartCoroutine(fire(0.0f));
-            //        StartCoroutine(fire(0.1f));
-            //        StartCoroutine(fire(0.2f));
-            //        StartCoroutine(fire(0.3f));
-            //        StartCoroutine(fire(0.4f));
-            //        StartCoroutine(fire(0.5f));
-            //        active = false;
-            //    }
-            //}
         }
     }
 
@@ -73,14 +49,14 @@ public class Shoot : NetworkBehaviour
         Vector3 direction = transform.rotation * Vector3.up;
 
         GameObject weaponToFire = (GameObject) Instantiate(loadedWeapon, projectileSpawnPoint.position, transform.rotation);
-        NetworkServer.Spawn(weaponToFire);
+        if(!local)
+            NetworkServer.Spawn(weaponToFire);
         weaponToFire.GetComponent<Rigidbody2D>().AddForce(direction * speed);
     }
 
 
 
-    [Command]
-    private void cmdShoot()
+    public void shoot()
     {
         if (weapontype == Weapontype.MISSILE && missileAmount > 0)
         {
@@ -101,8 +77,7 @@ public class Shoot : NetworkBehaviour
     }
 
 
-    [Command]
-    private void cmdSetWeapon(int n)
+    public void setWeapon(int n)
     {
 
         if(n == 0)
@@ -120,14 +95,28 @@ public class Shoot : NetworkBehaviour
 
     }
 
-    [Command]
-    private void cmdInitWeapon()
+    public void initWeapon()
     {
         GameObject wep = Resources.Load(ResourcePathConstants.MACHINE_GUN) as GameObject;
         loadedWeapon = wep;
         weapontype = Weapontype.MACHINE_GUN;
         speed = 1;
         Debug.Log("Machine Gun loaded");
+    }
+
+
+
+    public void evalInput()
+    {
+        if (Input.GetKeyDown(KeyCode.Keypad1))
+        {
+            setWeapon(0);
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad2))
+        {
+            setWeapon(1);
+        }
+        if (Input.GetKeyDown(KeyCode.Space)) { shoot(); }
     }
 }
 

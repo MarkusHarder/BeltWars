@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
 public class NetworkGameController : GameController
 {
@@ -8,11 +9,12 @@ public class NetworkGameController : GameController
     // Start is called before the first frame update
     void Start()
     {
-
+        local = false;
         
     }
 
     // Update is called once per frame
+    [Server]
     override protected void Update()
     {
         if(!start) { return; }

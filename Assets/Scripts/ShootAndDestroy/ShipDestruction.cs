@@ -7,36 +7,18 @@ public class ShipDestruction : MonoBehaviour, IEntity
 {
     public float health { get; set; }
     public float maxHealth = 100;
-    public string bar;
-    public Text shipHP;
-    public Text damage;
-   // public GameObject ship;
-    // Start is called before the first frame update
+    public HealthbarBehaviour healthbar;
+ 
     void Start()
     {
         this.Initialize();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        //if (Input.GetKeyDown(KeyCode.Space))
-        //{
-         //   this.ApplyDamage(10);
-       // }
-    }
-
 
 
     public void Initialize()
     {
         this.maxHealth = 100;
         this.health = this.maxHealth;
-        this.bar = this.health + "/" + this.maxHealth;
-        this.shipHP = gameObject.transform.Find("Canvas").Find("Ship HP").GetComponent<Text>();
-        this.damage = gameObject.transform.Find("Canvas").Find("Damage").GetComponent<Text>();
-        this.shipHP.text = this.bar;
-        this.damage.text = "";
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -53,12 +35,9 @@ public class ShipDestruction : MonoBehaviour, IEntity
     {
         
         this.health -= points;
-        this.bar = this.health + "/" + this.maxHealth;
-        this.shipHP.text = this.bar;
-        StartCoroutine(hideDamage(points));
+
         if (this.health <= 0)
         {
-            //Destroy(gameObject);
             Explosion();
         }
     }
@@ -70,10 +49,4 @@ public class ShipDestruction : MonoBehaviour, IEntity
         GameObject debrisInstance = GameObject.Instantiate(Resources.Load(ResourcePathConstants.debris) as GameObject as GameObject, gameObject.transform.position, Quaternion.identity);
     }
 
-    IEnumerator hideDamage(float points)
-    {
-        this.damage.text = "-" + points;
-        yield return new WaitForSeconds(2);
-        this.damage.text = "";
-    }
 }

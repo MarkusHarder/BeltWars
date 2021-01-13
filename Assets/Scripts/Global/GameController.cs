@@ -5,23 +5,16 @@ using UnityEditor;
 using Mirror;
 
 //Class which controls the game
-/**
- *  
- *  Create a Game Controller even in multiplayer as child of the network controller, network conrtoller acts as wrapper for network functionalities
- *  Let Game Controller create game, spawn after. Identities need to be in place in order to register prefabs in manager
- *  syncvar as pointer?
- *  
- * 
- **/
-public class GameController : NetworkBehaviour
+public class GameController : MonoBehaviour
 {
-    [SyncVar]
     public float timer = 0;
     public float roundTime = 20;
-    public int eventPropability = 10;
+    public int eventPropability = 100;
     public bool eventIsRunning = false;
-    public bool eventAllowed = false;
-
+    public bool eventAllowed = true;
+    public int shipNumber = 6;
+    public int asteroidDensity = 3;
+    public bool local;
 
     // Start is called before the first frame update
     void Start()
@@ -40,22 +33,26 @@ public class GameController : NetworkBehaviour
             }
             else if (!eventIsRunning)
             {
+                Debug.Log(eventPropability);
                 if (eventAllowed)
                 {
-                    int i = UnityEngine.Random.Range(0, 100 / eventPropability);
-                    if (i == 0)
+                    int i = Random.Range(0, 100);
+                    if (i < eventPropability )
                     {
                         ShipContainer.deactivateAllShips();
                         eventIsRunning = true;
                         eventAllowed = false;
-                        new EventSupportShip().initiateEvent();
+                        EventSupportShip sShip = new EventSupportShip();
+                        if (!local)
+                            sShip.local = false;
+                        sShip.initiateEvent();
                     }
                 }
 
                 if (!eventIsRunning)
                 {
                     ShipContainer.activateNextShip();
-                    //eventAllowed = true;
+                    eventAllowed = true;
                     timer += roundTime;
                 }
             }
@@ -64,19 +61,28 @@ public class GameController : NetworkBehaviour
 
     public bool checkGameOver() 
     {
+        GameObject gameI = GameObject.Find("Game Information");
+        if (gameI == null)
+            gameI = GameObject.Find("Network Game Information");
+        GameInformation gameInfo = gameI.GetComponent<GameInformation>();
+
+        
+        
+
         if (ShipContainer.checkIfEarthLost())
         {
-            Debug.Log("Earth lost");
+            gameInfo.activate("MARS WINS!!");
             return true;
         }
 
         if (ShipContainer.checkIfMarsLost())
         {
-            Debug.Log("Mars lost");
+            gameInfo.activate("EARTH WINS!!");
             return true;
         }
         return false;
     }
+    
 
 
 
