@@ -3,14 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 
-public class ProtoMovement : NetworkBehaviour
+public class ProtoMovement : MonoBehaviour
 {
 	public float acceleration_amount = 100f;
 	public float rotation_speed = 100f;
 	private CameraMeasurements gameCamera;
-	[SyncVar]
 	public bool active = false;
-	public bool local = true;
 
 
 	public void onStart()
@@ -22,10 +20,10 @@ public class ProtoMovement : NetworkBehaviour
     // Update is called once per frame
     protected void Update()
     {
-		if (local)
+		if (GlobalVariables.local)
 		{
 			keepObjectInCameraView();
-			if (active&&hasAuthority)
+			if (active)
 			{
 				moveShip();
 			}

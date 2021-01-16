@@ -11,7 +11,6 @@ public class EventSupportShip : MonoBehaviour
     private GameObject item;
     private Vector2 dropLocation;
     private Vector2 startLocation;
-    public bool local = true;
     // Start is called before the first frame update
 
 
@@ -82,7 +81,7 @@ public class EventSupportShip : MonoBehaviour
         }
 
         this.ship = (GameObject) Instantiate(this.ship, this.startLocation, Quaternion.Euler(0, 0, rotation));
-        if (!local)
+        if (!GlobalVariables.local)
             NetworkServer.Spawn(ship);
         this.ship.name = "Support_Ship";
         SupportShipAction action = this.ship.GetComponent<SupportShipAction>();

@@ -12,7 +12,6 @@ public class NetworkShoot : NetworkBehaviour
     void Start()
     {
         shoot = gameObject.GetComponent<Shoot>();
-        shoot.local = false;
         cmdInitWeapon();
     }
 

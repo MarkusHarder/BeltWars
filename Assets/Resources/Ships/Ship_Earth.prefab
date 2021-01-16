@@ -335,8 +335,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfbbfd49b05b58f418687b610dcd5987, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
   loadedWeapon: {fileID: 0}
   projectileSpawnPoint: {fileID: 3985337004366624402}
   weapontype: 0
@@ -416,8 +414,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16d4a6a4599ebe545abf852c5063c549, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
   acceleration_amount: 20
   rotation_speed: 10
   active: 0

@@ -10,7 +10,6 @@ public class NetworkSupportShipAction : NetworkBehaviour
     void Start()
     {
         supAction = gameObject.GetComponent<SupportShipAction>();
-        supAction.local = false;
     }
 
     // Update is called once per frame

@@ -11,8 +11,9 @@ public class Shoot : MonoBehaviour
     private float speed;
     public Weapontype weapontype;
     public bool active = false;
-    public bool local = true;
+    //Needs to be adjusted via NetworkShoot
     public int missileAmount = 3;
+    //this too
     public int laserAmount = 0;
 
     public enum Weapontype
@@ -30,7 +31,7 @@ public class Shoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (local)
+        if (GlobalVariables.local)
         {
             if (active)
             {
@@ -49,7 +50,7 @@ public class Shoot : MonoBehaviour
         Vector3 direction = transform.rotation * Vector3.up;
 
         GameObject weaponToFire = (GameObject) Instantiate(loadedWeapon, projectileSpawnPoint.position, transform.rotation);
-        if(!local)
+        if(!GlobalVariables.local)
             NetworkServer.Spawn(weaponToFire);
         weaponToFire.GetComponent<Rigidbody2D>().AddForce(direction * speed);
     }

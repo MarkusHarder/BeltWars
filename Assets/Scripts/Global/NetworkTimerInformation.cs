@@ -9,14 +9,20 @@ using Mirror;
  */
 public class NetworkTimerInformation : NetworkBehaviour
 {
+    TimerInformation tInfo;
     [SyncVar]
     int timeLeft;
 
-       // Update is called once per frame
-       void Update()
+    private void Start()
+    {
+        tInfo = gameObject.GetComponent<TimerInformation>();
+    }
+    // Update is called once per frame
+    void Update()
     {
         getTime();
         displayInformation();
+
     }
 
     public void displayInformation()
@@ -28,6 +34,7 @@ public class NetworkTimerInformation : NetworkBehaviour
     [Server]
     void getTime()
     {
-        timeLeft = (int)GameObject.Find("NetworkGameController").GetComponent<NetworkGameController>().timer;
+        tInfo.getTime();
+        timeLeft = tInfo.timeLeft;
     }
 }

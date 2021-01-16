@@ -18,7 +18,6 @@ public class NetworkMovement : NetworkBehaviour
     void Start()
     {
         mov = gameObject.GetComponent<ProtoMovement>();
-        mov.local = false;
     }
 
     // Update is called once per frame

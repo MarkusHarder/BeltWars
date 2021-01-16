@@ -6,7 +6,6 @@ using Mirror;
 [AddComponentMenu("")]
 public class NetworkManagerBeltWars : NetworkManager
 {
-    GameObject ball;
     public GameObject startPos1;
     public GameObject startPos2;
     private int count = 1;
@@ -30,6 +29,7 @@ public class NetworkManagerBeltWars : NetworkManager
 
         if (numPlayers == 2)
         {
+            GlobalVariables.local = false;
             NetworkSceneCreator nsc = new NetworkSceneCreator();
             nsc.createNetworkGameScene(cl);
             NetworkGameController ngc = GameObject.Find("NetworkGameController").GetComponent<NetworkGameController>();

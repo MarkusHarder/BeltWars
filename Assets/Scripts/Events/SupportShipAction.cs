@@ -14,7 +14,6 @@ public class SupportShipAction : NetworkBehaviour
     private bool itemDropped = false;
     private bool targetPosCalc = false;
     private float timer = 1.0f;
-    public bool local = true;
  
 
     //private float waitTime = 2.0f;
@@ -29,7 +28,7 @@ public class SupportShipAction : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (local)
+        if (GlobalVariables.local)
         {
             moveShip();
         }
@@ -52,7 +51,7 @@ public class SupportShipAction : NetworkBehaviour
                 if (transform.position == dropPosition)
                 {
                     this.item = (GameObject)Instantiate(this.item, this.dropPosition, Quaternion.Euler(0, 0, 0));
-                    if (!local)
+                    if (!GlobalVariables.local)
                         NetworkServer.Spawn(item);
                     posReached = true;
                 }

@@ -14,7 +14,6 @@ public class GameController : MonoBehaviour
     public bool eventAllowed = true;
     public int shipNumber = 6;
     public int asteroidDensity = 3;
-    public bool local;
 
     // Start is called before the first frame update
     void Start()
@@ -43,8 +42,6 @@ public class GameController : MonoBehaviour
                         eventIsRunning = true;
                         eventAllowed = false;
                         EventSupportShip sShip = new EventSupportShip();
-                        if (!local)
-                            sShip.local = false;
                         sShip.initiateEvent();
                     }
                 }
