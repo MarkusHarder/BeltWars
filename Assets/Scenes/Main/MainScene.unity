@@ -366,6 +366,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ' Game Information'
       objectReference: {fileID: 0}
+    - target: {fileID: 6193004248284772609, guid: dd6e8f7114e521e478c2187c9119de51,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6193004248284772612, guid: dd6e8f7114e521e478c2187c9119de51,
         type: 3}
       propertyPath: m_Camera
