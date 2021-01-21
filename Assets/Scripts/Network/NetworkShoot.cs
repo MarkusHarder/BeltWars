@@ -11,8 +11,15 @@ public class NetworkShoot : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        shoot = gameObject.GetComponent<Shoot>();
-        cmdInitWeapon();
+        if (GlobalVariables.local)
+        {
+            enabled = false;
+        }
+        else
+        {
+            shoot = gameObject.GetComponent<Shoot>();
+            cmdInitWeapon();
+        }
     }
 
     // Update is called once per frame

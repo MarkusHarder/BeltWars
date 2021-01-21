@@ -13,9 +13,16 @@ public class NetworkShipDestruction : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        dest = gameObject.GetComponent<ShipDestruction>();
-        syncHealth = dest.health;
-        Debug.Log(dest.health + " sync:" + syncHealth);
+        if (GlobalVariables.local)
+        {
+            enabled = false;
+        }
+        else
+        {
+            dest = gameObject.GetComponent<ShipDestruction>();
+            syncHealth = dest.health;
+            Debug.Log(dest.health + " sync:" + syncHealth);
+        }
     }
 
     // Update is called once per frame

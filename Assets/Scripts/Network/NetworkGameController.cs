@@ -6,9 +6,14 @@ using Mirror;
 public class NetworkGameController : GameController
 {
     public bool start = false;
+    public bool networkObj = true;
     // Start is called before the first frame update
     void Start()
     {
+        if (GlobalVariables.local)
+        {
+            enabled = false;
+        }
         
     }
 

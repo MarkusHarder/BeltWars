@@ -50,9 +50,7 @@ public class ItemCollector : MonoBehaviour
                         this.collectInfo = "+1 LASER!!";
                         break;
                 }
-                GameObject gameInfo = GameObject.Find("Game Information");
-                if (gameInfo == null)
-                    gameInfo = GameObject.Find("Network Game Information");
+                GameObject gameInfo = GameObject.Find("Display Game Information");
                 GameInformation gameInfoComponent = gameInfo.GetComponent<GameInformation>();
                 gameInfoComponent.activate(this.collectInfo);
                 Destroy(this.gameObject);

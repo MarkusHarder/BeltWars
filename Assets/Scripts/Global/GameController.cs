@@ -14,6 +14,7 @@ public class GameController : MonoBehaviour
     public bool eventAllowed = true;
     public int shipNumber = 6;
     public int asteroidDensity = 3;
+    public List<GameObject> gameList;
 
     // Start is called before the first frame update
     void Start()

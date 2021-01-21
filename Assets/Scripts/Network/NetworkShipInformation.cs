@@ -12,7 +12,14 @@ public class NetworkShipInformation : NetworkBehaviour
     public string fraction, currentWeapon, machineGun, missile, laserBeam;
     void Start()
     {
-        info = gameObject.GetComponent<ShipInformation>();
+        if (GlobalVariables.local)
+        {
+            enabled = false;
+        }
+        else
+        {
+            info = gameObject.GetComponent<ShipInformation>();
+        }
     }
 
     // Update is called once per frame

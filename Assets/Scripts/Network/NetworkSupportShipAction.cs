@@ -9,7 +9,14 @@ public class NetworkSupportShipAction : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        supAction = gameObject.GetComponent<SupportShipAction>();
+        if (GlobalVariables.local)
+        {
+            enabled = false;
+        }
+        else
+        {
+            supAction = gameObject.GetComponent<SupportShipAction>();
+        }
     }
 
     // Update is called once per frame

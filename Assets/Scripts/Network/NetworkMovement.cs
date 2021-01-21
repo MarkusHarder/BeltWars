@@ -17,7 +17,14 @@ public class NetworkMovement : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        mov = gameObject.GetComponent<ProtoMovement>();
+        if (GlobalVariables.local)
+        {
+            enabled = false;
+        }
+        else
+        {
+            mov = gameObject.GetComponent<ProtoMovement>();
+        }
     }
 
     // Update is called once per frame

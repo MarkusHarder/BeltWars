@@ -9,14 +9,22 @@ public class NetworkItemCollector : NetworkBehaviour
     [SyncVar(hook =nameof(setDrop))]
     ItemCollector.ItemType i;
     int count = 0;
+    public bool networkObj = true;
 
     // Start is called before the first frame update
-    
+
     void Start()
     {
-        col = gameObject.GetComponent<ItemCollector>();
-        if(isServer)
-            col.calcDrop();
+        if (GlobalVariables.local)
+        {
+            enabled = false;
+        }
+        else
+        {
+            col = gameObject.GetComponent<ItemCollector>();
+            if (isServer)
+                col.calcDrop();
+        }
     }
 
     // Update is called once per frame
