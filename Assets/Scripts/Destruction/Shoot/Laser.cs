@@ -8,6 +8,7 @@ public class Laser : MonoBehaviour
     public BoxCollider2D bc;
     public Transform firePoint;
     public GameObject startVFX;
+    public GameObject collideVFX;
     public Vector2 direction;
 
     private List<ParticleSystem> particles = new List<ParticleSystem>();
@@ -29,21 +30,13 @@ public class Laser : MonoBehaviour
             StartCoroutine(peng(2f));
         }
 
-        //if (Input.GetButton("Fire1"))
-        //{
-        //    UpdateLaser();
-        //}
-        //if (Input.GetButtonUp("Fire1"))
-        //{
-        //    DisableLaser();
-        //}
     }
     void EnableLaser()
     {
 
 
         lineRenderer.enabled = true;
-        bc.enabled = true;
+        StartCoroutine(boom(1.9f));
 
         for (int i = 0; i < particles.Count; i++)
             particles[i].Play();
@@ -51,10 +44,13 @@ public class Laser : MonoBehaviour
 
     void UpdateLaser()
     {
-      
-        lineRenderer.SetPosition(-5, firePoint.position);
-        
+              
         RaycastHit2D hit = Physics2D.Raycast((Vector2)transform.position, direction.normalized, direction.magnitude);
+
+        if(hit)
+        {
+            lineRenderer.SetPosition(1, hit.point);
+        }
     }
 
     void DisableLaser()
@@ -75,11 +71,17 @@ public class Laser : MonoBehaviour
         }
     }
 
+    
+    
     IEnumerator peng(float delay)
     {
         yield return new WaitForSeconds(delay);
         DisableLaser();
-        // GameObject missile = (GameObject)Instantiate(mis, spawnPoint.position, ship.rotation);
-        //missile.GetComponent<Rigidbody2D>().AddForce(direction * speed);
+    }
+
+    IEnumerator boom(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        bc.enabled = true;
     }
 }
