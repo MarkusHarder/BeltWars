@@ -26,6 +26,7 @@ public class ShipDestruction : MonoBehaviour, IEntity
     void OnCollisionEnter2D(Collision2D collision)
     {
         Damage damage = collision.gameObject.GetComponent<Damage>();
+
         if (damage)
         {
             this.ApplyDamage(damage.damageValue);
@@ -35,7 +36,6 @@ public class ShipDestruction : MonoBehaviour, IEntity
 
     public void ApplyDamage(float points)
     {
-        
         this.health -= points;
 
         if (this.health <= 0)
