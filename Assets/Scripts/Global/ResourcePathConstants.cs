@@ -58,6 +58,8 @@ public static class ResourcePathConstants
 
     public static string MACHINE_GUN = "ShootAndDestroy/Projectile";
 
+    public static string LASER = "ShootAndDestroy/Laser";
+
     public static string explosion = "ShootAndDestroy/Explosion";
     //public static string missile = "Prefabs/Destruction/Missile (1)";
     //public static string asteroid = "Prefabs/Destruction/Asteroid 5";
