@@ -48,7 +48,7 @@ public class ItemCollector : MonoBehaviour
                         this.collectInfo = "FULL HEALTH!!";
                         break;
                     case ItemType.LASER:
-                        shoot.laserAmount += 0;
+                        shoot.laserAmount += 1;
                         this.collectInfo = "+1 LASER!!";
                         break;
                 }

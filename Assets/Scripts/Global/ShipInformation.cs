@@ -20,15 +20,6 @@ public class ShipInformation : MonoBehaviour
 
         if (ship)
         {
-            string fraction = "";
-            if (ship.name.StartsWith("Ship_Mars"))
-            {
-                fraction = " MARS" + "\n";
-            }
-            else
-            {
-                fraction = " EARTH" + "\n";
-            }
 
             string machineGun = " 1. Machine Gun: Infinite" + "\n";
             string missile = " 2. Missiles:" + ship.GetComponent<Shoot>().missileAmount + "\n";
@@ -45,12 +36,12 @@ public class ShipInformation : MonoBehaviour
             {
                 currentWeapon += "MISSILE LAUNCHER";
             }
-            else if (ship.GetComponent<Shoot>().weapontype == Shoot.Weapontype.LASERBEAM)
+            else if (ship.GetComponent<Shoot>().weapontype == Shoot.Weapontype.LASER)
             {
                 currentWeapon += "LASERBEAM";
             }
 
-            this.gameObject.GetComponent<Text>().text = fraction + currentWeapon + "\n" + machineGun + missile + laserBeam;
+            this.gameObject.GetComponent<Text>().text = currentWeapon + "\n" + machineGun + missile + laserBeam;
         }
        
         

@@ -17,7 +17,7 @@ public class Shoot : MonoBehaviour
     {
         MACHINE_GUN,
         MISSILE,
-        LASERBEAM
+        LASER
      }
     // Start is called before the first frame update
     void Start()
@@ -48,6 +48,12 @@ public class Shoot : MonoBehaviour
                 speed = 5;
                 Debug.Log("Rocket Launcher loaded");
             }
+            if (Input.GetKeyDown(KeyCode.Keypad3))
+            {
+                loadedWeapon = Resources.Load(ResourcePathConstants.LASER) as GameObject;
+                weapontype = Weapontype.LASER;
+                Debug.Log("Laser loaded");
+            }
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
@@ -66,6 +72,11 @@ public class Shoot : MonoBehaviour
                     StartCoroutine(fire(0.4f));
                     StartCoroutine(fire(0.5f));
                     active = false;
+                }else if (weapontype == Weapontype.LASER && laserAmount > 0)
+                {
+                    StartCoroutine(fireLaser());
+                    laserAmount--;
+                    active = false;
                 }
             }   
         }
@@ -75,13 +86,23 @@ public class Shoot : MonoBehaviour
     IEnumerator fire(float delay)
     {
         yield return new WaitForSeconds(delay);
-        
-        float projectilePosX = projectileSpawnPoint.position.x;
-        float projectilePosY = projectileSpawnPoint.position.y;
+      
         Vector3 direction = transform.rotation * Vector3.up;
 
         GameObject weaponToFire = (GameObject) Instantiate(loadedWeapon, projectileSpawnPoint.position, transform.rotation);
         weaponToFire.GetComponent<Rigidbody2D>().AddForce(direction * speed);
+    }
+
+    IEnumerator fireLaser()
+    {
+        yield return new WaitForSeconds(0);
+
+        Vector3 direction = transform.rotation * Vector3.up;
+
+        GameObject weaponToFire = ( GameObject )Instantiate(loadedWeapon, projectileSpawnPoint.position, transform.rotation);
+
+        LaserBehaviour laser = weaponToFire.GetComponent<LaserBehaviour>();
+        laser.ship = gameObject;
     }
 }
 
