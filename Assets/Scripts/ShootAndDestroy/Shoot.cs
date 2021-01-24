@@ -97,6 +97,12 @@ public class Shoot : MonoBehaviour
             speed = 5;
             Debug.Log("Rocket Launcher loaded");
         }
+        else if (n == 2)
+        {
+            loadedWeapon = Resources.Load(ResourcePathConstants.LASER) as GameObject;
+            weapontype = Weapontype.LASER;
+            Debug.Log("Laser loaded");
+        }
 
     }
 
@@ -121,6 +127,10 @@ public class Shoot : MonoBehaviour
         {
             setWeapon(1);
         }
+        if (Input.GetKeyDown(KeyCode.Keypad3))
+        {
+            setWeapon(2);
+        }
         if (Input.GetKeyDown(KeyCode.Space)) { shoot(); }
     }
 
@@ -134,6 +144,8 @@ public class Shoot : MonoBehaviour
 
         LaserBehaviour laser = weaponToFire.GetComponent<LaserBehaviour>();
         laser.ship = gameObject;
+        if (!GlobalVariables.local)
+            NetworkServer.Spawn(weaponToFire);
     }
 }
 

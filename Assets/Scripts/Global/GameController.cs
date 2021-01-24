@@ -65,7 +65,6 @@ public class GameController : MonoBehaviour
         GameInformation gameInfo = gameI.GetComponent<GameInformation>();
 
         
-        
 
         if (ShipContainer.checkIfEarthLost())
         {

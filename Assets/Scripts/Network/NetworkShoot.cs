@@ -70,6 +70,11 @@ public class NetworkShoot : NetworkBehaviour
         {
             cmdSetWeapon(1);
         }
+        if (Input.GetKeyDown(KeyCode.Keypad3))
+        {
+            Debug.Log("Hallo");
+            cmdSetWeapon(2);
+        }
         if (Input.GetKeyDown(KeyCode.Space)) { cmdShoot(); }
     }
 }

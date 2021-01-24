@@ -1,15 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
-public class LaserBehaviour : MonoBehaviour
+public class LaserBehaviour : NetworkBehaviour
 {
     public LineRenderer lineRenderer;
     public GameObject startVFX;
+    [SyncVar]
     public Vector2 direction;
-
+    [SyncVar]
     public GameObject ship;
+    [SyncVar]
     Vector3 blockPosition;
+    [SyncVar]
     Quaternion blockRotation;
 
 
@@ -18,13 +22,16 @@ public class LaserBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        blockPosition = ship.transform.position;
-        blockRotation = ship.transform.rotation;
-        BoxCollider2D boxCollider = lineRenderer.GetComponent<BoxCollider2D>();
-        boxCollider.enabled = false;
-        
-        playLaserParticle();
-        StartCoroutine(laserFires());
+        if (isServer)
+        {
+            blockPosition = ship.transform.position;
+            blockRotation = ship.transform.rotation;
+            BoxCollider2D boxCollider = lineRenderer.GetComponent<BoxCollider2D>();
+            boxCollider.enabled = false;
+
+            playLaserParticle();
+            StartCoroutine(laserFires());
+        }
   
     }
 
@@ -32,8 +39,11 @@ public class LaserBehaviour : MonoBehaviour
     void Update()
     {
         //block the ship movement while fireing otherwise the laser becomes too powerful
-        ship.transform.position = blockPosition;
-        ship.transform.rotation = blockRotation;
+        if (isServer)
+        {
+            ship.transform.position = blockPosition;
+            ship.transform.rotation = blockRotation;
+        }
   
     }
 

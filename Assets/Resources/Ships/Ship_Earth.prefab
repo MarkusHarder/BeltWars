@@ -343,7 +343,7 @@ MonoBehaviour:
   weapontype: 0
   active: 0
   missileAmount: 2
-  laserAmount: 0
+  laserAmount: 1
 --- !u!114 &4982220565609503775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -464,6 +464,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 1.5
   syncHealth: 0
+  tmpHealth: 0
 --- !u!120 &714925504808948795
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -574,7 +575,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   active: 0
-  lineWidth: 0.2
 --- !u!1 &5547538636924993670
 GameObject:
   m_ObjectHideFlags: 0

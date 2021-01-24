@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Mirror;
-public class ShipDestruction : MonoBehaviour, IEntity
+public class ShipDestruction : NetworkBehaviour, IEntity
 {
     public float health { get; set; }
     public float maxHealth = 100;
@@ -49,8 +49,8 @@ public class ShipDestruction : MonoBehaviour, IEntity
         Explosion expl = gameObject.GetComponent<Explosion>();
         expl.StartExplosion();
         debrisInstance = GameObject.Instantiate(Resources.Load(ResourcePathConstants.debris) as GameObject as GameObject, gameObject.transform.position, Quaternion.identity);
-        if (!GlobalVariables.local)
-            NetworkServer.Spawn(debrisInstance);
+        //if (!GlobalVariables.local)
+        //    NetworkServer.Spawn(debrisInstance);
     }
 
 }

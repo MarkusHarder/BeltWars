@@ -108,8 +108,6 @@ GameObject:
   - component: {fileID: -1555807608929634490}
   - component: {fileID: 4747875063513070679}
   - component: {fileID: -5728486545026176100}
-  - component: {fileID: 8842126917861111668}
-  - component: {fileID: 4424353116379713272}
   - component: {fileID: -3889927382966572562}
   - component: {fileID: -499170367218959318}
   m_Layer: 0
@@ -239,7 +237,7 @@ MonoBehaviour:
   weapontype: 0
   active: 0
   missileAmount: 2
-  laserAmount: 0
+  laserAmount: 1
 --- !u!114 &8195411795959519305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -458,11 +456,6 @@ MonoBehaviour:
   syncInterval: 1.5
   syncHealth: 100
   tmpHealth: 0
-  m_Script: {fileID: 11500000, guid: 78004cb85e0a9854bb8899bd679772d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  active: 0
-  lineWidth: 0.2
 --- !u!1 &3208437991003784031
 GameObject:
   m_ObjectHideFlags: 0
