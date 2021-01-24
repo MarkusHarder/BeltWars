@@ -48,8 +48,11 @@ public class Shoot : MonoBehaviour
         Vector3 direction = transform.rotation * Vector3.up;
 
         GameObject weaponToFire = (GameObject) Instantiate(loadedWeapon, projectileSpawnPoint.position, transform.rotation);
-        if(!GlobalVariables.local)
+        if (!GlobalVariables.local)
+        {
             NetworkServer.Spawn(weaponToFire);
+            Debug.Log(gameObject.name);
+        }
         weaponToFire.GetComponent<Rigidbody2D>().AddForce(direction * speed);
     }
 
@@ -74,7 +77,7 @@ public class Shoot : MonoBehaviour
             active = false;
         }
         else if (weapontype == Weapontype.LASER && laserAmount > 0)
-        {
+        {   
             StartCoroutine(fireLaser());
             laserAmount--;
             active = false;
