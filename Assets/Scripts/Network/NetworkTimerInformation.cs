@@ -15,20 +15,21 @@ public class NetworkTimerInformation : NetworkBehaviour
 
     private void Start()
     {
+            tInfo = gameObject.GetComponent<TimerInformation>();
+    }
+    // Update is called once per frame
+    void Update()
+    {
         if (GlobalVariables.local)
         {
             enabled = false;
         }
         else
         {
-            tInfo = gameObject.GetComponent<TimerInformation>();
+            getTime();
+            displayInformation();
         }
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        getTime();
-        displayInformation();
+
 
     }
 

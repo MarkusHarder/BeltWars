@@ -59,9 +59,7 @@ public class GameController : MonoBehaviour
 
     public bool checkGameOver() 
     {
-        GameObject gameI = GameObject.Find("Game Information");
-        if (gameI == null)
-            gameI = GameObject.Find("Network Game Information");
+        GameObject gameI = GameObject.Find("Display Game Information");
         GameInformation gameInfo = gameI.GetComponent<GameInformation>();
 
         

@@ -12,14 +12,7 @@ public class NetworkGameInformation : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (GlobalVariables.local)
-        {
-            enabled = false;
-        }
-        else
-        {
             gi = gameObject.GetComponent<GameInformation>();
-        }
     }
 
     
@@ -28,11 +21,20 @@ public class NetworkGameInformation : NetworkBehaviour
     [Server]
     void Update()
     {
-        if (gi.executed)
+
+        if (GlobalVariables.local)
         {
-            gi.executed = false;
-            text = gi.gameInfo;
+            enabled = false;
         }
+        else
+        {
+            if (gi.executed)
+            {
+                gi.executed = false;
+                text = gi.gameInfo;
+            }
+        }
+
     }
 
 

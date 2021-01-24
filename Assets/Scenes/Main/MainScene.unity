@@ -366,6 +366,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Game Controller
       objectReference: {fileID: 0}
+    - target: {fileID: 5553489037949716485, guid: 24817a660a4403043a93c2e87e4e9dda,
+        type: 3}
+      propertyPath: eventPropability
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5553489037949716485, guid: 24817a660a4403043a93c2e87e4e9dda,
+        type: 3}
+      propertyPath: roundTime
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 5553489037949716538, guid: 24817a660a4403043a93c2e87e4e9dda,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -589,6 +599,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6193004248478717371, guid: dd6e8f7114e521e478c2187c9119de51,
+        type: 3}
+      propertyPath: m_Name
+      value: Display Game Information
       objectReference: {fileID: 0}
     - target: {fileID: 6193004248478717374, guid: dd6e8f7114e521e478c2187c9119de51,
         type: 3}
