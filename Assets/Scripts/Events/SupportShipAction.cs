@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
-public class SupportShipAction : MonoBehaviour
+public class SupportShipAction : NetworkBehaviour
 {
 
     private GameObject item;
@@ -13,6 +14,8 @@ public class SupportShipAction : MonoBehaviour
     private bool itemDropped = false;
     private bool targetPosCalc = false;
     private float timer = 1.0f;
+ 
+
     //private float waitTime = 2.0f;
 
     void Start()
@@ -25,6 +28,20 @@ public class SupportShipAction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GlobalVariables.local)
+        {
+            moveShip();
+        }
+    }
+
+    public void setDropPosition(Vector2 position)
+    {
+        dropPosition = position;
+    }
+
+    public void moveShip()
+    {
+
         if (dropPosition != null)
         {
             if (!posReached)
@@ -34,17 +51,19 @@ public class SupportShipAction : MonoBehaviour
                 if (transform.position == dropPosition)
                 {
                     this.item = (GameObject)Instantiate(this.item, this.dropPosition, Quaternion.Euler(0, 0, 0));
+                    if (!GlobalVariables.local)
+                        NetworkServer.Spawn(item);
                     posReached = true;
                 }
             }
-            else if(posReached && !itemDropped)
+            else if (posReached && !itemDropped)
             {
                 timer -= Time.deltaTime;
-                if(timer <= 0) itemDropped = true;
+                if (timer <= 0) itemDropped = true;
             }
-            else if(posReached && itemDropped)
+            else if (posReached && itemDropped)
             {
-                if(!targetPosCalc)
+                if (!targetPosCalc)
                 {
                     if (startPosition.x == dropPosition.x)
                     {
@@ -63,17 +82,13 @@ public class SupportShipAction : MonoBehaviour
                 if (transform.position == targetPosition)
                 {
                     GameObject gameController = GameObject.Find("Game Controller");
+                    if (gameController == null)
+                        gameController = GameObject.Find("NetworkGameController");
                     gameController.GetComponent<GameController>().eventIsRunning = false;
                     Destroy(this.gameObject);
                 }
             }
         }
-    }
 
-    public void setDropPosition(Vector2 position)
-    {
-        dropPosition = position;
     }
-
-    
 }

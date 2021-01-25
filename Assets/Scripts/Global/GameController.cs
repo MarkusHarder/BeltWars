@@ -2,18 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using Mirror;
 
 //Class which controls the game
 public class GameController : MonoBehaviour
 {
     public float timer = 0;
-    public float roundTime = 15;
-    public int eventPropability = 10;
+    public float roundTime = 20;
+    public int eventPropability = 100;
     public bool eventIsRunning = false;
     public bool eventAllowed = true;
     public int shipNumber = 6;
     public int asteroidDensity = 3;
-
+    public List<GameObject> gameList;
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +23,7 @@ public class GameController : MonoBehaviour
         gameSceneCreator.createGameScene();
     }
 
-    private void Update()
+    virtual protected void Update()
     {
         if (!checkGameOver())
         {
@@ -32,6 +33,7 @@ public class GameController : MonoBehaviour
             }
             else if (!eventIsRunning)
             {
+                Debug.Log(eventPropability);
                 if (eventAllowed)
                 {
                     int i = Random.Range(0, 100);
@@ -40,7 +42,8 @@ public class GameController : MonoBehaviour
                         ShipContainer.deactivateAllShips();
                         eventIsRunning = true;
                         eventAllowed = false;
-                        new EventSupportShip().initiateEvent();
+                        EventSupportShip sShip = new EventSupportShip();
+                        sShip.initiateEvent();
                     }
                 }
 
@@ -56,8 +59,11 @@ public class GameController : MonoBehaviour
 
     public bool checkGameOver() 
     {
-        GameInformation gameInfo = GameObject.Find("Game Information").GetComponent<GameInformation>();
+        GameObject gameI = GameObject.Find("Display Game Information");
+        GameInformation gameInfo = gameI.GetComponent<GameInformation>();
+
         
+
         if (ShipContainer.checkIfEarthLost())
         {
             gameInfo.activate("MARS WINS!!");

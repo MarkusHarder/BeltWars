@@ -18,23 +18,26 @@ public class LaserBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        blockPosition = ship.transform.position;
-        blockRotation = ship.transform.rotation;
-        BoxCollider2D boxCollider = lineRenderer.GetComponent<BoxCollider2D>();
-        boxCollider.enabled = false;
-        
-        playLaserParticle();
-        StartCoroutine(laserFires());
-  
+        if(GlobalVariables.local)
+            initialize();
+
     }
 
     // Update is called once per frame
     void Update()
     {
         //block the ship movement while fireing otherwise the laser becomes too powerful
-        ship.transform.position = blockPosition;
-        ship.transform.rotation = blockRotation;
-  
+        blockShipPosition();
+
+    }
+
+    public void blockShipPosition()
+    {
+        if (ship != null)
+        {
+            ship.transform.position = blockPosition;
+            ship.transform.rotation = blockRotation;
+        }
     }
 
     void playLaserParticle()
@@ -43,12 +46,14 @@ public class LaserBehaviour : MonoBehaviour
         {
             var ps = startVFX.transform.GetChild(i).GetComponent<ParticleSystem>();
 
-            if (ps != null) { 
+            if (ps != null)
+            {
                 laserParticles.Add(ps);
             }
         }
 
-        for(int i = 0; i < laserParticles.Count; i++){
+        for (int i = 0; i < laserParticles.Count; i++)
+        {
             laserParticles[i].Play();
         }
     }
@@ -61,5 +66,16 @@ public class LaserBehaviour : MonoBehaviour
         boxCollider.enabled = true;
         yield return new WaitForSeconds(0.9f);
         Destroy(gameObject);
+    }
+
+    public void initialize()
+    {
+        blockPosition = ship.transform.position;
+        blockRotation = ship.transform.rotation;
+        BoxCollider2D boxCollider = lineRenderer.GetComponent<BoxCollider2D>();
+        boxCollider.enabled = false;
+
+        playLaserParticle();
+        StartCoroutine(laserFires());
     }
 }

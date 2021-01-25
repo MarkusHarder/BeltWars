@@ -8,18 +8,20 @@ using UnityEditor;
 /// </summary>
 public  class GameSceneCreator : MonoBehaviour
 {
-
+    public List<GameObject> game;
     private int shipAmount = 6;
     private int asteroidDensity = 3;
     private float borderDistance = 0.5f;
-
-
-
     public void createGameScene()
     {
-        GameController gameController = ( GameController ) GameObject.Find("Game Controller").GetComponent("GameController");
+        GameObject controller = GameObject.Find("Game Controller");
+
+        if (controller == null)
+            controller = GameObject.Find("NetworkGameController");
+        GameController gameController = controller.GetComponent<GameController>();
         this.shipAmount = gameController.shipNumber;
         this.asteroidDensity = gameController.asteroidDensity;
+        game = new List<GameObject>();
         this.createBackground();
         this.createBackgroundPlanet();
         this.spawnAsteroids();
@@ -38,6 +40,7 @@ public  class GameSceneCreator : MonoBehaviour
 
     public void spawnShips()
     {
+
         for(int i = 0; i < shipAmount; i++)
         {
             spawnShipRandom(ResourcePathConstants.SHIP_EARTH, i);
@@ -53,7 +56,8 @@ public  class GameSceneCreator : MonoBehaviour
 
         if (backgroundScene == null) Debug.Log("Background scene resource is null!");
         
-        Instantiate(backgroundScene, new Vector3(0, 0, 0), Quaternion.identity);
+        GameObject background = Instantiate(backgroundScene, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+        game.Add(background);
     }
 
 
@@ -91,6 +95,8 @@ public  class GameSceneCreator : MonoBehaviour
 
         clone2.transform.localScale = new Vector3(scale, scale, 0);
         clone2.name = "Shadow";
+        game.Add(clone);
+        game.Add(clone2);
     }
 
 
@@ -127,6 +133,7 @@ public  class GameSceneCreator : MonoBehaviour
             clone.name = "Ship_Mars_" + (index + 1);
             ShipContainer.marsShips.Add(clone);
         }
+        game.Add(clone);
     }
 
     private void spawnAsteroidRandom(int index) 
@@ -153,6 +160,7 @@ public  class GameSceneCreator : MonoBehaviour
         GameObject clone = (GameObject) Instantiate(asteroid, spawnLocation, Quaternion.Euler(0, 0, rotation));
 
         clone.name = "Asteroid_" + (index + 1);
+        game.Add(clone);
     }
 
 

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
 public class EventSupportShip : MonoBehaviour
 {
@@ -45,7 +46,6 @@ public class EventSupportShip : MonoBehaviour
      
     }
 
-
     private void placeShip()
     {
         float outOfViewRange = 3f;
@@ -81,11 +81,14 @@ public class EventSupportShip : MonoBehaviour
         }
 
         this.ship = (GameObject) Instantiate(this.ship, this.startLocation, Quaternion.Euler(0, 0, rotation));
+        if (!GlobalVariables.local)
+            NetworkServer.Spawn(ship);
         this.ship.name = "Support_Ship";
         SupportShipAction action = this.ship.GetComponent<SupportShipAction>();
         action.startPosition = this.startLocation;
         action.dropPosition = this.dropLocation;
     }
+
 
     private bool checkItemCollision()
     {

@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Mirror/Cloud/ApiConnector.cs.meta
+guid: 4073d17bb508c7d418cce9e52b3c930f
+=======
 guid: 26083c131f588ec4f8634a998b680a9d
+>>>>>>> develop:Assets/Scripts/EndScreen/ButtonEvents.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

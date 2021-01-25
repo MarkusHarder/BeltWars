@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
 public class Explosion : MonoBehaviour
 {
@@ -26,7 +27,7 @@ public class Explosion : MonoBehaviour
         Destroy(gameObject);
 
         GameObject explosion = Resources.Load(ResourcePathConstants.explosion) as GameObject;
-        GameObject.Instantiate(explosion, gameObject.transform.position, Quaternion.identity);
+        GameObject expl = GameObject.Instantiate(explosion, gameObject.transform.position, Quaternion.identity);
     }
 
 
