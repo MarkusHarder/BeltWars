@@ -74,7 +74,7 @@ public static class ShipContainer
         if(ship != null) {
             ship.GetComponent<ProtoMovement>().active = true;
             ship.GetComponent<Shoot>().active = true;
-            //ship.GetComponent<Circle>().active = true;
+            ship.GetComponent<Circle>().active = true;
             currentShip = ship;
         }
     }

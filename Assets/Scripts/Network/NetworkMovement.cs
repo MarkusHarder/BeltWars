@@ -11,8 +11,9 @@ using Mirror;
 public class NetworkMovement : NetworkBehaviour
 {
     ProtoMovement mov;
+    Circle circ;
 
-    [SyncVar]
+    [SyncVar (hook = nameof(toggleCirc))]
     public bool active;
     // Start is called before the first frame update
     void Start()
@@ -24,15 +25,18 @@ public class NetworkMovement : NetworkBehaviour
         else
         {
             mov = gameObject.GetComponent<ProtoMovement>();
+            circ = gameObject.GetComponent<Circle>();
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        checkMov();
+        if(isServer)
+            checkMov();
         if (active && hasAuthority)
         {
+            
             mov.keepObjectInCameraView();
             mov.moveShip();
         }
@@ -44,5 +48,10 @@ public class NetworkMovement : NetworkBehaviour
     private void checkMov()
     {
         active = mov.active;
+    }
+
+    private void toggleCirc(bool activeO, bool activeN)
+    {
+        circ.active = activeN;
     }
 }
