@@ -30,7 +30,8 @@ public class Explosion : MonoBehaviour
         GameObject expl = GameObject.Instantiate(explosion, gameObject.transform.position, Quaternion.identity);
         if (!GlobalVariables.local)
         {
-            NetworkServer.Spawn(expl);
+            if(NetworkServer.active)
+                NetworkServer.Spawn(expl);
         }
     }
 

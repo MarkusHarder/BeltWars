@@ -23,7 +23,6 @@ public class NetworkManagerBeltWars : NetworkManager
             if (it.Value != NetworkServer.localConnection)
             {
                 cl = it.Value;
-                Debug.Log(cl);
             }
         }
 
@@ -33,7 +32,10 @@ public class NetworkManagerBeltWars : NetworkManager
             NetworkSceneCreator nsc = new NetworkSceneCreator();
             nsc.createNetworkGameScene(cl);
             NetworkGameController ngc = GameObject.Find("NetworkGameController").GetComponent<NetworkGameController>();
+            ngc.conn = conn;
+            ngc.elements = nsc.game;
             ngc.start = true;
+           
 
 
         }

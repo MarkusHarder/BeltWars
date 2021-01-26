@@ -22,19 +22,11 @@ public class NetworkGameInformation : NetworkBehaviour
     void Update()
     {
 
-        if (GlobalVariables.local)
-        {
-            enabled = false;
-        }
-        else
-        {
             if (gi.executed)
             {
                 gi.executed = false;
-                text = gi.gameInfo;
+            text = gi.gameInfo;
             }
-        }
-
     }
 
 

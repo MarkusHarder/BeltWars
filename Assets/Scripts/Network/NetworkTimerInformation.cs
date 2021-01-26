@@ -10,7 +10,7 @@ using Mirror;
 public class NetworkTimerInformation : NetworkBehaviour
 {
     TimerInformation tInfo;
-    [SyncVar]
+    [SyncVar (hook = nameof (displayInformation))]
     int timeLeft;
 
     private void Start()
@@ -18,25 +18,17 @@ public class NetworkTimerInformation : NetworkBehaviour
             tInfo = gameObject.GetComponent<TimerInformation>();
     }
     // Update is called once per frame
+    [Server]
     void Update()
     {
-        if (GlobalVariables.local)
-        {
-            enabled = false;
-        }
-        else
-        {
-            getTime();
-            displayInformation();
-        }
-
-
+        getTime();
     }
 
-    public void displayInformation()
+    public void displayInformation(int oldT, int newT)
     {
-       
-      gameObject.GetComponent<Text>().text = "" + timeLeft + " ";
+
+        tInfo.timeLeft = newT;
+        tInfo.displayInformation();
     }
 
     [Server]
