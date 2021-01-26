@@ -28,6 +28,10 @@ public class Explosion : MonoBehaviour
 
         GameObject explosion = Resources.Load(ResourcePathConstants.explosion) as GameObject;
         GameObject expl = GameObject.Instantiate(explosion, gameObject.transform.position, Quaternion.identity);
+        if (!GlobalVariables.local)
+        {
+            NetworkServer.Spawn(expl);
+        }
     }
 
 
