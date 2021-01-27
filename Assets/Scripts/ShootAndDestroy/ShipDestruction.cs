@@ -19,6 +19,7 @@ public class ShipDestruction : MonoBehaviour, IEntity
 
     public void Initialize()
     {
+        Debug.Log(health);
         this.maxHealth = 100;
         this.health = this.maxHealth;
     }

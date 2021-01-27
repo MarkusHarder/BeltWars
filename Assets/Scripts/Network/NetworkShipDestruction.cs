@@ -17,8 +17,6 @@ public class NetworkShipDestruction : NetworkBehaviour
         else
         {
             dest = gameObject.GetComponent<ShipDestruction>();
-            syncHealth = dest.health;
-            Debug.Log(dest.health + " sync:" + syncHealth);
         }
     }
 
@@ -46,7 +44,7 @@ public class NetworkShipDestruction : NetworkBehaviour
         }
         else
         {
-            dest.health = syncHealth;
+            dest.health = newHP;
         }
     }
 

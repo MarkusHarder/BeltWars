@@ -21,7 +21,7 @@ public class NetworkSceneCreator : GameSceneCreator
                 NetworkServer.Spawn(el.gameObject, NetworkServer.localConnection);
             }
             else {
-                NetworkServer.Spawn(el.gameObject);
+                NetworkServer.Spawn(el.gameObject, NetworkServer.localConnection);
             }
         }
     }

@@ -34,8 +34,7 @@ public class NetworkManagerBeltWars : NetworkManager
             NetworkGameController ngc = GameObject.Find("NetworkGameController").GetComponent<NetworkGameController>();
             ngc.conn = conn;
             ngc.elements = nsc.game;
-            ngc.start = true;
-           
+            ngc.start = true; 
 
 
         }

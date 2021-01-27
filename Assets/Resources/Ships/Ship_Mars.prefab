@@ -251,10 +251,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be72128aabcdea246b9f416321f09d6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
   maxHealth: 100
   healthbar: {fileID: 8209116398958602557}
+  debrisInstance: {fileID: 0}
 --- !u!114 &267617709876200867
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -458,7 +457,6 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 1.5
   syncHealth: 100
-  tmpHealth: 0
 --- !u!114 &770240894833272762
 MonoBehaviour:
   m_ObjectHideFlags: 0
