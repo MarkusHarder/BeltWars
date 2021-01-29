@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7379103925266760845}
   - component: {fileID: 2889637669923863534}
   - component: {fileID: 5036791410218328068}
+  - component: {fileID: 1486385880}
   m_Layer: 0
   m_Name: NetworkGameController
   m_TagString: Untagged
@@ -60,11 +61,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d724f65f6370264e8ac4248650b352d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
   timer: 0
-  roundTime: 20
-  eventPropability: 10
+  roundTime: 15
+  eventPropability: 0
   eventIsRunning: 0
-  eventAllowed: 0
+  eventAllowed: 1
+  shipNumber: 6
+  asteroidDensity: 3
+  gameList: []
   start: 0
+  networkObj: 1
+  elements: []
+--- !u!114 &1486385880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9001250553615120802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af4b4b18183b2754d8785a9539f396c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  exec: 0
