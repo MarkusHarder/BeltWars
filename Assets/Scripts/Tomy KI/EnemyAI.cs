@@ -5,30 +5,39 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
-    public float moveSpeed;
-    public float stoppingDistance;
-
-
-    private Transform closestPlayer;
-    private CameraMeasurements gameCamera;
-
-    public float offset;
-    public float rotationSpeed;
-    private bool isMoving = false;
-
-    float timer = 3f;
     public bool active = false;
-    private bool hitAsteroid = false;
+
+    public float moveSpeed;
+    public float rotationSpeed;
+    
+    public Weapontype weapontype;
+
+    public int missileAmount = 2;
+    public int laserAmount = 0;
 
 
+    private Vector3 finalPosition = new Vector3();
 
+    public Transform spawnPointProjectile;
+    public GameObject loadedWeapon;
 
+    private Transform enemyToAttack;
+    private CameraMeasurements gameCamera;
+    
+    private bool alreadyShot = false;
+    private bool finalPositionDetermined = false;
 
-    void Start()
+    private float timer = 3f;
+
+    private float projectileSpeed;
+
+    public enum Weapontype
     {
-        closestPlayer = FindClosestEnemy();
-
+        MACHINE_GUN,
+        MISSILE,
+        LASER
     }
+
 
     // Update is called once per frame
     void Update()
@@ -37,115 +46,199 @@ public class EnemyAI : MonoBehaviour
 
         if (active) {
 
-            closestPlayer = FindClosestEnemy();
-
-
-            if (Vector2.Distance(transform.position, closestPlayer.position) > stoppingDistance)
+            if(!alreadyShot)
             {
-                
-                RotateTowards(closestPlayer.position);
+                chooseWeapon();
+                enemyToAttack = findEnemyToAttack();
+                RotateTowards(enemyToAttack.position);
 
-
-                if (isMoving)
-                {
-
-                    if (timer > 0)
-                    {
-                        timer -= Time.deltaTime;
-                        return;
-                    }
-
-
-                    MoveTowards(closestPlayer.position);
-
-                }
-
-
-            }
-             if (Vector2.Distance(transform.position, closestPlayer.position) < stoppingDistance)
-            {
-                
-                RotateTowards(closestPlayer.position);
                 if (timer > 0)
                 {
                     timer -= Time.deltaTime;
                     return;
                 }
-                timer = 3f;
 
+                MoveTowards(enemyToAttack.position);
 
-                active = false;
+                Debug.DrawRay(spawnPointProjectile.position, spawnPointProjectile.TransformDirection(Vector2.up) *10f, Color.red);
+                RaycastHit2D hit = Physics2D.Raycast(spawnPointProjectile.position, spawnPointProjectile.TransformDirection(Vector2.up), Mathf.Infinity);
+
+                if (hit)
+                {
+                    //GameObject gameObject = hit.collider.gameObject;
+                    if (hit.collider.name.StartsWith("Ship_Earth"))
+                    {
+                        shoot();
+                        alreadyShot = true;
+                        timer = 1f;
+                    }
+                }
             }
-            if (Vector2.Distance(transform.position, closestPlayer.position) == stoppingDistance || hitAsteroid == true )
-            {                
-                transform.position = this.transform.position;
-                active = false;
-                timer = 3f;
-                hitAsteroid = false;
-                
 
+            if (alreadyShot)
+            {
+                //Wait beore mving again, else machingun fire is spreading
+                if (timer > 0)
+                {
+                    timer -= Time.deltaTime;
+                    return;
+                }
+                moveToFinalPosition();
             }
-
-
-
-
-
         }
-
-
-
     }
 
-    private void RotateTowards(Vector2 target)
+    private void moveToFinalPosition()
     {
-        Vector3 direction = closestPlayer.position - transform.position;
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        Quaternion rotation = Quaternion.Euler(new Vector3(0, 0, angle + offset));
-        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotationSpeed * Time.deltaTime);
+        if (!finalPositionDetermined)
+        {
+            CameraMeasurements camera = new CameraMeasurements();
+            float x = Random.Range(camera.getHorizontalMin() + 0.5f, camera.getHorizontalMax() - 0.5f);
+            float y = Random.Range(camera.getVerticalMin() + 0.5f, camera.getVerticalMax() - 0.5f);
+            finalPosition = new Vector3(x, y, 0);
+            finalPositionDetermined = true;
+        }
 
-        
-        isMoving = true;
+        MoveTowards(finalPosition);
+        RotateTowards(finalPosition);
+
+        if(transform.position == finalPosition)
+        {
+            finalPositionDetermined = false;
+            active = false;
+            timer = 3f;
+            alreadyShot = false;
+        }
+    }
+
+
+    private void chooseWeapon()
+    {
+        if (laserAmount > 0)
+        {
+            loadedWeapon = Resources.Load(ResourcePathConstants.LASER) as GameObject;
+            weapontype = Weapontype.LASER;
+            Debug.Log("Laser loaded");
+        }
+        else if (missileAmount > 0)
+        {
+            loadedWeapon = Resources.Load(ResourcePathConstants.MISSILE) as GameObject;
+            weapontype = Weapontype.MISSILE;
+            projectileSpeed = 5;
+            Debug.Log("Rocket Launcher loaded");
+        }
+        else
+        {
+            loadedWeapon = Resources.Load(ResourcePathConstants.MACHINE_GUN) as GameObject;
+            weapontype = Weapontype.MACHINE_GUN;
+            projectileSpeed = 1;
+            Debug.Log("Machine Gun loaded");
+        }
+    }
+
+    public void shoot()
+    {
+        if (weapontype == Weapontype.MISSILE)
+        {
+            StartCoroutine(fire(0.0f));
+            missileAmount--;
+        }
+        else if (weapontype == Weapontype.MACHINE_GUN)
+        {
+            StartCoroutine(fire(0.0f));
+            StartCoroutine(fire(0.1f));
+            StartCoroutine(fire(0.2f));
+            StartCoroutine(fire(0.3f));
+            StartCoroutine(fire(0.4f));
+            StartCoroutine(fire(0.5f));
+        }
+        else if (weapontype == Weapontype.LASER)
+        {
+            StartCoroutine(fireLaser());
+            laserAmount--;
+        }
+    }
+
+    IEnumerator fire(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        Vector3 direction = transform.rotation * Vector3.up;
+
+        GameObject weaponToFire = ( GameObject )Instantiate(loadedWeapon, spawnPointProjectile.position, transform.rotation);
+        weaponToFire.GetComponent<Rigidbody2D>().AddForce(direction * projectileSpeed);
+    }
+
+
+    IEnumerator fireLaser()
+    {
+        yield return new WaitForSeconds(0);
+
+        Vector3 direction = transform.rotation * Vector3.up;
+
+        GameObject weaponToFire = ( GameObject )Instantiate(loadedWeapon, spawnPointProjectile.position, transform.rotation);
+
+        LaserBehaviour laser = weaponToFire.GetComponent<LaserBehaviour>();
+        laser.ship = gameObject;
+    }
+
+    private void RotateTowards(Vector3 target)
+    {
+        Vector3 direction = target - transform.position;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        Quaternion rotation = Quaternion.Euler(new Vector3(0, 0, angle - 90));
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotationSpeed * Time.deltaTime);
     }
 
     private void MoveTowards(Vector2 target)
     {
-        
         transform.position = Vector2.MoveTowards(transform.position, target, moveSpeed * Time.deltaTime);
-
     }
 
-    public Transform FindClosestEnemy()
+    public Transform findEnemyToAttack()
     {
         float distanceToClosestEnemy = Mathf.Infinity;
+        float maxDistanceToAttackDamagedEnemies = 5f;
         Transform closestEnemy = null;
+        Transform mostDamagedEnemyNearby = null;
+        float minHealth = 100;
         GameObject[] allEnemies = GameObject.FindGameObjectsWithTag("Player");
 
         foreach (GameObject currentEnemy in allEnemies)
         {
             float distanceToEnemy = (currentEnemy.transform.position - this.transform.position).sqrMagnitude;
+            ShipDestruction sd = currentEnemy.GetComponent<ShipDestruction>();
+            float health = sd.health;
+
+            Debug.Log("Health + Distance");
+            Debug.Log(health);
+            Debug.Log(distanceToEnemy);
+
+            //Find closest Enemy
             if (distanceToEnemy < distanceToClosestEnemy)
             {
                 distanceToClosestEnemy = distanceToEnemy;
                 closestEnemy = currentEnemy.transform;
             }
+
+            
+            //Find most Damaged Enemy within a Radius of 5f
+            if (health < minHealth && distanceToEnemy < maxDistanceToAttackDamagedEnemies)
+            {
+                minHealth = health;
+                mostDamagedEnemyNearby = currentEnemy.transform;
+            }
         }
 
-        return closestEnemy;
-    }
-
-    public void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.name.StartsWith("Asteroid"))
+        if (mostDamagedEnemyNearby is null)
         {
-            hitAsteroid = true;
-
-            Debug.Log("Hindernis" + hitAsteroid);
-
+            return closestEnemy;
         }
-
-
+        else
+        {
+            return mostDamagedEnemyNearby;
+        }
     }
-
 
     private void keepObjectInCameraView()
     {

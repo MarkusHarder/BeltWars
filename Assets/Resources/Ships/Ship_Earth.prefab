@@ -218,7 +218,7 @@ GameObject:
   - component: {fileID: -6863290042744516061}
   m_Layer: 0
   m_Name: Ship_Earth
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -343,7 +343,7 @@ MonoBehaviour:
   weapontype: 0
   active: 0
   missileAmount: 2
-  laserAmount: 1
+  laserAmount: 0
 --- !u!114 &4982220565609503775
 MonoBehaviour:
   m_ObjectHideFlags: 0

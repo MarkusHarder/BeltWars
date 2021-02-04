@@ -104,8 +104,8 @@ GameObject:
   - component: {fileID: 267617709876200867}
   - component: {fileID: -3889927382966572562}
   - component: {fileID: -499170367218959318}
-  - component: {fileID: 4362606548433792463}
-  - component: {fileID: -2970003158461644663}
+  - component: {fileID: 3294093290619106711}
+  - component: {fileID: 4140461830404889822}
   m_Layer: 0
   m_Name: Ship_KI
   m_TagString: Untagged
@@ -228,6 +228,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be72128aabcdea246b9f416321f09d6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   maxHealth: 100
   healthbar: {fileID: 0}
 --- !u!114 &267617709876200867
@@ -352,7 +354,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   active: 0
---- !u!114 &4362606548433792463
+--- !u!114 &3294093290619106711
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -361,24 +363,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2086552899160689234}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b807491b8aded6643a74fe061bfd616c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 5
-  stoppingDistance: 3
-  offset: -90
-  rotationSpeed: 1
-  active: 1
---- !u!114 &-2970003158461644663
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2086552899160689234}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4e392e49a7811a4c96db7d043822835, type: 3}
+  m_Script: {fileID: 11500000, guid: 2a6a0accf5c105b4fa931f9cc220ad44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   loadedWeapon: {fileID: 0}
@@ -389,6 +374,23 @@ MonoBehaviour:
   laserAmount: 0
   player: {fileID: 0}
   stoppingDistance: 3
+--- !u!114 &4140461830404889822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2086552899160689234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da2f7bdfc0fef89468ef3911fb2ca300, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
+  stoppingDistance: 3
+  offset: -90
+  rotationSpeed: 1
+  active: 1
 --- !u!1 &3208437991003784031
 GameObject:
   m_ObjectHideFlags: 0
@@ -505,7 +507,8 @@ GameObject:
   - component: {fileID: 912316922668552935}
   - component: {fileID: 7465916785041159226}
   - component: {fileID: 4789127135311396034}
-  - component: {fileID: 7743775096913979643}
+  - component: {fileID: 7329439621506749036}
+  - component: {fileID: 2663334949745170282}
   m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
@@ -593,7 +596,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &7743775096913979643
+--- !u!114 &7329439621506749036
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -602,16 +605,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 5709745585839465329}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c951b64a409e6e48ac601f870d570ec, type: 3}
+  m_Script: {fileID: 11500000, guid: 10fe9a8f1719ddc4da1a8e712bd35f1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slider: {fileID: 1003293830794266920}
-  low: {r: 1, g: 0, b: 0.08235294, a: 0}
-  high: {r: 0.14901961, g: 0.8509804, b: 0.21568628, a: 0}
-  offset: {x: 0, y: -0.5, z: 0}
+  slider: {fileID: 0}
+  low: {r: 0, g: 0, b: 0, a: 0}
+  high: {r: 0, g: 0, b: 0, a: 0}
+  offset: {x: 0, y: 0, z: 0}
   health: 0
   maxHealth: 0
-  ship: {fileID: 2086552899160689234}
+  ship: {fileID: 0}
+--- !u!114 &2663334949745170282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5709745585839465329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23be49032ef9af74ebda1d0c553831e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7848110757886446802
 GameObject:
   m_ObjectHideFlags: 0

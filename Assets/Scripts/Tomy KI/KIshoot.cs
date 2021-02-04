@@ -14,11 +14,15 @@ public class KIshoot : MonoBehaviour
     public int laserAmount = 0;
 
 
-    public Transform player;
+    public Transform closestEnemy;
     private bool arrive;
     public float stoppingDistance;
     private bool hitAsteroid = false;
-    
+
+    //New
+    public GameObject rayCastDirection;
+    public GameObject rayCastStart;
+
 
 
     public enum Weapontype
@@ -26,11 +30,11 @@ public class KIshoot : MonoBehaviour
         MACHINE_GUN,
         MISSILE,
         LASER
-     }
+    }
     //Start is called before the first frame update
     void Start()
     {
-        player = FindObjectOfType<EnemyAI>().FindClosestEnemy();
+        closestEnemy = FindObjectOfType<EnemyAI>().findEnemyToAttack();
 
         //loadedWeapon = Resources.Load(ResourcePathConstants.MISSILE) as GameObject;
         //weapontype = Weapontype.MISSILE;
@@ -44,79 +48,91 @@ public class KIshoot : MonoBehaviour
     {
         if (active)
         {
-            player = FindObjectOfType<EnemyAI>().FindClosestEnemy();
 
-            if (Vector2.Distance(transform.position, player.position) < stoppingDistance)
+            RaycastHit2D hit = Physics2D.Raycast(rayCastStart.transform.position, rayCastDirection.transform.position, Mathf.Infinity);
+
+            if (hit.collider != null)
             {
-                if (GetComponent<EnemyAI>().active == false)
+                GameObject gameObject = hit.rigidbody.gameObject;
+                if (gameObject.name.StartsWith("Ship_Earth")) 
                 {
-                    loadedWeapon = Resources.Load(ResourcePathConstants.MACHINE_GUN) as GameObject;
-                    weapontype = Weapontype.MACHINE_GUN;
-                    speed = 1;
-                    arrive = true; // Ship arrived
-                    Debug.Log("Machine Gun loaded");
-                }
-            }
-
-            if ((Vector2.Distance(transform.position, player.position) >= stoppingDistance && missileAmount > 0) || hitAsteroid == true && missileAmount > 0)
-            {
-
-                if (GetComponent<EnemyAI>().active == false)
-                {
-                    loadedWeapon = Resources.Load(ResourcePathConstants.MISSILE) as GameObject;
-                    weapontype = Weapontype.MISSILE;
-                    speed = 5;
-                    arrive = true; // Ship arrived
-                    Debug.Log("Rocket Launcher loaded");
-                }
-
-            }
-
-            if ((Vector2.Distance(transform.position, player.position) >= stoppingDistance && missileAmount == 0 ) || hitAsteroid == true && missileAmount == 0 )
-            {
-                if (GetComponent<EnemyAI>().active == false)
-                {
-                    loadedWeapon = Resources.Load(ResourcePathConstants.MACHINE_GUN) as GameObject;
-                    weapontype = Weapontype.MACHINE_GUN;
-                    speed = 1;
-                    arrive = true; // Ship arrived
-                    Debug.Log("Machine Gun loaded");
+                    Debug.Log(gameObject.name);
                 }
             }
 
 
 
-
-
-
-                if (arrive)
-            {
-                if (weapontype == Weapontype.MISSILE && missileAmount > 0)
-                {
-                    StartCoroutine(fire(0.0f));
-                    missileAmount--;
-                    arrive = false;
-                    active = false;
- 
-                    hitAsteroid = false;
-                }
-                 if (weapontype == Weapontype.MACHINE_GUN)
-                {
-                    StartCoroutine(fire(0.0f));
-                    StartCoroutine(fire(0.1f));
-                    StartCoroutine(fire(0.2f));
-                    StartCoroutine(fire(0.3f));
-                    StartCoroutine(fire(0.4f));
-                    StartCoroutine(fire(0.5f));
-                    active = false;
-                    arrive = false;
-
-                    hitAsteroid = false;
-                }
-
-
-            
-            }
+           // if (Vector2.Distance(transform.position, closestEnemy.position) < stoppingDistance)
+           // {
+           //     if (GetComponent<EnemyAI>().active == false)
+           //     {
+           //         loadedWeapon = Resources.Load(ResourcePathConstants.MACHINE_GUN) as GameObject;
+           //         weapontype = Weapontype.MACHINE_GUN;
+           //         speed = 1;
+           //         arrive = false; // Ship arrived
+           //         Debug.Log("Machine Gun loaded");
+           //     }
+           // }
+           //
+           // if ((Vector2.Distance(transform.position, closestEnemy.position) >= stoppingDistance && missileAmount > 0) || hitAsteroid == true && missileAmount > 0)
+           // {
+           //
+           //     if (GetComponent<EnemyAI>().active == false)
+           //     {
+           //         loadedWeapon = Resources.Load(ResourcePathConstants.MISSILE) as GameObject;
+           //         weapontype = Weapontype.MISSILE;
+           //         speed = 5;
+           //         arrive = false; // Ship arrived
+           //         Debug.Log("Rocket Launcher loaded");
+           //     }
+           //
+           // }
+           //
+           // if ((Vector2.Distance(transform.position, closestEnemy.position) >= stoppingDistance && missileAmount == 0 ) || hitAsteroid == true && missileAmount == 0 )
+           // {
+           //     if (GetComponent<EnemyAI>().active == false)
+           //     {
+           //         loadedWeapon = Resources.Load(ResourcePathConstants.MACHINE_GUN) as GameObject;
+           //         weapontype = Weapontype.MACHINE_GUN;
+           //         speed = 1;
+           //         arrive = false; // Ship arrived
+           //         Debug.Log("Machine Gun loaded");
+           //     }
+           // }
+           //
+           //
+           //
+           //
+           //
+           //
+           //     if (arrive)
+           // {
+           //     if (weapontype == Weapontype.MISSILE && missileAmount > 0)
+           //     {
+           //         StartCoroutine(fire(0.0f));
+           //         missileAmount--;
+           //         arrive = false;
+           //         active = false;
+           //
+           //         hitAsteroid = false;
+           //     }
+           //      if (weapontype == Weapontype.MACHINE_GUN)
+           //     {
+           //         StartCoroutine(fire(0.0f));
+           //         StartCoroutine(fire(0.1f));
+           //         StartCoroutine(fire(0.2f));
+           //         StartCoroutine(fire(0.3f));
+           //         StartCoroutine(fire(0.4f));
+           //         StartCoroutine(fire(0.5f));
+           //         active = false;
+           //         arrive = false;
+           //
+           //         hitAsteroid = false;
+           //     }
+           //
+           //
+           // 
+           // }
             
         }
     }
@@ -133,15 +149,15 @@ public class KIshoot : MonoBehaviour
     }
 
 
-    public void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.name.StartsWith("Asteroid"))
-        {
-            hitAsteroid = true;
-            Debug.Log("Hindernis" + hitAsteroid);
-        }
-
-    }
+    //public void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    if (collision.gameObject.name.StartsWith("Asteroid"))
+    //    {
+    //        hitAsteroid = true;
+    //        Debug.Log("Hindernis" + hitAsteroid);
+    //    }
+    //
+    //}
 
 }
 

@@ -369,12 +369,17 @@ PrefabInstance:
     - target: {fileID: 5553489037949716485, guid: 24817a660a4403043a93c2e87e4e9dda,
         type: 3}
       propertyPath: eventPropability
-      value: 10
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 5553489037949716485, guid: 24817a660a4403043a93c2e87e4e9dda,
         type: 3}
       propertyPath: roundTime
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5553489037949716485, guid: 24817a660a4403043a93c2e87e4e9dda,
+        type: 3}
+      propertyPath: eventAllowed
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5553489037949716538, guid: 24817a660a4403043a93c2e87e4e9dda,
         type: 3}

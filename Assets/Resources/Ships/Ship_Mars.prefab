@@ -238,7 +238,7 @@ MonoBehaviour:
   weapontype: 0
   active: 0
   missileAmount: 2
-  laserAmount: 1
+  laserAmount: 0
 --- !u!114 &8195411795959519305
 MonoBehaviour:
   m_ObjectHideFlags: 0
