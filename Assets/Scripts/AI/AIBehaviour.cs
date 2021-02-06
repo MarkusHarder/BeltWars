@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class EnemyAI : MonoBehaviour
+public class AIBehaviour: MonoBehaviour
 {
     public bool active = false;
 
@@ -26,6 +26,7 @@ public class EnemyAI : MonoBehaviour
     
     private bool alreadyShot = false;
     private bool finalPositionDetermined = false;
+    private bool roundFinished = false;
 
     private float timer = 3f;
 
@@ -44,7 +45,7 @@ public class EnemyAI : MonoBehaviour
     {
         keepObjectInCameraView();
 
-        if (active) {
+        if (active && !roundFinished) {
 
             if(!alreadyShot)
             {
@@ -105,7 +106,7 @@ public class EnemyAI : MonoBehaviour
         if(transform.position == finalPosition)
         {
             finalPositionDetermined = false;
-            active = false;
+            roundFinished = true;
             timer = 3f;
             alreadyShot = false;
         }
@@ -210,10 +211,6 @@ public class EnemyAI : MonoBehaviour
             ShipDestruction sd = currentEnemy.GetComponent<ShipDestruction>();
             float health = sd.health;
 
-            Debug.Log("Health + Distance");
-            Debug.Log(health);
-            Debug.Log(distanceToEnemy);
-
             //Find closest Enemy
             if (distanceToEnemy < distanceToClosestEnemy)
             {
@@ -264,8 +261,22 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
+    public void setActive()
+    {
+        active = true;
+        timer = 3f;
+        finalPositionDetermined = false;
+        roundFinished = false;
+        alreadyShot = false;
 
+        //Increase mass to make it possible to move Asteroids more easy
+        gameObject.GetComponent<Rigidbody2D>().mass = 1000;
+    }
 
-
-
+    public void setInActive()
+    {
+        active = false;
+        //Reset mass to usual behaviour
+        gameObject.GetComponent<Rigidbody2D>().mass = 30;
+    }
 }
