@@ -62,8 +62,6 @@ public class GameController : MonoBehaviour
         GameObject gameI = GameObject.Find("Display Game Information");
         GameInformation gameInfo = gameI.GetComponent<GameInformation>();
 
-        
-
         if (ShipContainer.checkIfEarthLost())
         {
             gameInfo.activate("MARS WINS!!");
@@ -77,8 +75,4 @@ public class GameController : MonoBehaviour
         }
         return false;
     }
-    
-
-
-
 }

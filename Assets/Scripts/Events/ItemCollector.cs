@@ -29,27 +29,9 @@ public class ItemCollector : MonoBehaviour
             if(collision.gameObject.name.StartsWith("Ship"))
             {
                 collisionEntered = true;
-                Shoot shoot = collision.gameObject.GetComponent<Shoot>();
-                ShipDestruction shipDestruction = collision.gameObject.GetComponent<ShipDestruction>();
 
-                //StartCoroutine(showCollectInfo(collectInfo));
-                //Hide Game Object and don't destroy it. Otherwise the corountine won't work.
-                //this.gameObject.GetComponent<Renderer>().enabled = false;
-                switch (itemType)
-                {
-                    case ItemType.MISSILES:
-                        shoot.missileAmount += 3;
-                        this.collectInfo = "+3 MISSILES!!";
-                        break;
-                    case ItemType.HEALTH:
-                        shipDestruction.maxHealth = 100;
-                        this.collectInfo = "FULL HEALTH!!";
-                        break;
-                    case ItemType.LASER:
-                        shoot.laserAmount += 1;
-                        this.collectInfo = "+1 LASER!!";
-                        break;
-                }
+                provideItemToShip(collision.gameObject);
+
                 GameObject gameInfo = GameObject.Find("Display Game Information");
                 GameInformation gameInfoComponent = gameInfo.GetComponent<GameInformation>();
                 gameInfoComponent.activate(this.collectInfo);
@@ -61,7 +43,6 @@ public class ItemCollector : MonoBehaviour
 
     public void calcDrop()
     {
-
             int i = Random.Range(0, 3);
             switch (i)
             {
@@ -91,4 +72,50 @@ public class ItemCollector : MonoBehaviour
         this.itemType = i;
         Debug.Log("Set item to" + i);
     }
+
+    private void provideItemToShip(GameObject ship)
+    {
+        ShipDestruction shipDestruction = ship.GetComponent<ShipDestruction>();
+
+        if (GlobalVariables.singlePlayer && ship.name.StartsWith("Ship_Mars"))
+        {
+            AIBehaviour ai = ship.GetComponent<AIBehaviour>();
+            
+            switch (itemType)
+            {
+                case ItemType.MISSILES:
+                    ai.missileAmount += 3;
+                    this.collectInfo = "+3 MISSILES!!";
+                    break;
+                case ItemType.HEALTH:
+                    shipDestruction.maxHealth = 100;
+                    this.collectInfo = "FULL HEALTH!!";
+                    break;
+                case ItemType.LASER:
+                    ai.laserAmount += 1;
+                    this.collectInfo = "+1 LASER!!";
+                    break;
+            }
+        }else{
+
+            Shoot shoot = ship.GetComponent<Shoot>();
+
+            switch (itemType)
+            {
+                case ItemType.MISSILES:
+                    shoot.missileAmount += 3;
+                    this.collectInfo = "+3 MISSILES!!";
+                    break;
+                case ItemType.HEALTH:
+                    shipDestruction.maxHealth = 100;
+                    this.collectInfo = "FULL HEALTH!!";
+                    break;
+                case ItemType.LASER:
+                    shoot.laserAmount += 1;
+                    this.collectInfo = "+1 LASER!!";
+                    break;
+            }
+        }
+    }
+
 }
