@@ -1284,6 +1284,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 133786864}
   m_CullTransparentMesh: 0
+--- !u!114 &141811346 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5036791410218328068, guid: 9e26f2be0bef60743bf00353c1e530e6,
+    type: 3}
+  m_PrefabInstance: {fileID: 6233301766720871643}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d724f65f6370264e8ac4248650b352d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &161594486
 GameObject:
   m_ObjectHideFlags: 0
@@ -5091,6 +5103,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
 --- !u!81 &645644498
 AudioListener:
   m_ObjectHideFlags: 0
@@ -6169,6 +6200,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGlobal: 1
+  priority: 0
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 0}
 --- !u!1 &765941511
 GameObject:
   m_ObjectHideFlags: 0
@@ -12984,6 +13020,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_LightType: 0
+  m_BlendStyleIndex: 0
+  m_FalloffIntensity: 0.5
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 1
+  m_LightVolumeOpacity: 0
+  m_ApplyToSortingLayers: 00000000
+  m_LightCookieSprite: {fileID: 0}
+  m_UseNormalMap: 0
+  m_LightOrder: 0
+  m_AlphaBlendOnOverlap: 0
+  m_ShadowIntensity: 0
+  m_ShadowVolumeIntensity: 0
+  m_PointLightInnerAngle: 360
+  m_PointLightOuterAngle: 360
+  m_PointLightInnerRadius: 0
+  m_PointLightOuterRadius: 1
+  m_PointLightDistance: 3
+  m_PointLightQuality: 1
+  m_ShapeLightParametricSides: 5
+  m_ShapeLightParametricAngleOffset: 0
+  m_ShapeLightParametricRadius: 1
+  m_ShapeLightFalloffSize: 0.5
+  m_ShapeLightFalloffOffset: {x: 0, y: 0}
+  m_ShapePath: []
 --- !u!1 &1807305032
 GameObject:
   m_ObjectHideFlags: 0
@@ -16086,6 +16147,21 @@ PrefabInstance:
       propertyPath: menuObject
       value: 
       objectReference: {fileID: 269339101}
+    - target: {fileID: 6994885799751284918, guid: 6c6ae2840990d654eb45065b1abc9dc0,
+        type: 3}
+      propertyPath: offlineScene
+      value: Assets/Scenes/Test/ProtoNetworkScene_Markus.unity
+      objectReference: {fileID: 0}
+    - target: {fileID: 6994885799751284918, guid: 6c6ae2840990d654eb45065b1abc9dc0,
+        type: 3}
+      propertyPath: dontDestroyOnLoad
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6994885799751284918, guid: 6c6ae2840990d654eb45065b1abc9dc0,
+        type: 3}
+      propertyPath: ngc
+      value: 
+      objectReference: {fileID: 141811346}
     - target: {fileID: 7145838688360368000, guid: 6c6ae2840990d654eb45065b1abc9dc0,
         type: 3}
       propertyPath: debugLog

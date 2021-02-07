@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Mirror;
 
 [AddComponentMenu("")]
@@ -16,6 +17,7 @@ public class NetworkManagerBeltWars : NetworkManager
     public static event Action OnClientDisconnected;
     public static event Action OnGameStarted;
     [SerializeField] private GameObject menuObject;
+    [SerializeField] private NetworkGameController ngc;
 
 
     public override void OnClientConnect(NetworkConnection conn)
@@ -26,6 +28,7 @@ public class NetworkManagerBeltWars : NetworkManager
     public override void OnClientDisconnect(NetworkConnection conn)
     {
         base.OnClientDisconnect(conn);
+        SceneManager.LoadScene("ProtoNetworkScene_Markus");
         OnClientDisconnected?.Invoke();
     }
     public override void OnServerAddPlayer(NetworkConnection conn)
@@ -49,10 +52,9 @@ public class NetworkManagerBeltWars : NetworkManager
             menuObject.SetActive(false);
             NetworkSceneCreator nsc = new NetworkSceneCreator();
             nsc.createNetworkGameScene(cl);
-            NetworkGameController ngc = GameObject.Find("NetworkGameController").GetComponent<NetworkGameController>();
             ngc.conn = conn;
             ngc.elements = nsc.game;
-            ngc.start = true; 
+            ngc.start = true;
 
 
         }
@@ -60,8 +62,13 @@ public class NetworkManagerBeltWars : NetworkManager
 
     public override void OnServerDisconnect(NetworkConnection conn)
     {
+        ShipContainer.resetShipLists();
         count--;
         base.OnServerDisconnect(conn);
+        base.StopAllCoroutines();
+        base.StopHost();
+        Shutdown();
+        networkSceneName = "";
     }
 
 }
