@@ -14,6 +14,7 @@ public  class GameSceneCreator : MonoBehaviour
     private float borderDistance = 0.5f;
     public void createGameScene()
     {
+        ShipContainer.resetShipLists();
         GameObject controller = GameObject.Find("Game Controller");
 
         if (controller == null)
