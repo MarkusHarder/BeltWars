@@ -5,11 +5,8 @@ using Mirror;
 public class NetworkShipDestruction : NetworkBehaviour
 {
     ShipDestruction dest;
-    [SyncVar]
+    [SyncVar(hook =(nameof(setHP)))]
     public float syncHealth;
-    public float tmpHealth;
-    bool control = true;
-    bool waiting = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,8 +17,6 @@ public class NetworkShipDestruction : NetworkBehaviour
         else
         {
             dest = gameObject.GetComponent<ShipDestruction>();
-            syncHealth = dest.health;
-            Debug.Log(dest.health + " sync:" + syncHealth);
         }
     }
 
@@ -32,22 +27,24 @@ public class NetworkShipDestruction : NetworkBehaviour
         if(syncHealth != dest.health)
         {
             syncHealth = dest.health;
-            rpcSetHP(syncHealth);
         }
     }
 
-    [ClientRpc]
-    private void rpcSetHP(float newHP)
+    private void setHP(float oldHP, float newHP)
     {
         if(syncHealth <= 0)
         {
             dest.health = 0;
             dest.Explosion();
+            if (isServer)
+            {
+                NetworkServer.Spawn(dest.debrisInstance);
+            }
             
         }
         else
         {
-            dest.health = syncHealth;
+            dest.health = newHP;
         }
     }
 

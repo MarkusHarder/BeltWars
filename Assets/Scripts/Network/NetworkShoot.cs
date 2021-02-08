@@ -25,7 +25,8 @@ public class NetworkShoot : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        checkShoot();
+        if(isServer)
+            checkShoot();
         if (active && hasAuthority)
         {
             evalInput();

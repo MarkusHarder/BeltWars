@@ -11,7 +11,7 @@ public class ShipInformation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(GlobalVariables.local)
+        //if (GlobalVariables.local)
             displayInformation();
     }
 
