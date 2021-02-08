@@ -72,8 +72,16 @@ public static class ShipContainer
     public static void setShipActive(GameObject ship) 
     {
         if(ship != null) {
-            ship.GetComponent<ProtoMovement>().active = true;
-            ship.GetComponent<Shoot>().active = true;
+            if (GlobalVariables.singlePlayer && ship.name.StartsWith("Ship_Mars"))
+            {
+                ship.GetComponent<AIBehaviour>().setActive();
+            }
+            else
+            {
+                ship.GetComponent<ProtoMovement>().active = true;
+                ship.GetComponent<Shoot>().active = true;
+                
+            }
             ship.GetComponent<Circle>().active = true;
             currentShip = ship;
         }
@@ -82,8 +90,15 @@ public static class ShipContainer
     private static void setShipInactive(GameObject ship)
     {
         if(ship != null) {
-            ship.GetComponent<ProtoMovement>().active = false;
-            ship.GetComponent<Shoot>().active = false;
+            if (GlobalVariables.singlePlayer && ship.name.StartsWith("Ship_Mars"))
+            {
+                ship.GetComponent<AIBehaviour>().setInActive();
+            }
+            else
+            {
+                ship.GetComponent<ProtoMovement>().active = false;
+                ship.GetComponent<Shoot>().active = false;
+            }
         }
     }
 
@@ -150,13 +165,27 @@ public static class ShipContainer
 
     public static GameObject getActiveShip()
     {
-        foreach(GameObject ship in marsShips)
+        if (GlobalVariables.singlePlayer)
         {
-            if (ship && ship.GetComponent<ProtoMovement>().active)
+            foreach (GameObject ship in marsShips)
             {
-                return ship;
+                if (ship && ship.GetComponent<AIBehaviour>().active)
+                {
+                    return ship;
+                }
             }
         }
+        else
+        {
+            foreach (GameObject ship in marsShips)
+            {
+                if (ship && ship.GetComponent<ProtoMovement>().active)
+                {
+                    return ship;
+                }
+            }
+        }
+
         foreach (GameObject ship in earthShips)
         {
             if (ship && ship.GetComponent<ProtoMovement>().active)

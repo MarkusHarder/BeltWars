@@ -133,6 +133,18 @@ public  class GameSceneCreator : MonoBehaviour
         {
             clone.name = "Ship_Mars_" + (index + 1);
             ShipContainer.marsShips.Add(clone);
+
+            //Enable AI if singleplayer
+            if (GlobalVariables.singlePlayer)
+            {
+                clone.GetComponent<ProtoMovement>().enabled = false;
+                clone.GetComponent<Shoot>().enabled = false;
+                clone.GetComponent<AIBehaviour>().enabled = true;
+            }
+            else
+            {
+                clone.GetComponent<AIBehaviour>().enabled = false;
+            }
         }
         game.Add(clone);
     }

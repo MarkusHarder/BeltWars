@@ -12,7 +12,7 @@ public class Shoot : MonoBehaviour
     public Weapontype weapontype;
     public bool active = false;
     //Needs to be adjusted via NetworkShoot
-    public int missileAmount = 3;
+    public int missileAmount = 2;
     //this too
     public int laserAmount = 0;
 

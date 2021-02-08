@@ -22,29 +22,48 @@ public class ShipInformation : MonoBehaviour
 
         if (ship)
         {
+            if (GlobalVariables.singlePlayer && ship.name.StartsWith("Ship_Mars")){
+                machineGun = " 1. Machine Gun: Infinite" + "\n";
+                missile = " 2. Missiles:" + ship.GetComponent<AIBehaviour>().missileAmount + "\n";
+                laserBeam = " 3. LaserBeam: " + ship.GetComponent<AIBehaviour>().laserAmount + "\n";
 
-            machineGun = " 1. Machine Gun: Infinite" + "\n";
-            missile = " 2. Missiles:" + ship.GetComponent<Shoot>().missileAmount + "\n";
-            laserBeam = " 3. LaserBeam: " + ship.GetComponent<Shoot>().laserAmount + "\n";
+                currentWeapon = " Loaded: ";
 
-
-            currentWeapon = " Loaded: ";
-
-            if (ship.GetComponent<Shoot>().weapontype == Shoot.Weapontype.MACHINE_GUN)
-            {
-                currentWeapon += "MACHINE GUN";
+                if (ship.GetComponent<AIBehaviour>().weapontype == AIBehaviour.Weapontype.MACHINE_GUN)
+                {
+                    currentWeapon += "MACHINE GUN";
+                }
+                else if (ship.GetComponent<AIBehaviour>().weapontype == AIBehaviour.Weapontype.MISSILE)
+                {
+                    currentWeapon += "MISSILE LAUNCHER";
+                }
+                else if (ship.GetComponent<AIBehaviour>().weapontype == AIBehaviour.Weapontype.LASER)
+                {
+                    currentWeapon += "LASERBEAM";
+                }
             }
-            else if (ship.GetComponent<Shoot>().weapontype == Shoot.Weapontype.MISSILE)
+            else
             {
-                currentWeapon += "MISSILE LAUNCHER";
-            }
-            else if (ship.GetComponent<Shoot>().weapontype == Shoot.Weapontype.LASER)
-            {
-                currentWeapon += "LASERBEAM";
-            }
+                machineGun = " 1. Machine Gun: Infinite" + "\n";
+                missile = " 2. Missiles:" + ship.GetComponent<Shoot>().missileAmount + "\n";
+                laserBeam = " 3. LaserBeam: " + ship.GetComponent<Shoot>().laserAmount + "\n";
 
+                currentWeapon = " Loaded: ";
+
+                if (ship.GetComponent<Shoot>().weapontype == Shoot.Weapontype.MACHINE_GUN)
+                {
+                    currentWeapon += "MACHINE GUN";
+                }
+                else if (ship.GetComponent<Shoot>().weapontype == Shoot.Weapontype.MISSILE)
+                {
+                    currentWeapon += "MISSILE LAUNCHER";
+                }
+                else if (ship.GetComponent<Shoot>().weapontype == Shoot.Weapontype.LASER)
+                {
+                    currentWeapon += "LASERBEAM";
+                }
+            }
             updateText();
-
         }
        
         

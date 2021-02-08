@@ -18,8 +18,7 @@ public class HealthbarBehaviour : MonoBehaviour
     {
         setHealth();
 
-        if(ship.GetComponent<ProtoMovement>().active 
-            || health >= maxHealth)
+        if(checkShipActive() || health >= maxHealth)
         {
             slider.gameObject.SetActive(false);
         }
@@ -29,6 +28,19 @@ public class HealthbarBehaviour : MonoBehaviour
         }
         
         slider.transform.position = Camera.main.WorldToScreenPoint(transform.parent.position + offset);
+    }
+
+
+    private bool checkShipActive()
+    {
+        if (GlobalVariables.singlePlayer && ship.name.StartsWith("Ship_Mars"))
+        {
+            return ship.GetComponent<AIBehaviour>().active;
+        }
+        else
+        {
+            return ship.GetComponent<ProtoMovement>().active;
+        }
     }
 
     private void setHealth()
