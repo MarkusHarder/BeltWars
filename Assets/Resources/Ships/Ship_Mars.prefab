@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 7050957612682788241}
   - component: {fileID: 737334079286753835}
   - component: {fileID: 7681942878036713859}
-  - component: {fileID: 1771754274431745129}
   - component: {fileID: 8579736380864065520}
   - component: {fileID: 1002214590452566122}
   - component: {fileID: 8163026090137800332}
@@ -22,10 +21,11 @@ GameObject:
   - component: {fileID: 3143545616371733078}
   - component: {fileID: 5846937184467718180}
   - component: {fileID: 7075958695918421472}
-  - component: {fileID: 1265581593050406512}
   - component: {fileID: 1954647742314963607}
+  - component: {fileID: 267617709876200867}
+  - component: {fileID: 770240894833272762}
   m_Layer: 0
-  m_Name: Ship_Mars1
+  m_Name: Ship_Mars
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -165,20 +165,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  healthbar: {fileID: 8209116398958602557}
+  healthbar: {fileID: 0}
   debrisInstance: {fileID: 0}
---- !u!114 &267617709876200867
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 564252931600561048}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8f102f0cb3cfcb43b46727a7957e8db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &8579736380864065520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -370,6 +358,38 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 1.5
   syncHealth: 100
+--- !u!114 &1954647742314963607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 564252931600561048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da2f7bdfc0fef89468ef3911fb2ca300, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  active: 0
+  moveSpeed: 1
+  rotationSpeed: 2
+  weapontype: 0
+  missileAmount: 2
+  laserAmount: 0
+  spawnPointProjectile: {fileID: 5466712706140203037}
+  loadedWeapon: {fileID: 0}
+--- !u!114 &267617709876200867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 564252931600561048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8f102f0cb3cfcb43b46727a7957e8db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &770240894833272762
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -383,26 +403,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   active: 0
---- !u!114 &1954647742314963607
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 564252931600561048}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da2f7bdfc0fef89468ef3911fb2ca300, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  active: 1
-  moveSpeed: 1
-  rotationSpeed: 2
-  weapontype: 0
-  missileAmount: 2
-  laserAmount: 0
-  spawnPointProjectile: {fileID: 5466712706140203037}
-  loadedWeapon: {fileID: 0}
 --- !u!1 &1570505756288469712
 GameObject:
   m_ObjectHideFlags: 0

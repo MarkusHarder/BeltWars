@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Mirror;
+using UnityEngine.SceneManagement;
 
 public class NetworkJoinMenu : MonoBehaviour
 {
@@ -32,6 +33,10 @@ public class NetworkJoinMenu : MonoBehaviour
     public void JoinLobby()
     {
         string ipAddress = ipAddressInputField.text;
+        if (string.IsNullOrEmpty(ipAddress))
+        {
+            return;
+        }
         networkManager.networkAddress = ipAddress;
         networkManager.StartClient();
         joinButton.interactable = false;
@@ -58,5 +63,6 @@ public class NetworkJoinMenu : MonoBehaviour
     {
         networkManager.StopClient();
         joinButton.interactable = true;
+        SceneManager.LoadScene("Menu");
     }
 }

@@ -7,6 +7,10 @@ public class NetworkMenu : MonoBehaviour
     [Header("UI")]
     [SerializeField] private NetworkManagerBeltWars networkManager = null;
 
+    private void Start()
+    {
+        GlobalVariables.selectedMP = true;
+    }
     public void HostLobby()
     {
         networkManager.StartHost();
