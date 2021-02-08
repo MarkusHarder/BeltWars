@@ -66,7 +66,6 @@ public class AIBehaviour: MonoBehaviour
 
                 if (hit)
                 {
-                    //GameObject gameObject = hit.collider.gameObject;
                     if (hit.collider.name.StartsWith("Ship_Earth"))
                     {
                         shoot();
@@ -93,10 +92,12 @@ public class AIBehaviour: MonoBehaviour
     {
         if (!finalPositionDetermined)
         {
+            //Chose Drop Item if exists or random Position
             CameraMeasurements camera = new CameraMeasurements();
             float x = Random.Range(camera.getHorizontalMin() + 0.5f, camera.getHorizontalMax() - 0.5f);
             float y = Random.Range(camera.getVerticalMin() + 0.5f, camera.getVerticalMax() - 0.5f);
-            finalPosition = new Vector3(x, y, 0);
+            Transform dropItem = dropItemPosition();
+            finalPosition = dropItem ? dropItem.position : new Vector3(x, y, 0);
             finalPositionDetermined = true;
         }
 
@@ -112,6 +113,27 @@ public class AIBehaviour: MonoBehaviour
         }
     }
 
+    private Transform dropItemPosition()
+    {
+        float distanceToClosestItem = Mathf.Infinity;
+        Transform closestItem = null;
+
+        GameObject[] allItems = GameObject.FindGameObjectsWithTag("Item");
+
+        foreach (GameObject item in allItems)
+        {
+            float distanceToItem = (item.transform.position - this.transform.position).sqrMagnitude;
+
+            //Find closest item
+            if (distanceToItem < distanceToClosestItem)
+            {
+                distanceToClosestItem = distanceToItem;
+                closestItem = item.transform;
+            }
+        }
+        return closestItem;
+    }
+
 
     private void chooseWeapon()
     {
@@ -119,21 +141,18 @@ public class AIBehaviour: MonoBehaviour
         {
             loadedWeapon = Resources.Load(ResourcePathConstants.LASER) as GameObject;
             weapontype = Weapontype.LASER;
-            Debug.Log("Laser loaded");
         }
         else if (missileAmount > 0)
         {
             loadedWeapon = Resources.Load(ResourcePathConstants.MISSILE) as GameObject;
             weapontype = Weapontype.MISSILE;
             projectileSpeed = 5;
-            Debug.Log("Rocket Launcher loaded");
         }
         else
         {
             loadedWeapon = Resources.Load(ResourcePathConstants.MACHINE_GUN) as GameObject;
             weapontype = Weapontype.MACHINE_GUN;
             projectileSpeed = 1;
-            Debug.Log("Machine Gun loaded");
         }
     }
 
@@ -199,7 +218,7 @@ public class AIBehaviour: MonoBehaviour
     public Transform findEnemyToAttack()
     {
         float distanceToClosestEnemy = Mathf.Infinity;
-        float maxDistanceToAttackDamagedEnemies = 5f;
+        float maxDistanceToAttackDamagedEnemies = 10f;
         Transform closestEnemy = null;
         Transform mostDamagedEnemyNearby = null;
         float minHealth = 100;
@@ -218,8 +237,7 @@ public class AIBehaviour: MonoBehaviour
                 closestEnemy = currentEnemy.transform;
             }
 
-            
-            //Find most Damaged Enemy within a Radius of 5f
+            //Find most Damaged Enemy within a Radius of 10f
             if (health < minHealth && distanceToEnemy < maxDistanceToAttackDamagedEnemies)
             {
                 minHealth = health;
@@ -227,14 +245,7 @@ public class AIBehaviour: MonoBehaviour
             }
         }
 
-        if (mostDamagedEnemyNearby is null)
-        {
-            return closestEnemy;
-        }
-        else
-        {
-            return mostDamagedEnemyNearby;
-        }
+        return mostDamagedEnemyNearby ? mostDamagedEnemyNearby : closestEnemy;
     }
 
     private void keepObjectInCameraView()
