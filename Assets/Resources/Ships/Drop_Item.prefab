@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: -5942853890665263861}
   m_Layer: 0
   m_Name: Drop_Item
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -114,12 +114,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6775926d8532847a1518ce5c491168, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
   itemType: 0
   collisionEntered: 0
   calculated: 0
-  local: 0
 --- !u!114 &1182419027784486572
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,3 +165,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
+  networkObj: 1

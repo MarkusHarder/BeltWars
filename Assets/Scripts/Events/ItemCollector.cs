@@ -88,7 +88,7 @@ public class ItemCollector : MonoBehaviour
                     this.collectInfo = "+3 MISSILES!!";
                     break;
                 case ItemType.HEALTH:
-                    shipDestruction.maxHealth = 100;
+                    shipDestruction.health = 100;
                     this.collectInfo = "FULL HEALTH!!";
                     break;
                 case ItemType.LASER:
