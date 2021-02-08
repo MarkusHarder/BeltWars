@@ -12,7 +12,7 @@ public class GameInformation : MonoBehaviour
     {
  
         gameInfo = info;
-        if(GlobalVariables.local)
+        //if (GlobalVariables.local)
             StartCoroutine(showInfo(gameInfo));
         executed = true;
     }

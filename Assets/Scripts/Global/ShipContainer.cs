@@ -209,4 +209,10 @@ public static class ShipContainer
         }
     }
 
+    public static void resetShipLists()
+    {
+        marsShips = new ArrayList();
+        earthShips = new ArrayList();
+    }
+
 }

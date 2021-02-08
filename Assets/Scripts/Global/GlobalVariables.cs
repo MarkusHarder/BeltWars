@@ -5,5 +5,6 @@ using UnityEngine;
 public static class GlobalVariables 
 {
     public static bool local = true;
-    public static bool singlePlayer = true;
+    public static bool singlePlayer = false;
+    public static bool selectedMP = false;
 }

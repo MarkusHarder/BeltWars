@@ -8,6 +8,10 @@ public class TimerInformation : MonoBehaviour
     public int timeLeft;
 
     // Update is called once per frame
+    private void Start()
+    {
+        getTime();
+    }
     void Update()
     {
         if (GlobalVariables.local)
@@ -17,7 +21,10 @@ public class TimerInformation : MonoBehaviour
 
     public void getTime()
     {
+       
         GameController controller = GameObject.FindObjectOfType<GameController>();
+        if (controller == null)
+            controller = FindObjectOfType<NetworkGameController>();
         timeLeft = (int)controller.timer;
         displayInformation();
       

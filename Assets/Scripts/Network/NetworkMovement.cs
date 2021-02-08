@@ -12,9 +12,10 @@ public class NetworkMovement : NetworkBehaviour
 {
     ProtoMovement mov;
     Circle circ;
-
-    [SyncVar (hook = nameof(toggleCirc))]
+    NetworkGameController ngc;
+    [SyncVar(hook = nameof(toggleCirc))]
     public bool active;
+    private bool running = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +25,7 @@ public class NetworkMovement : NetworkBehaviour
         }
         else
         {
+            ngc = GameObject.FindObjectOfType<NetworkGameController>();
             mov = gameObject.GetComponent<ProtoMovement>();
             circ = gameObject.GetComponent<Circle>();
         }
@@ -52,6 +54,15 @@ public class NetworkMovement : NetworkBehaviour
 
     private void toggleCirc(bool activeO, bool activeN)
     {
+        Debug.Log("Togglebecher " + activeN);
+        if (activeN)
+        {
+            if(isServer)
+                ngc.setAuth();
+            
+        }
         circ.active = activeN;
+
     }
+
 }
