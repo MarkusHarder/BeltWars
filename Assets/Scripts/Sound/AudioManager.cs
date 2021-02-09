@@ -107,16 +107,18 @@ public class AudioManager : MonoBehaviour
 
     public void Stop (string name)
     {
+        if (!GlobalVariables.local)
+        {
+            FindObjectOfType<NetworkAudioHandler>().handleStopClientSound(name);
+            return;
+        }
         Sound s = Array.Find(sounds, sound => sound.name == name);
         if (s == null)
         {
             Debug.LogWarning("Sound: " + name + "not found!");
             return;
         }
-            if(GlobalVariables.local)
-                s.source.Stop();
-            else
-                FindObjectOfType<NetworkAudioHandler>().handleStopClientSound(name);
+        s.source.Stop();
     }
 
     public void toggleMusic()
@@ -248,6 +250,11 @@ public class AudioManager : MonoBehaviour
     public void networkStop(string name)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
+        if (s == null)
+        {
+            Debug.LogWarning("Sound: " + name + "not found!");
+            return;
+        }
         s.source.Stop();
     }
 

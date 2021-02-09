@@ -29,8 +29,12 @@ public class NetworkAudioHandler : NetworkBehaviour
 
     public void handlePlayClientSound(string name)
     {
-        Debug.Log(name);
-        if(isServer)
+        if (name.Equals("click_sound"))
+        {
+            audioManager.networkPlay(name);
+            return;
+        }
+        if (isServer)
             rpcPlayClientSound(name);
         else if (name.Equals("engine1"))
         {
@@ -39,6 +43,11 @@ public class NetworkAudioHandler : NetworkBehaviour
     }
     public void handleStopClientSound(string name)
     {
+        if (name.Contains("music"))
+        {
+            audioManager.networkStop(name);
+            return;
+        }
         if (isServer)
             rpcStopClientSound(name);
         else if (name.Equals("engine1"))
@@ -50,7 +59,6 @@ public class NetworkAudioHandler : NetworkBehaviour
     [ClientRpc]
     public void rpcPlayClientSound(string name)
     {
-        Debug.Log("I should be playing sound!");
         audioManager.networkPlay(name);
     }
 
@@ -64,14 +72,12 @@ public class NetworkAudioHandler : NetworkBehaviour
     [Command]
     public void cmdPlayServerSound(string name)
     {
-        Debug.Log("handling command");
         rpcPlayClientSound(name);
     }
 
     [Command]
     public void cmdStopServerSound(string name)
     {
-        Debug.Log("handling command");
         rpcStopClientSound(name);
     }
 
