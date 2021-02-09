@@ -14,7 +14,7 @@ public class AudioManager : MonoBehaviour
     private static float effectsVolume = 1;
     private static float musicVolume = 1;
     private static bool musicEnabled = true;
-    private static bool effectsEnabled = true;
+    private static bool effectsEnabled = true ;
     private static bool skipMusicToggle = false;
     private static bool skipEffectsToggle = false;
 
@@ -67,9 +67,13 @@ public class AudioManager : MonoBehaviour
         this.Play("menu_music");
     }
 
-    public void Play (string name)
+    public void Play(string name)
     {
-        Sound s = Array.Find(sounds, sound => sound.name == name);
+        if (!GlobalVariables.local && (FindObjectOfType<NetworkAudioHandler>() != null)) {
+            FindObjectOfType<NetworkAudioHandler>().handlePlayClientSound(name);
+            return;
+        }
+            Sound s = Array.Find(sounds, sound => sound.name == name);
 
         // set volume
         if (s.isMusic)
@@ -96,20 +100,25 @@ public class AudioManager : MonoBehaviour
             }
             else if (s.isEffect && effectsEnabled)
             {
-                s.source.Play();
+                    s.source.Play();
             }
         }
     }
 
     public void Stop (string name)
     {
+        if (!GlobalVariables.local && (FindObjectOfType<NetworkAudioHandler>() != null))
+        {
+            FindObjectOfType<NetworkAudioHandler>().handleStopClientSound(name);
+            return;
+        }
         Sound s = Array.Find(sounds, sound => sound.name == name);
         if (s == null)
         {
             Debug.LogWarning("Sound: " + name + "not found!");
             return;
         }
-            s.source.Stop();
+        s.source.Stop();
     }
 
     public void toggleMusic()
@@ -128,7 +137,7 @@ public class AudioManager : MonoBehaviour
             {
                 Play("menu_music");
             }
-            else if (SceneManager.GetActiveScene().name == "MainScene")
+            else if (SceneManager.GetActiveScene().name == "MainScene" || SceneManager.GetActiveScene().name == "NetworkGameScene")
             {
                 Play("ingame_music");
             }
@@ -141,7 +150,7 @@ public class AudioManager : MonoBehaviour
             {
                 Stop("menu_music");
             }
-            else if (SceneManager.GetActiveScene().name == "MainScene")
+            else if (SceneManager.GetActiveScene().name == "MainScene" || SceneManager.GetActiveScene().name == "NetworkGameScene")
             {
                 Stop("ingame_music");
             }
@@ -205,4 +214,48 @@ public class AudioManager : MonoBehaviour
         musicVolume = GlobalVariables.musicVol;
         effectsVolume = GlobalVariables.effectsVol;
     }
+
+    public void networkPlay(string name)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        if (s.isMusic)
+        {
+            s.source.volume = s.volume * musicVolume;
+            currentMusic = s;
+        }
+        else
+        {
+            s.source.volume = s.volume * effectsVolume;
+        }
+
+        if (s == null)
+        {
+            Debug.LogWarning("Sound: " + name + "not found!");
+            return;
+        }
+        if (!s.source.isPlaying)
+        {
+            // check whether it is allowed to play the music or the effect
+            if (s.isMusic && musicEnabled)
+            {
+                s.source.Play();
+            }
+            else if (s.isEffect && effectsEnabled)
+            {
+                s.source.Play();
+            }
+        }
+    }
+
+    public void networkStop(string name)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        if (s == null)
+        {
+            Debug.LogWarning("Sound: " + name + "not found!");
+            return;
+        }
+        s.source.Stop();
+    }
+
 }

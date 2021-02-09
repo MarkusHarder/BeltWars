@@ -54,7 +54,6 @@ public class NetworkMovement : NetworkBehaviour
 
     private void toggleCirc(bool activeO, bool activeN)
     {
-        Debug.Log("Togglebecher " + activeN);
         if (activeN)
         {
             if(isServer)

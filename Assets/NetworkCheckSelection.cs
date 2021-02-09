@@ -13,6 +13,7 @@ public class NetworkCheckSelection : MonoBehaviour
         if (GlobalVariables.selectedMP)
         {
             GlobalVariables.selectedMP = false;
+            GlobalVariables.local = true;
             setMenuState();
         }
     }
