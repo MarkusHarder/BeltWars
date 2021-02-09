@@ -726,7 +726,7 @@ PrefabInstance:
     - target: {fileID: 5553489037949716485, guid: 24817a660a4403043a93c2e87e4e9dda,
         type: 3}
       propertyPath: eventPropability
-      value: 100
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 5553489037949716485, guid: 24817a660a4403043a93c2e87e4e9dda,
         type: 3}
@@ -890,6 +890,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 103420687439977576, guid: 782658245a350404ca73fab19908cc2c,
+        type: 3}
+      propertyPath: m_Text
+      value: '
+
+'
+      objectReference: {fileID: 0}
+    - target: {fileID: 103420687476277490, guid: 782658245a350404ca73fab19908cc2c,
+        type: 3}
+      propertyPath: m_Text
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 103420688198974936, guid: 782658245a350404ca73fab19908cc2c,
         type: 3}
       propertyPath: m_LocalPosition.x
