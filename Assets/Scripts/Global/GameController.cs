@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using Mirror;
+using UnityEngine.SceneManagement;
 
 //Class which controls the game
 public class GameController : MonoBehaviour
@@ -66,13 +67,13 @@ public class GameController : MonoBehaviour
 
         if (ShipContainer.checkIfEarthLost())
         {
-            gameInfo.activate("MARS WINS!!");
+            SceneManager.LoadScene("MarsWins", LoadSceneMode.Single);
             return true;
         }
 
         if (ShipContainer.checkIfMarsLost())
         {
-            gameInfo.activate("EARTH WINS!!");
+            SceneManager.LoadScene("EarthWins", LoadSceneMode.Single);
             return true;
         }
         return false;
