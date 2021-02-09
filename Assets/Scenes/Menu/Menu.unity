@@ -177,7 +177,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: LOCAL
+  m_text: SINGLEPLAYER
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1309,7 +1309,7 @@ GameObject:
   - component: {fileID: 139775052}
   - component: {fileID: 139775051}
   m_Layer: 5
-  m_Name: LocalTabButton
+  m_Name: SingleplayerButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1332,8 +1332,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -85.000015, y: 137}
-  m_SizeDelta: {x: 170, y: 55}
+  m_AnchoredPosition: {x: -180.5, y: 137}
+  m_SizeDelta: {x: 360.96558, y: 55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &139775051
 MonoBehaviour:
@@ -1513,7 +1513,7 @@ MonoBehaviour:
   m_Placeholder: {fileID: 0}
   m_ItemText: {fileID: 940007798}
   m_ItemImage: {fileID: 0}
-  m_Value: 0
+  m_Value: 5
   m_Options:
     m_Options:
     - m_Text: 1
@@ -1721,7 +1721,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: LOW
+  m_text: HIGH
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2588,7 +2588,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &284954177
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2897,7 +2897,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1
+  m_text: 6
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3078,7 +3078,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &593980500
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3441,7 +3441,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: LOCAL
+  m_text: SINGLEPLAYER
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3823,7 +3823,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ONLINE
+  m_text: MULTIPLAYER
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4719,7 +4719,7 @@ GameObject:
   - component: {fileID: 1011670306}
   - component: {fileID: 1011670305}
   m_Layer: 5
-  m_Name: OnlineTabButton
+  m_Name: MultiplayerButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4742,8 +4742,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 94.99998, y: 137}
-  m_SizeDelta: {x: 190, y: 55}
+  m_AnchoredPosition: {x: 168.1, y: 137}
+  m_SizeDelta: {x: 336.33777, y: 55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1011670305
 MonoBehaviour:
@@ -5044,7 +5044,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1193694859
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5307,7 +5307,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1398782991
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6278,7 +6278,7 @@ GameObject:
   - component: {fileID: 1554309280}
   - component: {fileID: 1554309279}
   m_Layer: 5
-  m_Name: LocalTabButton
+  m_Name: SingleplayerButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6414,8 +6414,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -85.000015, y: 137}
-  m_SizeDelta: {x: 170, y: 55}
+  m_AnchoredPosition: {x: -180.5, y: 137}
+  m_SizeDelta: {x: 360.9656, y: 55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1579754425
 GameObject:
@@ -7010,7 +7010,7 @@ MonoBehaviour:
   m_Placeholder: {fileID: 0}
   m_ItemText: {fileID: 213442292}
   m_ItemImage: {fileID: 0}
-  m_Value: 0
+  m_Value: 3
   m_Options:
     m_Options:
     - m_Text: LOW
@@ -7452,7 +7452,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ONLINE
+  m_text: MULTIPLAYER
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -8279,7 +8279,7 @@ GameObject:
   - component: {fileID: 2091842363}
   - component: {fileID: 2091842362}
   m_Layer: 5
-  m_Name: OnlineTabButton
+  m_Name: MultiplayerButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8302,8 +8302,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 94.99998, y: 137}
-  m_SizeDelta: {x: 190, y: 55}
+  m_AnchoredPosition: {x: 168.1, y: 137}
+  m_SizeDelta: {x: 336.3378, y: 55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2091842362
 MonoBehaviour:
