@@ -51,6 +51,7 @@ public class NetworkShoot : NetworkBehaviour
     [Command]
     public void cmdShoot()
     {
+        Debug.Log("Shooting");
         shoot.shoot();
     }
 

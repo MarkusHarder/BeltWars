@@ -28,7 +28,7 @@ public class NetworkManagerBeltWars : NetworkManager
     public override void OnClientDisconnect(NetworkConnection conn)
     {
         base.OnClientDisconnect(conn);
-        SceneManager.LoadScene("ProtoNetworkScene_Markus");
+        SceneManager.LoadScene("NetworkGameScene");
         OnClientDisconnected?.Invoke();
     }
     public override void OnServerAddPlayer(NetworkConnection conn)
@@ -55,7 +55,7 @@ public class NetworkManagerBeltWars : NetworkManager
             ngc.conn = conn;
             ngc.elements = nsc.game;
             ngc.start = true;
-
+            FindObjectOfType<AudioManager>().Play("ingame_music");
 
         }
     }
