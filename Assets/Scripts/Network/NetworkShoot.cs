@@ -63,17 +63,16 @@ public class NetworkShoot : NetworkBehaviour
 
     public void evalInput()
     {
-        if (Input.GetKeyDown(KeyCode.Keypad1))
+        if (Input.GetKeyDown(KeyCode.Keypad1) || Input.GetKeyDown(KeyCode.Alpha1))
         {
             cmdSetWeapon(0);
         }
-        if (Input.GetKeyDown(KeyCode.Keypad2))
+        if (Input.GetKeyDown(KeyCode.Keypad2) || Input.GetKeyDown(KeyCode.Alpha2))
         {
             cmdSetWeapon(1);
         }
-        if (Input.GetKeyDown(KeyCode.Keypad3))
+        if (Input.GetKeyDown(KeyCode.Keypad3) || Input.GetKeyDown(KeyCode.Alpha3))
         {
-            Debug.Log("Hallo");
             cmdSetWeapon(2);
         }
         if (Input.GetKeyDown(KeyCode.Space)) { cmdShoot(); }

@@ -62,7 +62,6 @@ public class NetworkManagerBeltWars : NetworkManager
 
     public override void OnServerDisconnect(NetworkConnection conn)
     {
-        ShipContainer.resetShipLists();
         count--;
         base.OnServerDisconnect(conn);
         base.StopAllCoroutines();
