@@ -29,7 +29,7 @@ public class NetworkAudioHandler : NetworkBehaviour
 
     public void handlePlayClientSound(string name)
     {
-        if (name.Equals("click_sound"))
+        if (name.Equals("click_sound") || (name.Contains("music")))
         {
             audioManager.networkPlay(name);
             return;
@@ -65,7 +65,7 @@ public class NetworkAudioHandler : NetworkBehaviour
     [ClientRpc]
     public void rpcStopClientSound(string name)
     {
-        Debug.Log("I should stop playing sound!");
+
         audioManager.networkStop(name);
     }
 

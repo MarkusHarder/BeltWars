@@ -69,7 +69,7 @@ public class AudioManager : MonoBehaviour
 
     public void Play(string name)
     {
-        if (!GlobalVariables.local) {
+        if (!GlobalVariables.local && (FindObjectOfType<NetworkAudioHandler>() != null)) {
             FindObjectOfType<NetworkAudioHandler>().handlePlayClientSound(name);
             return;
         }
@@ -107,7 +107,7 @@ public class AudioManager : MonoBehaviour
 
     public void Stop (string name)
     {
-        if (!GlobalVariables.local)
+        if (!GlobalVariables.local && (FindObjectOfType<NetworkAudioHandler>() != null))
         {
             FindObjectOfType<NetworkAudioHandler>().handleStopClientSound(name);
             return;
