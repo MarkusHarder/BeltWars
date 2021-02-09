@@ -75,6 +75,7 @@ public class ItemCollector : MonoBehaviour
 
     private void provideItemToShip(GameObject ship)
     {
+        FindObjectOfType<AudioManager>().Play("collect_item");
         ShipDestruction shipDestruction = ship.GetComponent<ShipDestruction>();
 
         if (GlobalVariables.singlePlayer && ship.name.StartsWith("Ship_Mars"))
