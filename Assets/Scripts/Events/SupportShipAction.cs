@@ -14,6 +14,7 @@ public class SupportShipAction : NetworkBehaviour
     private bool itemDropped = false;
     private bool targetPosCalc = false;
     private float timer = 1.0f;
+    private bool soundPlayed = false;
  
 
     //private float waitTime = 2.0f;
@@ -46,6 +47,7 @@ public class SupportShipAction : NetworkBehaviour
         {
             if (!posReached)
             {
+                FindObjectOfType<AudioManager>().Play("engine3");
                 transform.position = Vector2.MoveTowards(transform.position, dropPosition, 4 * Time.deltaTime);
 
                 if (transform.position == dropPosition)
@@ -54,15 +56,22 @@ public class SupportShipAction : NetworkBehaviour
                     if (!GlobalVariables.local)
                         NetworkServer.Spawn(item);
                     posReached = true;
+                    FindObjectOfType<AudioManager>().Stop("engine3");
                 }
             }
             else if (posReached && !itemDropped)
             {
                 timer -= Time.deltaTime;
                 if (timer <= 0) itemDropped = true;
+                if (!soundPlayed)
+                {
+                    FindObjectOfType<AudioManager>().Play("drop_item");
+                    soundPlayed = true;
+                }
             }
             else if (posReached && itemDropped)
             {
+                FindObjectOfType<AudioManager>().Play("engine3");
                 if (!targetPosCalc)
                 {
                     if (startPosition.x == dropPosition.x)
@@ -86,6 +95,7 @@ public class SupportShipAction : NetworkBehaviour
                         gameController = GameObject.Find("NetworkGameController");
                     gameController.GetComponent<GameController>().eventIsRunning = false;
                     Destroy(this.gameObject);
+                    FindObjectOfType<AudioManager>().Stop("engine3");
                 }
             }
         }

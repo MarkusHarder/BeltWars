@@ -50,5 +50,6 @@ public class AsteroidDestruction : MonoBehaviour, IEntity
     {
         Explosion expl = gameObject.GetComponent<Explosion>();
         expl.StartExplosion();
+        FindObjectOfType<AudioManager>().Play("destroy_rock");
     }
 }

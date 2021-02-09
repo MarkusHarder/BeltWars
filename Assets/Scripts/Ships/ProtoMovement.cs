@@ -60,26 +60,43 @@ public class ProtoMovement : MonoBehaviour
 		if (Input.GetKeyDown(KeyCode.Escape))
 			Screen.lockCursor = !Screen.lockCursor;
 
-
-
 		if (Input.GetKey(KeyCode.W))
 		{
 			GetComponent<Rigidbody2D>().AddForce(transform.up * acceleration_amount * Time.deltaTime * 100);
 		}
+
+		if (Input.GetKeyDown(KeyCode.W))
+        {
+			FindObjectOfType<AudioManager>().Play("engine1");
+		}
+		if (Input.GetKeyUp(KeyCode.W))
+        {
+			FindObjectOfType<AudioManager>().Stop("engine1");
+		}
+
+		if (Input.GetKeyDown(KeyCode.S))
+		{
+			FindObjectOfType<AudioManager>().Play("engine1");
+		}
+		if (Input.GetKeyUp(KeyCode.S))
+		{
+			FindObjectOfType<AudioManager>().Stop("engine1");
+		}
+
 		if (Input.GetKey(KeyCode.S))
 		{
+			FindObjectOfType<AudioManager>().Play("engine1");
 			GetComponent<Rigidbody2D>().AddForce((-transform.up) * acceleration_amount * Time.deltaTime * 100);
-
 		}
 
 		if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.LeftShift))
 		{
 			GetComponent<Rigidbody2D>().AddForce((-transform.right) * acceleration_amount * 0.6f * Time.deltaTime * 100);
 		}
+
 		if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.LeftShift))
 		{
 			GetComponent<Rigidbody2D>().AddForce((transform.right) * acceleration_amount * 0.6f * Time.deltaTime * 100);
-
 		}
 
 		if (Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.LeftShift))

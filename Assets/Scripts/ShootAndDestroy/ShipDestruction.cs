@@ -50,6 +50,7 @@ public class ShipDestruction : MonoBehaviour, IEntity
         Explosion expl = gameObject.GetComponent<Explosion>();
         expl.StartExplosion();
         debrisInstance = GameObject.Instantiate(Resources.Load(ResourcePathConstants.debris) as GameObject as GameObject, gameObject.transform.position, Quaternion.identity);
+        FindObjectOfType<AudioManager>().Play("ship_explosion");
     }
 
 }
