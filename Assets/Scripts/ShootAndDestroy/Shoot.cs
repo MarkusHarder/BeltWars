@@ -65,6 +65,7 @@ public class Shoot : MonoBehaviour
             StartCoroutine(fire(0.0f));
             missileAmount--;
             active = false;
+            FindObjectOfType<AudioManager>().Play("rocket");
         }
         else if (weapontype == Weapontype.MACHINE_GUN)
         {
@@ -75,12 +76,14 @@ public class Shoot : MonoBehaviour
             StartCoroutine(fire(0.4f));
             StartCoroutine(fire(0.5f));
             active = false;
+            FindObjectOfType<AudioManager>().Play("mgun");
         }
         else if (weapontype == Weapontype.LASER && laserAmount > 0)
         {   
             StartCoroutine(fireLaser());
             laserAmount--;
             active = false;
+            FindObjectOfType<AudioManager>().Play("weapon_switch");
         }
     }
 
@@ -94,17 +97,21 @@ public class Shoot : MonoBehaviour
             weapontype = Weapontype.MACHINE_GUN;
             speed = 1;
             Debug.Log("Machine Gun loaded");
-        }else if(n == 1){
+            FindObjectOfType<AudioManager>().Play("weapon_switch");
+        }
+        else if(n == 1){
             loadedWeapon = Resources.Load(ResourcePathConstants.MISSILE) as GameObject;
             weapontype = Weapontype.MISSILE;
             speed = 5;
             Debug.Log("Rocket Launcher loaded");
+            FindObjectOfType<AudioManager>().Play("weapon_switch");
         }
         else if (n == 2)
         {
             loadedWeapon = Resources.Load(ResourcePathConstants.LASER) as GameObject;
             weapontype = Weapontype.LASER;
             Debug.Log("Laser loaded");
+            FindObjectOfType<AudioManager>().Play("weapon_switch");
         }
 
     }

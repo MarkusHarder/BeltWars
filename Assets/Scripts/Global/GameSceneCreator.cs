@@ -9,8 +9,8 @@ using UnityEditor;
 public  class GameSceneCreator : MonoBehaviour
 {
     public List<GameObject> game;
-    private int shipAmount = 6;
-    private int asteroidDensity = 3;
+    public int shipAmount = 6;
+    public int asteroidDensity = 3;
     private float borderDistance = 0.5f;
     public void createGameScene()
     {
