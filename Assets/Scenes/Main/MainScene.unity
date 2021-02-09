@@ -1470,6 +1470,66 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4973424011973795095, guid: ccd8d181224248d48916f39ae804f421,
+        type: 3}
+      propertyPath: sounds.Array.data[9].name
+      value: ingame_music
+      objectReference: {fileID: 0}
+    - target: {fileID: 4973424011973795095, guid: ccd8d181224248d48916f39ae804f421,
+        type: 3}
+      propertyPath: sounds.Array.data[8].name
+      value: weapon_switch
+      objectReference: {fileID: 0}
+    - target: {fileID: 4973424011973795095, guid: ccd8d181224248d48916f39ae804f421,
+        type: 3}
+      propertyPath: sounds.Array.data[8].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 49c0a9fbb63d2ce47b00b29b9a6b8812, type: 3}
+    - target: {fileID: 4973424011973795095, guid: ccd8d181224248d48916f39ae804f421,
+        type: 3}
+      propertyPath: sounds.Array.data[7].name
+      value: laser
+      objectReference: {fileID: 0}
+    - target: {fileID: 4973424011973795095, guid: ccd8d181224248d48916f39ae804f421,
+        type: 3}
+      propertyPath: sounds.Array.data[6].isMusic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4973424011973795095, guid: ccd8d181224248d48916f39ae804f421,
+        type: 3}
+      propertyPath: sounds.Array.data[0].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4973424011973795095, guid: ccd8d181224248d48916f39ae804f421,
+        type: 3}
+      propertyPath: sounds.Array.data[1].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4973424011973795095, guid: ccd8d181224248d48916f39ae804f421,
+        type: 3}
+      propertyPath: sounds.Array.data[5].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4973424011973795095, guid: ccd8d181224248d48916f39ae804f421,
+        type: 3}
+      propertyPath: sounds.Array.data[4].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4973424011973795095, guid: ccd8d181224248d48916f39ae804f421,
+        type: 3}
+      propertyPath: sounds.Array.data[6].name
+      value: engine3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4973424011973795095, guid: ccd8d181224248d48916f39ae804f421,
+        type: 3}
+      propertyPath: sounds.Array.data[6].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: b1ffea08edfa7214fbaeafba5bf38ac0, type: 3}
+    - target: {fileID: 4973424011973795095, guid: ccd8d181224248d48916f39ae804f421,
+        type: 3}
+      propertyPath: sounds.Array.data[9].volume
+      value: 0.75
+      objectReference: {fileID: 0}
     - target: {fileID: 6467835654837318947, guid: ccd8d181224248d48916f39ae804f421,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1483,22 +1543,22 @@ PrefabInstance:
     - target: {fileID: 6467835654837318947, guid: ccd8d181224248d48916f39ae804f421,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -23.074755
+      value: -23.074757
       objectReference: {fileID: 0}
     - target: {fileID: 6467835654837318947, guid: ccd8d181224248d48916f39ae804f421,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6467835654837318947, guid: ccd8d181224248d48916f39ae804f421,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6467835654837318947, guid: ccd8d181224248d48916f39ae804f421,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6467835654837318947, guid: ccd8d181224248d48916f39ae804f421,
         type: 3}
@@ -1524,6 +1584,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6467835654837318947, guid: ccd8d181224248d48916f39ae804f421,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6467835654837318947, guid: ccd8d181224248d48916f39ae804f421,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6467835654837318947, guid: ccd8d181224248d48916f39ae804f421,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6801189616376427087, guid: ccd8d181224248d48916f39ae804f421,
         type: 3}

@@ -19,6 +19,8 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        shipNumber = GlobalVariables.numOfShips;
+        asteroidDensity = GlobalVariables.asteroidDensity;
         GameSceneCreator gameSceneCreator = new GameSceneCreator();
         gameSceneCreator.createGameScene();
     }
