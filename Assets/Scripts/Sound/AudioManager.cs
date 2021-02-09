@@ -21,15 +21,6 @@ public class AudioManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        if (instance == null)
-            instance = this;
-        else
-        {
-            Destroy(gameObject);
-            return;
-        }
-        DontDestroyOnLoad(gameObject);  // game object exists through different scenes
-
         foreach (Sound s in sounds)
         {
             s.source = gameObject.AddComponent<AudioSource>();
@@ -50,12 +41,15 @@ public class AudioManager : MonoBehaviour
             s.source.loop = s.loop;
 
         }
+        // check in which scene we are right now
         if (SceneManager.GetActiveScene().name == "Menu")
         {
             Play("menu_music");
         }
         else if (SceneManager.GetActiveScene().name == "MainScene")
         {
+            // get settings from global variables (maybe the user has changed music volume in menu, etc.)
+            getGlobalVariables();
             Play("ingame_music");
         }
     }
@@ -182,5 +176,13 @@ public class AudioManager : MonoBehaviour
         GlobalVariables.effectsEnabled = effectsEnabled;
         GlobalVariables.musicVol = musicVolume;
         GlobalVariables.effectsVol = effectsVolume;
+    }
+
+    public static void getGlobalVariables()
+    {
+        musicEnabled = GlobalVariables.musicEnabled;
+        effectsEnabled = GlobalVariables.effectsEnabled;
+        musicVolume = GlobalVariables.musicVol;
+        effectsVolume = GlobalVariables.effectsVol;
     }
 }

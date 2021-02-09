@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1991802840351529815
+--- !u!1 &6801189616376427087
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,8 +8,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1991802840351529801}
-  - component: {fileID: 1991802840351529800}
+  - component: {fileID: 6467835654837318947}
+  - component: {fileID: 4973424011973795095}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -17,13 +17,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1991802840351529801
+--- !u!4 &6467835654837318947
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1991802840351529815}
+  m_GameObject: {fileID: 6801189616376427087}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 496.27655, y: 295.35876, z: -23.074755}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -31,13 +31,13 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1991802840351529800
+--- !u!114 &4973424011973795095
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1991802840351529815}
+  m_GameObject: {fileID: 6801189616376427087}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9c198e5b4a07d544db6d78557f37613d, type: 3}
@@ -62,14 +62,14 @@ MonoBehaviour:
     isMusic: 0
     clip: {fileID: 8300000, guid: e0904ed2269556e49b1ad02c27dc3e60, type: 3}
     volume: 1
-    pitch: 0
+    pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: rocket
     isMusic: 0
     clip: {fileID: 8300000, guid: e967e0dbdc5e3cb42b20cd9391b0c7eb, type: 3}
     volume: 1
-    pitch: 0
+    pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: ship_explosion
@@ -90,29 +90,29 @@ MonoBehaviour:
     isMusic: 0
     clip: {fileID: 8300000, guid: 12834039427b98a49b3582890d21b1ef, type: 3}
     volume: 1
-    pitch: 0
+    pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: ship_explosion
     isMusic: 0
     clip: {fileID: 8300000, guid: 12834039427b98a49b3582890d21b1ef, type: 3}
     volume: 1
-    pitch: 0
+    pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: ship_explosion
     isMusic: 0
     clip: {fileID: 8300000, guid: 12834039427b98a49b3582890d21b1ef, type: 3}
     volume: 1
-    pitch: 0
+    pitch: 1
     loop: 0
     source: {fileID: 0}
-  - name: ship_explosion
-    isMusic: 0
-    clip: {fileID: 8300000, guid: 12834039427b98a49b3582890d21b1ef, type: 3}
+  - name: ingame_music
+    isMusic: 1
+    clip: {fileID: 8300000, guid: ed0bb87436cd3ef4e90fd70009ca7aa3, type: 3}
     volume: 1
-    pitch: 0
-    loop: 0
+    pitch: 1
+    loop: 1
     source: {fileID: 0}
   - name: menu_music
     isMusic: 1
