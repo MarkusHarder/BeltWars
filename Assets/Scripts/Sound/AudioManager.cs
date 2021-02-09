@@ -15,6 +15,8 @@ public class AudioManager : MonoBehaviour
     private static float musicVolume = 1;
     private static bool musicEnabled = true;
     private static bool effectsEnabled = true;
+    private static bool skipMusicToggle = false;
+    private static bool skipEffectsToggle = false;
 
     private Sound currentMusic;
 
@@ -44,6 +46,7 @@ public class AudioManager : MonoBehaviour
         // check in which scene we are right now
         if (SceneManager.GetActiveScene().name == "Menu")
         {
+            getGlobalVariables();
             Play("menu_music");
         }
         else if (SceneManager.GetActiveScene().name == "MainScene")
@@ -91,7 +94,7 @@ public class AudioManager : MonoBehaviour
             {
                 s.source.Play();
             }
-            else if (effectsEnabled)
+            else if (s.isEffect && effectsEnabled)
             {
                 s.source.Play();
             }
@@ -111,6 +114,12 @@ public class AudioManager : MonoBehaviour
 
     public void toggleMusic()
     {
+        if (skipMusicToggle)
+        {
+            skipMusicToggle = false;
+            return;
+        }
+
         if (!musicEnabled)  // Music was disabled and now got enabled by the user
         {
             Debug.Log("Enable Music");
@@ -143,6 +152,12 @@ public class AudioManager : MonoBehaviour
 
     public void toggleEffects()
     {
+        if (skipEffectsToggle)
+        {
+            skipEffectsToggle = false;
+            return;
+        }
+
         if (effectsEnabled)  // Sound effects were enabled and now got disabled by the user
         {
             Debug.Log("Disable Effect Sounds");
@@ -180,6 +195,11 @@ public class AudioManager : MonoBehaviour
 
     public static void getGlobalVariables()
     {
+        if (GlobalVariables.musicEnabled == false)
+            skipMusicToggle = true;
+        if (GlobalVariables.effectsEnabled == false)
+            skipEffectsToggle = true;
+
         musicEnabled = GlobalVariables.musicEnabled;
         effectsEnabled = GlobalVariables.effectsEnabled;
         musicVolume = GlobalVariables.musicVol;

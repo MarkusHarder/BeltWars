@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1192,20 +1192,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 52704292}
-        m_MethodName: QuitGame
-        m_Mode: 1
+      - m_Target: {fileID: 877931233}
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 877931233}
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 52704292}
+        m_MethodName: QuitGame
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3001,6 +3001,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 24817a660a4403043a93c2e87e4e9dda, type: 3}
+--- !u!1 &1186952617 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5553489037949716484, guid: 24817a660a4403043a93c2e87e4e9dda,
+    type: 3}
+  m_PrefabInstance: {fileID: 1186952616}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1186952618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1186952617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad89882b57e60dd4ba7f944e184cb3fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicSlider: {fileID: 1065316509}
+  effectsSlider: {fileID: 1045848024}
+  musicToggle: {fileID: 499089008}
+  effectsToggle: {fileID: 236602721}
 --- !u!1 &1241151418
 GameObject:
   m_ObjectHideFlags: 0

@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -8467,6 +8467,7 @@ GameObject:
   - component: {fileID: 2098757776}
   - component: {fileID: 2098757775}
   - component: {fileID: 2098757780}
+  - component: {fileID: 2098757779}
   m_Layer: 5
   m_Name: GameMenu
   m_TagString: Untagged
@@ -8557,6 +8558,22 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &2098757779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2098757774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad89882b57e60dd4ba7f944e184cb3fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicSlider: {fileID: 1498160631}
+  effectsSlider: {fileID: 2069308689}
+  musicToggle: {fileID: 203982015}
+  effectsToggle: {fileID: 259271275}
 --- !u!114 &2098757780
 MonoBehaviour:
   m_ObjectHideFlags: 0

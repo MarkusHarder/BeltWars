@@ -46,6 +46,7 @@ MonoBehaviour:
   sounds:
   - name: engine1
     isMusic: 0
+    isEffect: 1
     clip: {fileID: 8300000, guid: ca81f82e5d0c7404797552f718e2f8b8, type: 3}
     volume: 1
     pitch: 0
@@ -53,6 +54,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: engine2
     isMusic: 0
+    isEffect: 1
     clip: {fileID: 8300000, guid: ffbd45a8c03939941ad31683787f6ab2, type: 3}
     volume: 1
     pitch: 0
@@ -60,6 +62,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: mgun
     isMusic: 0
+    isEffect: 1
     clip: {fileID: 8300000, guid: e0904ed2269556e49b1ad02c27dc3e60, type: 3}
     volume: 1
     pitch: 1
@@ -67,6 +70,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: rocket
     isMusic: 0
+    isEffect: 1
     clip: {fileID: 8300000, guid: e967e0dbdc5e3cb42b20cd9391b0c7eb, type: 3}
     volume: 1
     pitch: 1
@@ -74,6 +78,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: ship_explosion
     isMusic: 0
+    isEffect: 1
     clip: {fileID: 8300000, guid: b14f984d3c36067438f54d8f3c159202, type: 3}
     volume: 1
     pitch: 0
@@ -81,6 +86,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: destroy_rock
     isMusic: 0
+    isEffect: 1
     clip: {fileID: 8300000, guid: 95810e88e6895dd49844bfd00cf40a23, type: 3}
     volume: 1
     pitch: 0
@@ -88,6 +94,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: ship_explosion
     isMusic: 0
+    isEffect: 1
     clip: {fileID: 8300000, guid: 12834039427b98a49b3582890d21b1ef, type: 3}
     volume: 1
     pitch: 1
@@ -95,6 +102,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: ship_explosion
     isMusic: 0
+    isEffect: 1
     clip: {fileID: 8300000, guid: 12834039427b98a49b3582890d21b1ef, type: 3}
     volume: 1
     pitch: 1
@@ -102,6 +110,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: ship_explosion
     isMusic: 0
+    isEffect: 1
     clip: {fileID: 8300000, guid: 12834039427b98a49b3582890d21b1ef, type: 3}
     volume: 1
     pitch: 1
@@ -109,13 +118,15 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: ingame_music
     isMusic: 1
+    isEffect: 0
     clip: {fileID: 8300000, guid: ed0bb87436cd3ef4e90fd70009ca7aa3, type: 3}
-    volume: 1
+    volume: 0.75
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: menu_music
     isMusic: 1
+    isEffect: 0
     clip: {fileID: 8300000, guid: 0de36cceb5eb59a4985d53c4812e9121, type: 3}
     volume: 1
     pitch: 1
@@ -123,6 +134,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: click_sound
     isMusic: 0
+    isEffect: 1
     clip: {fileID: 8300000, guid: 1289ebc5a5694554c8c97cf8024e26a7, type: 3}
     volume: 1
     pitch: 1
