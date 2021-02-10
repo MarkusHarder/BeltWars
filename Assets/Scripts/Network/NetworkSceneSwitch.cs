@@ -18,6 +18,7 @@ public class NetworkSceneSwitch : MonoBehaviour
     }
     public void switchToNetwork()
     {
+        GlobalVariables.singlePlayer = false;
         SceneManager.LoadScene("NetworkGameScene");
     }
 }

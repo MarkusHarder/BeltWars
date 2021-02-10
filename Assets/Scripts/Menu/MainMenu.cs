@@ -5,8 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public void PlayGame()
+    public void StartSingleplayer()
     {
+        GlobalVariables.singlePlayer = true;
+        SceneManager.LoadScene("MainScene");
+    }
+
+    public void StartLocalMultiplayer()
+    {
+        GlobalVariables.singlePlayer = false;
         SceneManager.LoadScene("MainScene");
     }
 

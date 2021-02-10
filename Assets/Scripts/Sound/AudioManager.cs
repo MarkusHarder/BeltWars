@@ -73,7 +73,12 @@ public class AudioManager : MonoBehaviour
             FindObjectOfType<NetworkAudioHandler>().handlePlayClientSound(name);
             return;
         }
-            Sound s = Array.Find(sounds, sound => sound.name == name);
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        if (s == null)
+        {
+            Debug.LogWarning("Sound: " + name + "not found!");
+            return;
+        }
 
         // set volume
         if (s.isMusic)
@@ -86,11 +91,6 @@ public class AudioManager : MonoBehaviour
             s.source.volume = s.volume * effectsVolume;
         }
 
-        if (s == null)
-        {
-            Debug.LogWarning("Sound: " + name + "not found!");
-            return;
-        }
         if(!s.source.isPlaying)
         {
             // check whether it is allowed to play the music or the effect

@@ -68,6 +68,7 @@ public class AIBehaviour: MonoBehaviour
                 {
                     if (hit.collider.name.StartsWith("Ship_Earth"))
                     {
+                        FindObjectOfType<AudioManager>().Stop("engine1");
                         shoot();
                         alreadyShot = true;
                         timer = 1f;
@@ -106,6 +107,7 @@ public class AIBehaviour: MonoBehaviour
 
         if(transform.position == finalPosition)
         {
+            FindObjectOfType<AudioManager>().Stop("engine1");
             finalPositionDetermined = false;
             roundFinished = true;
             timer = 3f;
@@ -160,11 +162,13 @@ public class AIBehaviour: MonoBehaviour
     {
         if (weapontype == Weapontype.MISSILE)
         {
+            FindObjectOfType<AudioManager>().Play("rocket");
             StartCoroutine(fire(0.0f));
             missileAmount--;
         }
         else if (weapontype == Weapontype.MACHINE_GUN)
         {
+            FindObjectOfType<AudioManager>().Play("mgun");
             StartCoroutine(fire(0.0f));
             StartCoroutine(fire(0.1f));
             StartCoroutine(fire(0.2f));
@@ -174,6 +178,7 @@ public class AIBehaviour: MonoBehaviour
         }
         else if (weapontype == Weapontype.LASER)
         {
+            FindObjectOfType<AudioManager>().Play("laser");
             StartCoroutine(fireLaser());
             laserAmount--;
         }
@@ -212,6 +217,7 @@ public class AIBehaviour: MonoBehaviour
 
     private void MoveTowards(Vector2 target)
     {
+        FindObjectOfType<AudioManager>().Play("engine1");
         transform.position = Vector2.MoveTowards(transform.position, target, moveSpeed * Time.deltaTime);
     }
 
