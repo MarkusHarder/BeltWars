@@ -10,11 +10,14 @@ public class PausedMenu : MonoBehaviour
     public GameObject optionsMenuUI;
     public GameObject quitPopUpUI;
 
+    private GameObject activeShip;
+
     // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
+            FindObjectOfType<AudioManager>().Stop("engine1");
             if (GameIsPaused)
             {
                 Resume();
@@ -28,6 +31,7 @@ public class PausedMenu : MonoBehaviour
 
     public void Resume()
     {
+        ShipContainer.setShipActive(activeShip);
         pauseMenuUI.SetActive(false);
         optionsMenuUI.SetActive(false);
         quitPopUpUI.SetActive(false);
@@ -36,6 +40,8 @@ public class PausedMenu : MonoBehaviour
 
     void Pause()
     {
+        activeShip = ShipContainer.getActiveShip();
+        ShipContainer.deactivateAllShips();
         pauseMenuUI.SetActive(true);
         GameIsPaused = true;
     }
