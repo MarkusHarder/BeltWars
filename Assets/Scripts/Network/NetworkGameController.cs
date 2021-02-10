@@ -33,6 +33,8 @@ public class NetworkGameController : GameController
     {
         if (NetworkServer.localClientActive)
         {
+            FindObjectOfType<NetworkAudioHandler>().cmdStopServerSound("engine1");
+            FindObjectOfType<AudioManager>().Stop("engine1");
             List<GameObject> destObj = new List<GameObject>();
             Debug.Log("AuthCount" + ++count);
             foreach (GameObject el in elements)

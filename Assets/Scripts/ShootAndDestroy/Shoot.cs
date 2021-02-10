@@ -83,7 +83,7 @@ public class Shoot : MonoBehaviour
             StartCoroutine(fireLaser());
             laserAmount--;
             active = false;
-            FindObjectOfType<AudioManager>().Play("weapon_switch");
+            FindObjectOfType<AudioManager>().Play("laser");
         }
     }
 
