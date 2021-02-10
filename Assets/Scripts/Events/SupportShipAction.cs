@@ -42,7 +42,7 @@ public class SupportShipAction : NetworkBehaviour
 
     public void moveShip()
     {
-        FindObjectOfType<AudioManager>().Stop("engine1");
+
         if (dropPosition != null)
         {
             if (!posReached)
