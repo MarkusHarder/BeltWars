@@ -75,6 +75,7 @@ public class GameController : MonoBehaviour
             } else
             {
                 FindObjectOfType<NetworkEndSceneHandler>().loadSceneOnClient("MarsWins");
+                return true;
             }
         }
 
@@ -88,6 +89,7 @@ public class GameController : MonoBehaviour
             else
             {
                 FindObjectOfType<NetworkEndSceneHandler>().loadSceneOnClient("EarthWins");
+                return true;
             }
         }
         return false;
