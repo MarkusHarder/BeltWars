@@ -6,7 +6,7 @@ public class NetworkCheckSelection : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField]
-    private GameObject mainMenu, pauseMenu, playMenu, onlineTab, localTab;
+    private GameObject mainMenu, playMenu, MultiplayerTab, localMultiplayerTab, singleplayerTab;
 
     void Start()
     {
@@ -27,10 +27,9 @@ public class NetworkCheckSelection : MonoBehaviour
     private void setMenuState()
     {
         mainMenu.SetActive(false);
-        pauseMenu.SetActive(false);
         playMenu.SetActive(true);
-        onlineTab.SetActive(true);
-        localTab.SetActive(false);
-
+        MultiplayerTab.SetActive(true);
+        localMultiplayerTab.SetActive(false);
+        singleplayerTab.SetActive(false);
     }
 }
