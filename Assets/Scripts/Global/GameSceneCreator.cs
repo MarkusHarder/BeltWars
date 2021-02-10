@@ -8,17 +8,21 @@ using UnityEditor;
 /// </summary>
 public  class GameSceneCreator : MonoBehaviour
 {
-
+    public List<GameObject> game;
     public int shipAmount = 6;
     public int asteroidDensity = 3;
-    public float borderDistance = 0.5f;
-
-
-
+    private float borderDistance = 0.5f;
     public void createGameScene()
     {
+        ShipContainer.resetShipLists();
+        GameObject controller = GameObject.Find("Game Controller");
 
-
+        if (controller == null)
+            controller = GameObject.Find("NetworkGameController");
+        GameController gameController = controller.GetComponent<GameController>();
+        this.shipAmount = gameController.shipNumber;
+        this.asteroidDensity = gameController.asteroidDensity;
+        game = new List<GameObject>();
         this.createBackground();
         this.createBackgroundPlanet();
         this.spawnAsteroids();
@@ -37,6 +41,7 @@ public  class GameSceneCreator : MonoBehaviour
 
     public void spawnShips()
     {
+
         for(int i = 0; i < shipAmount; i++)
         {
             spawnShipRandom(ResourcePathConstants.SHIP_EARTH, i);
@@ -47,18 +52,19 @@ public  class GameSceneCreator : MonoBehaviour
 
     public void createBackground()
     {
-        int i = Random.Range(0, ResourcePathConstants.BACKGROUND_SCENES.Length-1);
+        int i = Random.Range(0, ResourcePathConstants.BACKGROUND_SCENES.Length);
         GameObject backgroundScene = Resources.Load(ResourcePathConstants.BACKGROUND_SCENES[i]) as GameObject;
 
         if (backgroundScene == null) Debug.Log("Background scene resource is null!");
         
-        Instantiate(backgroundScene, new Vector3(0, 0, 0), Quaternion.identity);
+        GameObject background = Instantiate(backgroundScene, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+        game.Add(background);
     }
 
 
     public void createBackgroundPlanet()
     {
-        int i = Random.Range(0, ResourcePathConstants.PLANETS.Length - 1);
+        int i = Random.Range(0, ResourcePathConstants.PLANETS.Length);
         GameObject planet = Resources.Load(ResourcePathConstants.PLANETS[i]) as GameObject;
 
         if (planet == null) Debug.Log("Planet resource is null!");
@@ -78,7 +84,7 @@ public  class GameSceneCreator : MonoBehaviour
         clone.name = "Planet";
 
         //Applying shadow to planet
-        i = Random.Range(0, ResourcePathConstants.PLANET_SHADOWS.Length - 1);
+        i = Random.Range(0, ResourcePathConstants.PLANET_SHADOWS.Length);
         GameObject shadow = Resources.Load(ResourcePathConstants.PLANET_SHADOWS[i]) as GameObject;
 
         if (shadow == null) Debug.Log("Planet resource is null!");
@@ -90,6 +96,8 @@ public  class GameSceneCreator : MonoBehaviour
 
         clone2.transform.localScale = new Vector3(scale, scale, 0);
         clone2.name = "Shadow";
+        game.Add(clone);
+        game.Add(clone2);
     }
 
 
@@ -119,18 +127,31 @@ public  class GameSceneCreator : MonoBehaviour
         if (path.Equals(ResourcePathConstants.SHIP_EARTH))
         {
             clone.name = "Ship_Earth_" + (index + 1);
-            ShipContainer.earth.Add(clone);
+            ShipContainer.earthShips.Add(clone);
         }
         else
         {
             clone.name = "Ship_Mars_" + (index + 1);
-            ShipContainer.mars.Add(clone);
+            ShipContainer.marsShips.Add(clone);
+
+            //Enable AI if singleplayer
+            if (GlobalVariables.singlePlayer)
+            {
+                clone.GetComponent<ProtoMovement>().enabled = false;
+                clone.GetComponent<Shoot>().enabled = false;
+                clone.GetComponent<AIBehaviour>().enabled = true;
+            }
+            else
+            {
+                clone.GetComponent<AIBehaviour>().enabled = false;
+            }
         }
+        game.Add(clone);
     }
 
     private void spawnAsteroidRandom(int index) 
     {
-        int i = Random.Range(0, ResourcePathConstants.ASTEROIDS.Length - 1);
+        int i = Random.Range(0, ResourcePathConstants.ASTEROIDS.Length);
         GameObject asteroid = Resources.Load(ResourcePathConstants.ASTEROIDS[i]) as GameObject;
 
         if (asteroid == null) Debug.Log("Asteroid resource is null!");
@@ -152,6 +173,7 @@ public  class GameSceneCreator : MonoBehaviour
         GameObject clone = (GameObject) Instantiate(asteroid, spawnLocation, Quaternion.Euler(0, 0, rotation));
 
         clone.name = "Asteroid_" + (index + 1);
+        game.Add(clone);
     }
 
 

@@ -1,16 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PausedMenu : MonoBehaviour
 {
     public static bool GameIsPaused = false;
     public GameObject pauseMenuUI;
+    public GameObject optionsMenuUI;
+    public GameObject quitPopUpUI;
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.P))
         {
             if (GameIsPaused)
             {
@@ -26,6 +29,8 @@ public class PausedMenu : MonoBehaviour
     public void Resume()
     {
         pauseMenuUI.SetActive(false);
+        optionsMenuUI.SetActive(false);
+        quitPopUpUI.SetActive(false);
         GameIsPaused = false;
     }
 
@@ -37,6 +42,6 @@ public class PausedMenu : MonoBehaviour
 
     public void QuitGame()
     {
-        Debug.Log("Quitting game...");
+        SceneManager.LoadScene("Menu");
     }
 }

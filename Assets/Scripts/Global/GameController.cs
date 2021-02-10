@@ -2,25 +2,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using Mirror;
+using UnityEngine.SceneManagement;
 
 //Class which controls the game
 public class GameController : MonoBehaviour
 {
     public float timer = 0;
-    public float roundTime = 15;
-    public int eventPropability = 10;
+    public float roundTime = 20;
+    public int eventPropability = 100;
     public bool eventIsRunning = false;
     public bool eventAllowed = true;
-
+    public int shipNumber = 6;
+    public int asteroidDensity = 3;
+    public List<GameObject> gameList;
 
     // Start is called before the first frame update
     void Start()
     {
+        shipNumber = GlobalVariables.numOfShips;
+        asteroidDensity = GlobalVariables.asteroidDensity;
         GameSceneCreator gameSceneCreator = new GameSceneCreator();
         gameSceneCreator.createGameScene();
     }
 
-    private void Update()
+    virtual protected void Update()
     {
         if (!checkGameOver())
         {
@@ -30,15 +36,17 @@ public class GameController : MonoBehaviour
             }
             else if (!eventIsRunning)
             {
+                Debug.Log(eventPropability);
                 if (eventAllowed)
                 {
-                    int i = UnityEngine.Random.Range(0, 100 / eventPropability);
-                    if (i == 0)
+                    int i = Random.Range(0, 100);
+                    if (i < eventPropability )
                     {
                         ShipContainer.deactivateAllShips();
                         eventIsRunning = true;
                         eventAllowed = false;
-                        new EventSupportShip().initiateEvent();
+                        EventSupportShip sShip = new EventSupportShip();
+                        sShip.initiateEvent();
                     }
                 }
 
@@ -54,20 +62,20 @@ public class GameController : MonoBehaviour
 
     public bool checkGameOver() 
     {
+        GameObject gameI = GameObject.Find("Display Game Information");
+        GameInformation gameInfo = gameI.GetComponent<GameInformation>();
+
         if (ShipContainer.checkIfEarthLost())
         {
-            Debug.Log("Earth lost");
+            SceneManager.LoadScene("MarsWins", LoadSceneMode.Single);
             return true;
         }
 
         if (ShipContainer.checkIfMarsLost())
         {
-            Debug.Log("Mars lost");
+            SceneManager.LoadScene("EarthWins", LoadSceneMode.Single);
             return true;
         }
         return false;
     }
-
-
-
 }

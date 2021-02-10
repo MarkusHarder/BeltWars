@@ -8,7 +8,10 @@ public class Damage : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Explosion expl = gameObject.GetComponent<Explosion>();
-        expl.StartExplosion();
+        if (!gameObject.name.Equals("LaserBeam")) //The Laser should not explode
+        {
+            Explosion expl = gameObject.GetComponent<Explosion>();
+            expl.StartExplosion();
+        }
     }
 }

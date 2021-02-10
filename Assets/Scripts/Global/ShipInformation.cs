@@ -5,12 +5,14 @@ using UnityEngine.UI;
 
 public class ShipInformation : MonoBehaviour
 {
+    public string fraction, currentWeapon, machineGun, missile, laserBeam;
 
 
     // Update is called once per frame
     void Update()
     {
-        displayInformation();
+        //if (GlobalVariables.local)
+            displayInformation();
     }
 
 
@@ -20,40 +22,56 @@ public class ShipInformation : MonoBehaviour
 
         if (ship)
         {
-            string fraction = "";
-            if (ship.name.StartsWith("Ship_Mars"))
-            {
-                fraction = " MARS" + "\n";
+            if (GlobalVariables.singlePlayer && ship.name.StartsWith("Ship_Mars")){
+                machineGun = " 1. Machine Gun: Infinite" + "\n";
+                missile = " 2. Missiles:" + ship.GetComponent<AIBehaviour>().missileAmount + "\n";
+                laserBeam = " 3. LaserBeam: " + ship.GetComponent<AIBehaviour>().laserAmount + "\n";
+
+                currentWeapon = " Loaded: ";
+
+                if (ship.GetComponent<AIBehaviour>().weapontype == AIBehaviour.Weapontype.MACHINE_GUN)
+                {
+                    currentWeapon += "MACHINE GUN";
+                }
+                else if (ship.GetComponent<AIBehaviour>().weapontype == AIBehaviour.Weapontype.MISSILE)
+                {
+                    currentWeapon += "MISSILE LAUNCHER";
+                }
+                else if (ship.GetComponent<AIBehaviour>().weapontype == AIBehaviour.Weapontype.LASER)
+                {
+                    currentWeapon += "LASERBEAM";
+                }
             }
             else
             {
-                fraction = " EARTH" + "\n";
+                machineGun = " 1. Machine Gun: Infinite" + "\n";
+                missile = " 2. Missiles:" + ship.GetComponent<Shoot>().missileAmount + "\n";
+                laserBeam = " 3. LaserBeam: " + ship.GetComponent<Shoot>().laserAmount + "\n";
+
+                currentWeapon = " Loaded: ";
+
+                if (ship.GetComponent<Shoot>().weapontype == Shoot.Weapontype.MACHINE_GUN)
+                {
+                    currentWeapon += "MACHINE GUN";
+                }
+                else if (ship.GetComponent<Shoot>().weapontype == Shoot.Weapontype.MISSILE)
+                {
+                    currentWeapon += "MISSILE LAUNCHER";
+                }
+                else if (ship.GetComponent<Shoot>().weapontype == Shoot.Weapontype.LASER)
+                {
+                    currentWeapon += "LASERBEAM";
+                }
             }
-
-            string machineGun = " 1. Machine Gun: Infinite" + "\n";
-            string missile = " 2. Missiles:" + ship.GetComponent<Shoot>().missileAmount + "\n";
-            string laserBeam = " 3. LaserBeam: " + ship.GetComponent<Shoot>().laserAmount + "\n";
-
-
-            string currentWeapon = " Loaded: ";
-
-            if (ship.GetComponent<Shoot>().weapontype == Shoot.Weapontype.MACHINE_GUN)
-            {
-                currentWeapon += "MACHINE GUN";
-            }
-            else if (ship.GetComponent<Shoot>().weapontype == Shoot.Weapontype.MISSILE)
-            {
-                currentWeapon += "MISSILE LAUNCHER";
-            }
-            else if (ship.GetComponent<Shoot>().weapontype == Shoot.Weapontype.LASERBEAM)
-            {
-                currentWeapon += "LASERBEAM";
-            }
-
-            this.gameObject.GetComponent<Text>().text = fraction + currentWeapon + "\n" + machineGun + missile + laserBeam;
+            updateText();
         }
        
         
         
+    }
+
+    public void updateText()
+    {
+        this.gameObject.GetComponent<Text>().text = currentWeapon + "\n" + machineGun + missile + laserBeam;
     }
 }

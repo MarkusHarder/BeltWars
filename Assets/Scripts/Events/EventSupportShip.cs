@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
 public class EventSupportShip : MonoBehaviour
 {
@@ -18,21 +19,32 @@ public class EventSupportShip : MonoBehaviour
         this.ship = Resources.Load(ResourcePathConstants.SUPPORT_SHIP) as GameObject;
         this.item = Resources.Load(ResourcePathConstants.DROP_ITEM) as GameObject;
 
-        this.calculateDropLocation();
+        bool dropLocationFound = this.calculateDropLocation();
 
-        this.placeShip();
-
+        if (dropLocationFound)
+        {
+            this.placeShip();
+        }
+        else
+        {
+            GameObject gameController = GameObject.Find("Game Controller");
+            if (gameController == null)
+                gameController = GameObject.Find("NetworkGameController");
+            gameController.GetComponent<GameController>().eventIsRunning = false;
+        }
     }
 
-
-    private void calculateDropLocation()
+    //Returns true if a dropLocation was found
+    private bool calculateDropLocation()
     {
         CameraMeasurements camera = new CameraMeasurements();
         bool collision;
         float borderDistance = 0.75f;
+        int counter = 0;
 
         do
         {
+            counter++;
             float x = Random.Range(camera.getHorizontalMin() + borderDistance, camera.getHorizontalMax() - borderDistance);
             float y = Random.Range(camera.getVerticalMin() + borderDistance, camera.getVerticalMax() - borderDistance);
 
@@ -40,11 +52,12 @@ public class EventSupportShip : MonoBehaviour
             Debug.Log("dropLocation: x=" + x + " y=" + y);
 
             collision = checkItemCollision();
+
+            if (counter == 10000) return false;
+
         } while (collision);
-
-     
+        return true;
     }
-
 
     private void placeShip()
     {
@@ -81,11 +94,14 @@ public class EventSupportShip : MonoBehaviour
         }
 
         this.ship = (GameObject) Instantiate(this.ship, this.startLocation, Quaternion.Euler(0, 0, rotation));
+        if (!GlobalVariables.local)
+            NetworkServer.Spawn(ship);
         this.ship.name = "Support_Ship";
         SupportShipAction action = this.ship.GetComponent<SupportShipAction>();
         action.startPosition = this.startLocation;
         action.dropPosition = this.dropLocation;
     }
+
 
     private bool checkItemCollision()
     {

@@ -2,26 +2,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public static class ShipContainer
 {
     private static GameObject currentShip;
-    private static int nextEarthShipIndex = 0;
-    private static int nextMarsShipIndex = 0;
+    private static int currentEarthShipIndex = 0;
+    private static int currentMarsShipIndex = 0;
 
-    public static ArrayList mars = new ArrayList();
-    public static ArrayList earth = new ArrayList();
+    public static ArrayList marsShips = new ArrayList();
+    public static ArrayList earthShips = new ArrayList();
 
     public static void printShips()
     {
         Debug.Log("Printing ships nowl!");
 
-        foreach (object marsship in mars)
+        foreach (object marsship in marsShips)
         {
             Debug.Log(((GameObject)marsship).name);
         }
 
-        foreach (object earthship in earth)
+        foreach (object earthship in earthShips)
         {
             Debug.Log(((GameObject)earthship).name);
         }
@@ -37,35 +38,18 @@ public static class ShipContainer
         {
             activateFirstShip();
         }
-        else
+        else if (currentShip.name.StartsWith("Ship_Earth"))
         {
-            if (currentShip.name.StartsWith("Ship_Earth"))
-            {
-                GameObject ship;
-                do
-                {
-                  if(nextMarsShipIndex >= mars.Count - 1)
-                    {
-                        nextMarsShipIndex = 0;
-                    }
-                  ship = ( GameObject )mars[nextMarsShipIndex++];
-                } while (ship == null);
-     
-                setShipActive(ship);
-            }else if(currentShip.name.StartsWith("Ship_Mars"))
-            {
-                GameObject ship;
-                do
-                {
-                    if (nextEarthShipIndex >= earth.Count - 1)
-                    {
-                        nextEarthShipIndex = 0;
-                    }
-                    ship = ( GameObject )earth[nextEarthShipIndex++];
-                } while (ship == null);
-                
-                setShipActive(ship);
-            }
+            incrementMarsShipIndex();
+            GameObject ship = ( GameObject ) marsShips[currentMarsShipIndex];
+            setShipActive(ship);
+        }
+        else if(currentShip.name.StartsWith("Ship_Mars"))
+        {
+            incrementEarthShipIndex();
+            GameObject ship;
+            ship = ( GameObject )earthShips[currentEarthShipIndex];
+            setShipActive(ship);
         }
     }
 
@@ -75,23 +59,30 @@ public static class ShipContainer
         int i = UnityEngine.Random.Range(0, 1);
         if(i == 0)
         {
-            ship = ( GameObject )mars[0];
+            ship = ( GameObject )marsShips[0];
             setShipActive(ship);
-            nextMarsShipIndex++;
         }
         else
         {
-            ship = ( GameObject )earth[0];
+            ship = ( GameObject )earthShips[0];
             setShipActive(ship);
-            nextEarthShipIndex++;
         }
     }
 
-    private static void setShipActive(GameObject ship) 
+    public static void setShipActive(GameObject ship) 
     {
         if(ship != null) {
-            ship.GetComponent<ProtoMovement>().active = true;
-            ship.GetComponent<Shoot>().active = true;
+            if (GlobalVariables.singlePlayer && ship.name.StartsWith("Ship_Mars"))
+            {
+                ship.GetComponent<AIBehaviour>().setActive();
+            }
+            else
+            {
+                ship.GetComponent<ProtoMovement>().active = true;
+                ship.GetComponent<Shoot>().active = true;
+                
+            }
+            ship.GetComponent<Circle>().active = true;
             currentShip = ship;
         }
     }
@@ -99,18 +90,49 @@ public static class ShipContainer
     private static void setShipInactive(GameObject ship)
     {
         if(ship != null) {
-            ship.GetComponent<ProtoMovement>().active = false;
-            ship.GetComponent<Shoot>().active = false;
+            if (GlobalVariables.singlePlayer && ship.name.StartsWith("Ship_Mars"))
+            {
+                ship.GetComponent<AIBehaviour>().setInActive();
+            }
+            else
+            {
+                ship.GetComponent<ProtoMovement>().active = false;
+                ship.GetComponent<Shoot>().active = false;
+            }
+        }
+    }
+
+    private static void incrementEarthShipIndex()
+    {
+        if (currentEarthShipIndex + 1 > earthShips.Count - 1)
+        {
+            currentEarthShipIndex = 0;
+        }
+        else
+        {
+            currentEarthShipIndex++;
+        }
+    }
+
+    private static void incrementMarsShipIndex()
+    {
+        if (currentMarsShipIndex + 1 > marsShips.Count - 1)
+        {
+            currentMarsShipIndex = 0;
+        }
+        else
+        {
+            currentMarsShipIndex++;
         }
     }
 
     public static void deactivateAllShips()
     {
-        foreach(GameObject ship in mars)
+        foreach(GameObject ship in marsShips)
         {
             setShipInactive(ship);
         }
-        foreach (GameObject ship in earth)
+        foreach (GameObject ship in earthShips)
         {
             setShipInactive(ship);
         }
@@ -118,35 +140,53 @@ public static class ShipContainer
 
     public static bool checkIfMarsLost()
     {
-        
-        foreach(GameObject ship in mars)
+        if (marsShips.Count == 0)
         {
-            if(ship != null) return false;
+            return true;
         }
-        return true;
+        else
+        {
+            return false;
+        }
     }
 
     public static bool checkIfEarthLost()
     {
-
-        foreach (GameObject ship in earth)
+        if(earthShips.Count == 0)
         {
-            if (ship != null) return false;
+            return true;
         }
-        return true;
+        else
+        {
+            return false;
+        }
     }
 
 
     public static GameObject getActiveShip()
     {
-        foreach(GameObject ship in mars)
+        if (GlobalVariables.singlePlayer)
         {
-            if (ship && ship.GetComponent<ProtoMovement>().active)
+            foreach (GameObject ship in marsShips)
             {
-                return ship;
+                if (ship && ship.GetComponent<AIBehaviour>().active)
+                {
+                    return ship;
+                }
             }
         }
-        foreach (GameObject ship in earth)
+        else
+        {
+            foreach (GameObject ship in marsShips)
+            {
+                if (ship && ship.GetComponent<ProtoMovement>().active)
+                {
+                    return ship;
+                }
+            }
+        }
+
+        foreach (GameObject ship in earthShips)
         {
             if (ship && ship.GetComponent<ProtoMovement>().active)
             {
@@ -154,6 +194,25 @@ public static class ShipContainer
             }
         }
         return null;
+    }
+
+
+    public static void removeShipFromList(GameObject ship)
+    {
+        if (ship.name.StartsWith("Ship_Mars"))
+        {
+            marsShips.Remove(ship);
+        }
+        else if (ship.name.StartsWith("Ship_Earth"))
+        {
+            earthShips.Remove(ship);
+        }
+    }
+
+    public static void resetShipLists()
+    {
+        marsShips = new ArrayList();
+        earthShips = new ArrayList();
     }
 
 }
