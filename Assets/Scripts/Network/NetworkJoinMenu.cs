@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -14,6 +15,7 @@ public class NetworkJoinMenu : MonoBehaviour
     [Header("UI")]
     [SerializeField] private TMP_InputField ipAddressInputField = null;
     [SerializeField] private Button joinButton = null;
+    [SerializeField] private GameObject cancelButton = null;
 
 
     private void OnEnable()
@@ -32,14 +34,24 @@ public class NetworkJoinMenu : MonoBehaviour
 
     public void JoinLobby()
     {
-        string ipAddress = ipAddressInputField.text;
-        if (string.IsNullOrEmpty(ipAddress))
+        try
         {
-            return;
+            string ipAddress = ipAddressInputField.text;
+            if (string.IsNullOrEmpty(ipAddress))
+            {
+                return;
+            }
+            networkManager.networkAddress = ipAddress;
+            networkManager.StartClient();
+            joinButton.interactable = false;
+        } catch
+        {
+            ipAddressInputField.text = "Enter a valid IP!";
+            networkManager.networkAddress = "";
+            networkManager.StopClient();
+            joinButton.interactable = true;
+            cancelButton.SetActive(false);
         }
-        networkManager.networkAddress = ipAddress;
-        networkManager.StartClient();
-        joinButton.interactable = false;
     }
 
     private void HandleClientConnected()
@@ -59,6 +71,11 @@ public class NetworkJoinMenu : MonoBehaviour
     }
 
 
+    public void CancelLobby()
+    {
+        networkManager.StopClient();
+        joinButton.interactable = true;
+    }
     public void QuitLobby()
     {
         networkManager.StopClient();

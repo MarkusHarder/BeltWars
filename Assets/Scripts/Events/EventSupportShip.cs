@@ -21,7 +21,17 @@ public class EventSupportShip : MonoBehaviour
 
         bool dropLocationFound = this.calculateDropLocation();
 
-        if (dropLocationFound) this.placeShip();
+        if (dropLocationFound)
+        {
+            this.placeShip();
+        }
+        else
+        {
+            GameObject gameController = GameObject.Find("Game Controller");
+            if (gameController == null)
+                gameController = GameObject.Find("NetworkGameController");
+            gameController.GetComponent<GameController>().eventIsRunning = false;
+        }
     }
 
     //Returns true if a dropLocation was found

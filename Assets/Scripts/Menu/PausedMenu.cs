@@ -15,7 +15,7 @@ public class PausedMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.P))
         {
             FindObjectOfType<AudioManager>().Stop("engine1");
             if (GameIsPaused)

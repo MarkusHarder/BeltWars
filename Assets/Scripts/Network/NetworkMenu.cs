@@ -13,8 +13,14 @@ public class NetworkMenu : MonoBehaviour
     }
     public void HostLobby()
     {
-        networkManager.StartHost();
-        Debug.Log(networkManager.isNetworkActive);
+        try
+        {
+            networkManager.StartHost();
+            Debug.Log(networkManager.isNetworkActive);
+        } catch
+        {
+            networkManager.StopHost();
+        }
     }
 
     public void StopHost()

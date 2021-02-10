@@ -15,7 +15,9 @@ public class NetworkGameController : GameController
     void Start()
     {
         GlobalVariables.local = false;
-        
+        shipNumber = GlobalVariables.numOfShips;
+        asteroidDensity = GlobalVariables.asteroidDensity;
+
     }
 
     // Update is called once per frame
