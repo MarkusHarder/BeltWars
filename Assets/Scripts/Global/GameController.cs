@@ -52,6 +52,7 @@ public class GameController : MonoBehaviour
 
                 if (!eventIsRunning)
                 {
+                    FindObjectOfType<AudioManager>().Stop("engine1");
                     ShipContainer.activateNextShip();
                     eventAllowed = true;
                     timer += roundTime;
@@ -67,14 +68,29 @@ public class GameController : MonoBehaviour
 
         if (ShipContainer.checkIfEarthLost())
         {
-            SceneManager.LoadScene("MarsWins", LoadSceneMode.Single);
-            return true;
+            if (GlobalVariables.local)
+            {
+                SceneManager.LoadScene("MarsWins", LoadSceneMode.Single);
+                return true;
+            } else
+            {
+                FindObjectOfType<NetworkEndSceneHandler>().loadSceneOnClient("MarsWins");
+                return true;
+            }
         }
 
         if (ShipContainer.checkIfMarsLost())
         {
-            SceneManager.LoadScene("EarthWins", LoadSceneMode.Single);
-            return true;
+            if (GlobalVariables.local)
+            {
+                SceneManager.LoadScene("EarthWins", LoadSceneMode.Single);
+                return true;
+            }
+            else
+            {
+                FindObjectOfType<NetworkEndSceneHandler>().loadSceneOnClient("EarthWins");
+                return true;
+            }
         }
         return false;
     }

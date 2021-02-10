@@ -13,6 +13,8 @@ public class NetworkMenu : MonoBehaviour
     }
     public void HostLobby()
     {
+        if (networkManager == null)
+            networkManager = FindObjectOfType<NetworkManagerBeltWars>();
         try
         {
             networkManager.StartHost();
@@ -25,6 +27,8 @@ public class NetworkMenu : MonoBehaviour
 
     public void StopHost()
     {
+        if (networkManager == null)
+            return;
         networkManager.StopHost();
         Debug.Log(networkManager.isNetworkActive);
     }
